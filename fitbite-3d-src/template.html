@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>FITBITE — Cyberpunk 3D-wandeling</title>
+<style>
+/*__FONTS__*/
+:root{--cy:#25e6ff;--mg:#ff2bd0;--gr:#5dffc8;--bg:#05070c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;color:#e8f0f4;font-family:Oswald,"Arial Narrow",system-ui,sans-serif;user-select:none;-webkit-user-select:none;touch-action:none}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+.hide{opacity:0!important;pointer-events:none!important}
+#loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);z-index:30;transition:opacity .8s}
+#loading b{font:700 44px Oswald,sans-serif;letter-spacing:.32em;color:#fff;text-shadow:0 0 18px var(--mg)}
+#loadmsg{margin-top:14px;font-size:15px;letter-spacing:.14em;color:#8fa3b0;text-align:center;max-width:80vw}
+#overlay{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center;background:linear-gradient(180deg,rgba(5,7,12,0) 35%,rgba(5,7,12,.8));transition:opacity .5s;padding:16px 16px 4vh}
+.card{width:min(560px,100%);padding:16px 26px 14px;border:1px solid rgba(37,230,255,.35);border-radius:14px;background:rgba(8,12,20,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 40px rgba(255,43,208,.16),inset 0 0 30px rgba(37,230,255,.05);text-align:center}
+.card h1{margin:0;font:700 46px Oswald,sans-serif;letter-spacing:.3em;text-indent:.3em;color:#fff;text-shadow:0 0 16px var(--mg),0 0 2px #fff}
+#sub{font:34px Sacramento,cursive;color:#9db8ff;text-shadow:0 0 12px #2d5bff;margin:-6px 0 4px}
+.card p{margin:5px 0;font-size:15px;line-height:1.5;letter-spacing:.04em;color:#b8c7d2;font-weight:400}
+.card kbd{display:inline-block;min-width:22px;padding:1px 6px;margin:0 1px;border:1px solid rgba(255,255,255,.3);border-radius:4px;font:500 13px Oswald,sans-serif;color:#fff;background:rgba(255,255,255,.06)}
+.btns{display:flex;gap:10px;justify-content:center;margin:11px 0 9px;flex-wrap:wrap}
+button{font:500 16px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#e8f6fa;background:rgba(10,18,28,.7);border:1px solid rgba(37,230,255,.5);border-radius:8px;padding:10px 18px;cursor:pointer;transition:all .15s}
+button:hover{background:rgba(37,230,255,.16);box-shadow:0 0 14px rgba(37,230,255,.35)}
+button.pri{border-color:var(--mg);background:rgba(255,43,208,.16);box-shadow:0 0 16px rgba(255,43,208,.25)}
+button.pri:hover{background:rgba(255,43,208,.3)}
+.q{display:flex;gap:6px;align-items:center;justify-content:center;font-size:13px;letter-spacing:.14em;color:#8fa3b0;text-transform:uppercase}
+.q button{font-size:12px;padding:5px 10px;border-color:rgba(255,255,255,.22)}
+.q button.on,#sndbtn.on{border-color:var(--gr);color:var(--gr);box-shadow:0 0 10px rgba(93,255,200,.25)}
+#hud{position:fixed;inset:0;z-index:10;pointer-events:none;opacity:0;transition:opacity .6s}
+#hud.show{opacity:1}
+#brand{position:absolute;left:18px;top:14px;font:700 20px Oswald,sans-serif;letter-spacing:.3em;color:#fff;text-shadow:0 0 10px var(--mg)}
+#zone{position:absolute;left:18px;top:42px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cy);text-shadow:0 0 8px rgba(37,230,255,.6)}
+#tr{position:absolute;right:14px;top:12px;display:flex;gap:8px;pointer-events:auto;flex-wrap:wrap;justify-content:flex-end}
+#tr button{font-size:12px;padding:7px 11px}
+#hint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(220,235,245,.6)}
+#toast{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);padding:8px 16px;border-radius:8px;background:rgba(8,12,20,.8);border:1px solid rgba(37,230,255,.4);font-size:14px;letter-spacing:.1em;opacity:0;transition:opacity .4s}
+#toast.show{opacity:1}
+#tourbar{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:min(320px,40vw);opacity:0;transition:opacity .4s;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+#tourbar.show{opacity:1}
+#tourbar i{display:block;height:3px;margin-top:6px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden}
+#tourfill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg))}
+#joy{position:fixed;width:120px;height:120px;border-radius:50%;border:1px solid rgba(37,230,255,.5);background:rgba(37,230,255,.06);left:28px;bottom:36px;display:none;z-index:11;pointer-events:none;opacity:.55}
+#joy.on{opacity:1}
+#nub{position:absolute;left:36px;top:36px;width:48px;height:48px;border-radius:50%;background:rgba(37,230,255,.35);border:1px solid var(--cy)}
+.touch #joy{display:block}.touch .desk{display:none}.mob{display:none}.touch .mob{display:inline}
+@media (max-height:560px){.card p.route{display:none}.card h1{font-size:30px}#sub{font-size:24px}}
+@media (max-width:640px){.card h1{font-size:34px}#sub{font-size:28px}#tourbar{top:70px;width:70vw}#brand{font-size:16px}#hint{display:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud">
+  <div id="brand">FITBITE</div><div id="zone"></div>
+  <div id="tourbar">Rondleiding<i><span id="tourfill"></span></i></div>
+  <div id="tr">
+    <button id="tourbtn2">Rondleiding</button><button id="sndbtn" class="on">Geluid aan</button>
+    <span class="q"><button data-q="laag">Laag</button><button data-q="midden">Midden</button><button data-q="hoog">Hoog</button></span>
+  </div>
+  <div id="hint"><span class="desk">WASD lopen · muis kijken · Shift sneller · R rondleiding · Esc pauze</span></div>
+  <div id="toast"></div>
+</div>
+<div id="joy"><div id="nub"></div></div>
+<div id="overlay" class="hide">
+  <div class="card">
+    <h1>FITBITE</h1><div id="sub">Train, Eat, Repeat</div>
+    <p class="desk">Loop met <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>, kijk rond met de muis.<br><kbd>Shift</kbd> sneller · <kbd>Esc</kbd> geeft de muis weer vrij.</p>
+    <p class="mob">Linkerduim: lopen · rechterduim: rondkijken.</p>
+    <p class="route">Van de straat via de ingang naar de eetruimte, langs de toonbank en door tot in de keuken.</p>
+    <div class="btns"><button id="startbtn" class="pri">Start wandeling</button><button id="tourbtn">Rondleiding</button></div>
+    <div class="q">Kwaliteit <button data-q="laag">Laag</button><button data-q="midden">Midden</button><button data-q="hoog">Hoog</button></div>
+  </div>
+</div>
+<div id="loading"><b>FITBITE</b><div id="loadmsg">De zaak wordt opgebouwd…</div></div>
+<script>/*__BUNDLE__*/</script>
+</body>
+</html>
