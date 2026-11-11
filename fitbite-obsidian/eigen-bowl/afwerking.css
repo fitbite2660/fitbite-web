@@ -112,3 +112,10 @@ body[data-scene="mand"] .cart-title{font:500 22px/1.08 var(--display);letter-spa
 .cart-recipe .bowl-summary{margin:0 0 12px;font-size:13px}.cart-recipe .summary-row{font-size:13px;line-height:1.4}
 .cart-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px}.quantity{display:flex;align-items:center;border:1px solid #f4e8d360;border-radius:3px}.quantity button{width:44px;height:44px;border:0;background:none;font:24px var(--display);color:var(--cream)}.quantity button:disabled{opacity:.3;cursor:default}.quantity-number{font:500 17px var(--display);min-width:26px;text-align:center}.cart-tools .cart-remove{font-size:13px;min-height:44px;padding:0 2px;opacity:.8}.cart-demo-note{font-size:11px;opacity:.65;text-align:center;margin:18px 0 0}.empty-order{padding:30px 0}.empty-order-title{font:500 26px var(--display);margin:0 0 12px}.empty-order p:not(.empty-order-title){font-size:17px;line-height:1.5;opacity:.85}.cart-explore{display:inline-flex;align-items:center;min-height:48px;color:var(--cream);text-decoration:underline;text-underline-offset:5px}
 @media(max-width:360px){.cart-product{grid-template-columns:90px minmax(0,1fr);gap:12px}.cart-photo{width:90px;height:90px}body[data-scene="mand"] .cart-title{font-size:20px}body[data-scene="mand"] .title-area{padding-top:20px;padding-bottom:18px}}
+
+/* prijzen */
+.cart-price{font:500 18px var(--display);margin-left:auto;white-space:nowrap}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:14px;padding-top:14px;font:500 17px var(--display)}
+.cart-total strong{font:500 26px var(--display);letter-spacing:-.02em}
+.bowl-price{font:500 20px var(--display);margin:12px 0 0}
+.choice-price{display:block;font:400 13px var(--reading);opacity:.75;margin-top:2px}

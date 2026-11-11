@@ -104,5 +104,29 @@
     for(const item of basket){const key=bowlKey(item);if(!groups.has(key))groups.set(key,{key,item,ids:[]});groups.get(key).ids.push(item.id);}
     return [...groups.values()];
   }
-  window.fitbiteMenu = {collections, items, readCart, storageKey, signatureBowls, xlBowls, sideProteins, sideSauces, allOptions, signature, bowlName, bowlBase, bowlSize, normalizeBowl, bowlKey, groupBowls};
+  // Prijzen: overgenomen van de Takeaway-menukaart (momentopname 10 november 2026).
+  // Pas ze hier aan; mand, kassa en totaal rekenen automatisch mee.
+  const prices = {
+    poke: {Medium: 13.49, Large: 15.49},
+    crousty: 12.99, croustySecondSauce: 0.50,
+    protein: 15.99,
+    signature: {royal: 21.99, sea: 21.99, 'xl-crousty': 21.99, 'xl-side': 21.99, kb: 17.49},
+    items: {pops: 12.99, bbq: 12.99, loubs: 12.99, kc: 15.99, spicy: 5.49, sweet: 5.49, tropical: 5.50, straw: 5.50, red: 5.50, surprise: 5.50}
+  };
+  function bowlPrice(item) {
+    if (!item) return null;
+    if (item.signature) return prices.signature[item.signature] ?? prices.poke[item.size] ?? null;
+    if (item.kind === 'crousty') return prices.crousty + (item.sauces?.length > 1 ? prices.croustySecondSauce : 0);
+    if (item.kind === 'protein') return prices.protein;
+    return prices.poke[item.size] ?? null;
+  }
+  const itemPrice = id => prices.items[id] ?? null;
+  const euro = amount => amount == null ? '' : '€ ' + amount.toFixed(2).replace('.', ',');
+  function orderTotal(basket, cart) {
+    let total = 0;
+    for (const item of basket || []) total += bowlPrice(item) || 0;
+    for (const [id, quantity] of Object.entries(cart || {})) total += (itemPrice(id) || 0) * quantity;
+    return Math.round(total * 100) / 100;
+  }
+  window.fitbiteMenu = {collections, items, readCart, storageKey, prices, bowlPrice, itemPrice, euro, orderTotal, signatureBowls, xlBowls, sideProteins, sideSauces, allOptions, signature, bowlName, bowlBase, bowlSize, normalizeBowl, bowlKey, groupBowls};
 })();

@@ -36,12 +36,12 @@
     options.protein=['Kip','Korean chicken','Nuggets','Crispy tenders'];
     options.sauces=['Teriyaki mayo','Sriracha mayo','Zoete sriracha','BBQ-saus'];
     options.toppings=['Crispy ui'];
-    copy.intro=['Jouw Crousty','Stel je Crousty samen.','Rijst, onze speciale Crousty-saus en jouw favoriete kip.','Kies je proteïne'];
-    copy.sauzen[2]='Kies één saus. Een tweede is optioneel.';
+    copy.intro=['Jouw Crousty','Stel je Crousty samen.','Rijst, onze speciale Crousty-saus en jouw favoriete kip. '+window.fitbiteMenu.euro(window.fitbiteMenu.prices.crousty)+'.','Kies je proteïne'];
+    copy.sauzen[2]='Kies één saus. Een tweede is optioneel (+ '+window.fitbiteMenu.euro(window.fitbiteMenu.prices.croustySecondSauce)+').';
   } else if(kind==='protein') {
     options.protein=['Kip','Nuggets','Crispy tenders','Korean chicken','Verse zalm','Gegrilde zalm','Scampi'];
     options.sauces=['Teriyaki','Sriracha mayo'];
-    copy.intro=['Zonder rijst','Jouw proteïne-bowl.','Proteïne als basis. Vijf mix-ins, jouw saus en toppings.','Kies je proteïne'];
+    copy.intro=['Zonder rijst','Jouw proteïne-bowl.','Proteïne als basis. Vijf mix-ins, jouw saus en toppings. '+window.fitbiteMenu.euro(window.fitbiteMenu.prices.protein)+'.','Kies je proteïne'];
     copy.proteine[2]='Dit wordt de basis van je bowl. Zonder rijst.';
     copy.proteine[3]='Kies je vijf mix-ins';
     copy.groenten[1]='Kies je vijf mix-ins.';
@@ -269,6 +269,7 @@
       if (value === 'Truffelmayonaise') {
         choiceLabel.replaceChildren('Truffel', element('wbr'), 'mayonaise');
       }
+      if (group === 'size') choiceLabel.append(element('span', 'choice-price', window.fitbiteMenu.euro(window.fitbiteMenu.prices.poke[value])));
       button.append(choiceLabel, mark);
       grid.append(button);
     });
@@ -312,7 +313,7 @@
     const target=[...choices.querySelectorAll('[data-cart-key]')].find(el=>el.dataset.cartKey===key&&el.dataset.cartAction===control&&!el.disabled);
     (target||choices.querySelector('.quantity-plus')||next).focus({preventScroll:true});
   }
-  function cartEntry({key,name,size,quantity,photo,item,change}) {
+  function cartEntry({key,name,size,quantity,photo,item,change,price}) {
     const entry=element('article','cart-item');
     const top=element('div','cart-product');
     const image=element('img','cart-photo');image.src=photo;image.alt='';image.width=130;image.height=100;
@@ -327,7 +328,7 @@
     const amount=element('span','quantity-number',String(quantity));amount.setAttribute('aria-label',quantity+(quantity===1?' stuk':' stuks'));
     stepper.append(minus,amount,plus);
     const remove=action('Verwijder','cart-remove',()=>change(-quantity,'remove'));remove.setAttribute('aria-label','Verwijder '+name);
-    row.append(stepper,remove);entry.append(row);return entry;
+    row.append(stepper);if(price!=null)row.append(element('span','cart-price',window.fitbiteMenu.euro(price*quantity)));row.append(remove);entry.append(row);return entry;
   }
   function showBasket() {
     byId('scene-kicker').textContent='Jouw selectie · '+countLabel();
@@ -338,7 +339,7 @@
     }
     for(const group of window.fitbiteMenu.groupBowls(basket)) {
       const {key,item,ids}=group,name=window.fitbiteMenu.bowlName(item);
-      choices.append(cartEntry({key,name,size:window.fitbiteMenu.bowlSize(item),quantity:ids.length,photo:cartPhoto(item),item,change:(delta,control)=>{
+      choices.append(cartEntry({key,name,size:window.fitbiteMenu.bowlSize(item),quantity:ids.length,photo:cartPhoto(item),item,price:window.fitbiteMenu.bowlPrice(item),change:(delta,control)=>{
         const current=readBasket(basket),matches=current.filter(saved=>window.fitbiteMenu.bowlKey(saved)===key);
         if(!matches.length)return refreshCartFocus(key,control);
         let changed=current,removedDraft=false;
@@ -351,21 +352,28 @@
     }
     for(const [id,name] of window.fitbiteMenu.items) {
       if(!menuCart[id])continue;
-      choices.append(cartEntry({key:id,name,size:'Fitbite',quantity:menuCart[id],photo:cartPhoto(null,id),change:(delta,control)=>{
+      choices.append(cartEntry({key:id,name,size:'Fitbite',quantity:menuCart[id],photo:cartPhoto(null,id),price:window.fitbiteMenu.itemPrice(id),change:(delta,control)=>{
         const changed=window.fitbiteMenu.readCart();const amount=Math.max(0,Math.min(99,(changed[id]||0)+delta));
         if(control==='remove'||!amount)delete changed[id];else changed[id]=amount;
         if(!persistCart(null,changed))return;
         refreshCartFocus(id,control);announce(control==='remove'?name+' verwijderd.':name+': '+amount+(amount===1?' stuk.':' stuks.'));
       }}));
     }
-    choices.append(element('p','cart-demo-note','Bestelproef · prijzen volgen.'));
+    choices.append(totalRow());
+    choices.append(element('p','cart-demo-note','Prijzen inclusief btw · bezorgkosten volgen bij afrekenen.'));
+  }
+
+  function totalRow() {
+    const row=element('div','cart-total');
+    row.append(element('span','','Totaal'),element('strong','',window.fitbiteMenu.euro(window.fitbiteMenu.orderTotal(basket,menuCart))));
+    return row;
   }
 
   function appendMenuItems(container) {
     for (const [id, name] of window.fitbiteMenu.items) {
       if (!menuCart[id]) continue;
       const row = element('div', 'order-item');
-      row.append(element('h3', '', menuCart[id] + ' × ' + name));
+      row.append(element('h3', '', menuCart[id] + ' × ' + name + ' · ' + window.fitbiteMenu.euro((window.fitbiteMenu.itemPrice(id)||0)*menuCart[id])));
       container.append(row);
     }
   }
@@ -385,12 +393,14 @@
       fold.append(element('summary', '', 'Je bestelling · ' + countLabel()));
       for (const {item,ids} of window.fitbiteMenu.groupBowls(basket)) {
         const entry=element('div','order-item');
-        entry.append(element('h3','',ids.length+' × '+window.fitbiteMenu.bowlName(item)+' · '+window.fitbiteMenu.bowlSize(item)),element('p','',[window.fitbiteMenu.bowlBase(item),...item.vegetables,item.protein,...item.sauces,...item.toppings].filter(Boolean).join(' · ')));
+        entry.append(element('h3','',ids.length+' × '+window.fitbiteMenu.bowlName(item)+' · '+window.fitbiteMenu.bowlSize(item)+' · '+window.fitbiteMenu.euro((window.fitbiteMenu.bowlPrice(item)||0)*ids.length)),element('p','',[window.fitbiteMenu.bowlBase(item),...item.vegetables,item.protein,...item.sauces,...item.toppings].filter(Boolean).join(' · ')));
         fold.append(entry);
       }
       appendMenuItems(fold);
     }
     choices.append(fold);
+    if (scene === 'kassa') choices.append(totalRow());
+    else if (scene === 'keuze') { const p=window.fitbiteMenu.bowlPrice(bowl); if(p!=null) choices.append(element('p','bowl-price',window.fitbiteMenu.bowlName(bowl)+' · '+window.fitbiteMenu.euro(p))); }
     if (scene === 'kassa' && paymentPreview) {
       const note = element('p', 'payment-demo', 'Betaalproef afgerond. Er is niets in rekening gebracht.');
       note.setAttribute('role', 'status');
