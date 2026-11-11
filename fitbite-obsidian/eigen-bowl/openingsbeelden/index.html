@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f1e8d9">
+  <title>Drie openingsbeelden · Fitbite</title>
+  <style>
+    :root {
+      --canvas:#f1e8d9; --cream:#f5e9d2; --ink:#29231c; --line:#95867280;
+      --title:Futura,"Futura Medium","Trebuchet MS",sans-serif;
+      --text:Optima,Candara,"Segoe UI",sans-serif;
+      font-family:var(--text); color:var(--ink); background:var(--canvas);
+    }
+    * {box-sizing:border-box}
+    body {margin:0}
+    main {max-width:1280px;margin:auto;padding:clamp(16px,2.4vw,34px)}
+    button {font:inherit;color:inherit;cursor:pointer}
+    button:focus-visible,a:focus-visible {outline:3px solid #a94923;outline-offset:3px}
+    .mast {display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:20px}
+    .mast h1 {font:500 clamp(25px,2.8vw,39px)/1.1 var(--title);letter-spacing:-.06em;margin:0}
+    .mast span {font:400 14px var(--text)}
+    .gallery {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.3vw,32px)}
+    .concept {min-width:0}
+    .caption {display:flex;align-items:baseline;gap:9px;margin:0 0 9px}
+    .caption span {font:400 12px var(--text);color:#706656}
+    .caption h2 {font:500 clamp(18px,2vw,26px)/1.12 var(--title);letter-spacing:-.045em;margin:0}
+    .phone {position:relative;aspect-ratio:9/17;min-height:540px;overflow:hidden;isolation:isolate;color:#fff6e5;background:#282015;
+      border-radius:3px;box-shadow:0 3px 14px #36291827}
+    .cover {position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;object-position:center}
+    .phone::before {content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+      background:linear-gradient(180deg,#130e0cbb 0%,#1c17127a 16%,#211a1300 32%,#211a1300 63%,#1c161156 76%,#17130de8 100%)}
+    .glass {display:flex;position:absolute;inset:0;flex-direction:column;justify-content:space-between;padding:clamp(16px,1.6vw,24px)}
+    .brand {display:inline-block;font:500 clamp(20px,2vw,25px)/1 var(--title);letter-spacing:-.075em}
+    .location {display:inline-block;font:500 9px var(--title);text-transform:uppercase;letter-spacing:.19em;margin-left:8px;border-left:1px solid #f4e8d380;padding:1px 0 1px 9px;vertical-align:middle}
+    .screen-title {font:500 clamp(32px,3.45vw,48px)/.99 var(--title);letter-spacing:-.06em;margin:12px 0 0;text-wrap:balance}
+    .screen-title span {display:block}
+    .concept[data-view="boven"] .screen-title {text-align:right}
+    .concept[data-view="werkblad"] .screen-title {text-align:center;font-size:clamp(31px,3.3vw,46px)}
+    .actions {display:grid;gap:9px}
+    .sizes {border:0;display:grid;grid-template-columns:1fr 1fr;padding:0;margin:0;gap:6px;background:transparent;min-width:0}
+    .sizes legend {position:absolute;clip-path:inset(50%);overflow:hidden;height:1px;width:1px;white-space:nowrap}
+    .size {display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:8px 12px;border:1px solid #f5e9d385;border-radius:2px;background:#211d17a8;font-size:17px}
+    .size[aria-pressed="true"] {background:#f7eedee8;color:var(--ink);border-color:var(--cream)}
+    .size .mark {font:15px/1 var(--text)}
+    .next {display:flex;align-items:center;justify-content:space-between;min-height:48px;border:0;border-radius:2px;background:var(--cream);padding:9px 13px;color:var(--ink);font-size:18px;font-weight:600}
+    .next span[aria-hidden] {font:22px/1 var(--text)}
+    .tray {position:absolute;inset:0;display:flex;flex-direction:column;overflow-y:auto;background:#282117}
+    .tray[hidden] {display:none}
+    .tray-head {padding:13px 17px 9px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .tray-head output {font:15px var(--text);color:var(--cream)}
+    .back {min-height:44px;padding:4px 0;background:transparent;border:0;color:var(--cream);font-size:16px}
+    .tray h4 {font:500 clamp(30px,3vw,42px)/1 var(--title);letter-spacing:-.055em;margin:1px 17px 13px}
+    .tray-photo {display:block;min-height:105px;flex:1 1 150px;object-fit:cover;object-position:center 55%;width:100%;height:0}
+    .menu {display:grid;grid-template-columns:1fr 1fr;gap:0 18px;padding:14px 18px 18px}
+    .vegetable {min-width:0;display:flex;align-items:center;gap:6px;justify-content:space-between;text-align:left;
+      padding:6px 1px;min-height:44px;border:0;border-radius:0;border-bottom:1px solid #ecdabb55;background:transparent;color:#f7ecdc;font:17px var(--text)}
+    .vegetable:nth-child(-n+2) {border-top:1px solid #ecdabb55}
+    .circle {display:grid;place-items:center;border:1px solid #eee0c888;border-radius:50%;width:20px;height:20px;font-size:14px;flex:none}
+    .vegetable[aria-pressed="true"] .circle {background:var(--cream);color:var(--ink);border-color:var(--cream)}
+    .tabs {display:none}
+    @media (max-width:820px) {
+      main {max-width:490px;padding:12px}
+      .mast {margin-bottom:10px}
+      .mast span {font-size:12px}
+      .tabs {display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:0 0 10px}
+      .tabs a {color:var(--ink);background:transparent;border:1px solid var(--line);display:grid;place-content:center;text-align:center;text-decoration:none;
+        min-height:44px;padding:5px 3px;font-size:clamp(12px,3.5vw,16px);line-height:1.1}
+      .tabs a[aria-current="page"] {background:var(--ink);color:var(--cream)}
+      .gallery {display:block}
+      .concept:not(.current) {display:none}
+      .caption {display:none}
+      .phone {min-height:490px;aspect-ratio:9 / 17}
+      .glass {padding:17px}
+      .brand {font-size:23px}
+      .screen-title,.concept[data-view="werkblad"] .screen-title {font-size:clamp(34px,9.5vw,45px)}
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .cover {transform-origin:50% 66%;transition:transform .52s cubic-bezier(.25,.65,.35,1)}
+      .phone.choosing .cover {transform:scale(1.05)}
+      .phone.choosing .glass {opacity:0;transition:opacity .18s ease-out}
+      .tray:not([hidden]) {animation:enter .52s ease-in-out}
+      @keyframes enter {0%,22%{opacity:0}100%{opacity:1}}
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="mast"><h1>Drie openingsbeelden</h1><span>Fitbite · Puurs</span></header>
+  <nav class="tabs" aria-label="Kies een openingsbeeld">
+    <a href="#schep">Aan de schep</a><a href="#boven">Van bovenaf</a><a href="#werkblad">Aan het werkblad</a>
+  </nav>
+  <div class="gallery"></div>
+</main>
+<template id="concept">
+  <section class="concept">
+    <div class="caption"><span></span><h2></h2></div>
+    <div class="phone">
+      <img class="cover" alt="">
+      <div class="glass">
+        <div>
+          <span class="brand">Fitbite.</span><span class="location">Puurs</span>
+          <h3 class="screen-title"><span>Stel je eigen</span><span>bowl samen.</span></h3>
+        </div>
+        <div class="actions">
+          <fieldset class="sizes"><legend>Kies het formaat van je bowl</legend>
+            <button type="button" class="size" aria-pressed="true" data-size="Medium">Medium <span class="mark" aria-hidden="true">✓</span></button>
+            <button type="button" class="size" aria-pressed="false" data-size="Large">Large <span class="mark" aria-hidden="true">+</span></button>
+          </fieldset>
+          <button type="button" class="next">Kies je groenten <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <div class="tray" hidden>
+        <div class="tray-head"><button class="back" type="button">← Terug</button><output>Medium</output></div>
+        <h4 tabindex="-1">Kies je groenten.</h4>
+        <img class="tray-photo" src="groentebakken.jpg" alt="De open groentebakken van Fitbite">
+        <div class="menu" role="group" aria-label="Groenten"></div>
+      </div>
+    </div>
+  </section>
+</template>
+<script>
+  const concepts = [
+    {key:'schep', name:'Aan de schep', file:'01-schep-hout.jpg', alt:'Een schep rijst in de houten bowl aan de saladette.'},
+    {key:'boven', name:'Van bovenaf', file:'02-boven-hout.jpg', alt:'De houten bowl en de groenten, gezien van boven de saladette.'},
+    {key:'werkblad', name:'Aan het werkblad', file:'03-werkblad-hout.jpg', alt:'De houten bowl vooraan op het werkblad.'}
+  ];
+  const ingredients = ['Mango','Avocado','Komkommer','Edamame','Maïs','Rode ui','Tomaat'];
+  const gallery = document.querySelector('.gallery');
+  const template = document.querySelector('#concept');
+  for (const [i, design] of concepts.entries()) {
+    const card = template.content.firstElementChild.cloneNode(true);
+    card.dataset.view = design.key;
+    const caption = card.querySelector('h2');
+    caption.id = 'beeld-' + design.key;
+    caption.textContent = design.name;
+    card.setAttribute('aria-label',design.name);
+    card.querySelector('.caption span').textContent = '0' + (i + 1);
+    const photo = card.querySelector('.cover');
+    photo.src = design.file;
+    photo.alt = design.alt;
+    const intro = card.querySelector('.glass');
+    const phone = card.querySelector('.phone');
+    const tray = card.querySelector('.tray');
+    const next = card.querySelector('.next');
+    const sizeButtons = card.querySelectorAll('.size');
+    for (const button of sizeButtons) {
+      button.addEventListener('click', () => {
+        for (const item of sizeButtons) {
+          const selected = item === button;
+          item.setAttribute('aria-pressed',String(selected));
+          item.querySelector('.mark').textContent = selected ? '✓' : '+';
+        }
+        card.querySelector('output').textContent = button.dataset.size;
+      });
+    }
+    const menu = card.querySelector('.menu');
+    for (const ingredient of ingredients) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'vegetable';
+      button.setAttribute('aria-pressed','false');
+      const circle = document.createElement('span');
+      circle.setAttribute('aria-hidden','true');
+      circle.className = 'circle';
+      circle.textContent = '+';
+      button.append(ingredient,circle);
+      button.addEventListener('click', () => {
+        const selected = button.getAttribute('aria-pressed') === 'false';
+        button.setAttribute('aria-pressed',String(selected));
+        circle.textContent = selected ? '✓' : '+';
+      });
+      menu.append(button);
+    }
+    next.addEventListener('click', () => {
+      intro.inert = true;
+      phone.classList.add('choosing');
+      tray.hidden = false;
+      card.querySelector('h4').focus({preventScroll:true});
+    });
+    card.querySelector('.back').addEventListener('click', () => {
+      tray.hidden = true;
+      phone.classList.remove('choosing');
+      intro.inert = false;
+      next.focus({preventScroll:true});
+    });
+    gallery.append(card);
+  }
+  function displayCurrent() {
+    const key = location.hash.slice(1);
+    const selected = concepts.some(c => c.key === key) ? key : concepts[0].key;
+    for (const card of gallery.children) card.classList.toggle('current',card.dataset.view === selected);
+    for (const link of document.querySelectorAll('.tabs a')) {
+      if (link.hash === '#' + selected) link.setAttribute('aria-current','page');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  window.addEventListener('hashchange',displayCurrent);
+  displayCurrent();
+</script>
+</body>
+</html>

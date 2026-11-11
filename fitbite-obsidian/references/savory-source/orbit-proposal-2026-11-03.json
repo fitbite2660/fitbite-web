@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-03",
+  "status": "superseded-not-generated",
+  "authorized": false,
+  "jobId": null,
+  "purpose": "20-second complete clockwise 360-degree orbit, seamless website loop",
+  "params": {
+    "model": "seedance_2_5",
+    "mode": "omni_reference",
+    "duration": 20,
+    "resolution": "480p",
+    "draft": true,
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Use the supplied food photo for the exact scene identity, arrangement, lighting, and the matching first and last frame. The reference video is only a visual identity reference; replace its small dolly camera path. Create one continuous photorealistic 20-second clockwise 360-degree camera orbit around the entire tabletop food arrangement, centered on the central wooden poke bowl. The camera physically travels in a complete circle at a constant radius, fixed height and focal length, looking at the center, with a consistent slightly elevated view of the food. Keep a steady, gentle angular speed throughout, including the first and final frames: no starting acceleration, end slowdown, reversal, cuts, zoom, push-in or camera shake. Complete exactly one full revolution and finish at the original camera pose and composition with matching lighting and exposure, ready for a seamless repeating website loop. The table, every bowl, sushi plate, cup, container and all ingredients stay stationary and grounded in exactly the same spatial layout throughout. Preserve each bowl's shape, scale, material, colours, ingredient arrangement and contact shadows; show believable perspective and occlusion as the camera passes. Do not spin the food or table. Maintain coherent geometry and restaurant background throughout the unseen reverse view. No melting, morphing, duplication, disappearing objects, floating ingredients, steam, text, people or hands. No audio. This is a food cinematography shot, not a slideshow or a flat image rotation.",
+    "medias": [
+      {
+        "role": "start_image",
+        "value": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png"
+      },
+      {
+        "role": "end_image",
+        "value": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png"
+      },
+      {
+        "role": "video",
+        "value": "9a0aface-0ae2-4cd3-8543-9e8a894bd767"
+      }
+    ]
+  },
+  "draftQuote": {
+    "cost": {
+      "credits": 60,
+      "credits_exact": 60
+    },
+    "adjustments": {
+      "medias[2].role": {
+        "requested": "video",
+        "used": "video_references",
+        "reason": "Seedance 2.5 backend expects schema-key media roles"
+      }
+    }
+  },
+  "fullQuote": {
+    "cost": {
+      "credits": 320,
+      "credits_exact": 320
+    },
+    "adjustments": {
+      "medias[0].role": {
+        "requested": "video",
+        "used": "video_references",
+        "reason": "Seedance 2.5 backend expects schema-key media roles"
+      }
+    }
+  },
+  "fullQuoteNote": "1080p generation price-only quote using existing video reference; draft-finalization quote must be rechecked after a completed draft. Not authorized.",
+  "supersededBy": "opposite-side-proposal-2026-11-03.json"
+}

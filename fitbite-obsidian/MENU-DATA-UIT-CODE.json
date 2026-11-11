@@ -1,0 +1,443 @@
+{
+  "exportDate": "2026-11-11",
+  "websitePricesConfirmed": false,
+  "collections": [
+    {
+      "name": "Jouw Crousty.",
+      "items": [
+        [
+          "pops",
+          "Crousty Pops",
+          "crousty-pops.webp",
+          12.99,
+          "NEW"
+        ],
+        [
+          "bbq",
+          "Crousty BBQ",
+          "crousty-bbq.webp",
+          12.99,
+          "NEW"
+        ],
+        [
+          "loubs",
+          "Crousty Loubs",
+          "crousty-loubs.webp",
+          12.99,
+          "NEW"
+        ],
+        [
+          "kc",
+          "Korean Crousty Chicken",
+          "korean-crousty.webp",
+          15.99,
+          "NEW"
+        ]
+      ]
+    },
+    {
+      "name": "Jouw bowl.",
+      "items": [
+        [
+          "kb",
+          "Korean Chicken Bowl",
+          "korean-bowl"
+        ],
+        [
+          "salmon",
+          "Fresh Salmon Bowl",
+          "fresh-salmon"
+        ],
+        [
+          "texas",
+          "Texas Strips Bowl",
+          "texas-bowl"
+        ]
+      ]
+    },
+    {
+      "name": "Jouw Korean chicken.",
+      "items": [
+        [
+          "spicy",
+          "Korean Chicken Spicy",
+          "korean.png"
+        ],
+        [
+          "sweet",
+          "Korean Chicken Sweet",
+          "korean.png"
+        ]
+      ]
+    },
+    {
+      "name": "Jouw frisse finish.",
+      "items": [
+        [
+          "tropical",
+          "Tropical",
+          "smoothies.webp"
+        ],
+        [
+          "straw",
+          "Strawblina",
+          "smoothies.webp"
+        ],
+        [
+          "red",
+          "Red Fruits",
+          "smoothies.webp"
+        ],
+        [
+          "surprise",
+          "Surprise",
+          "smoothies.webp"
+        ]
+      ]
+    }
+  ],
+  "signatureBowls": [
+    {
+      "id": "salmon",
+      "name": "Fresh Salmon",
+      "file": "salmon",
+      "tagline": "Fris, zacht en vol kleur.",
+      "protein": "Verse zalm",
+      "vegetables": [
+        "Avocado",
+        "Komkommer",
+        "Edamame",
+        "Mango",
+        "Tomaat"
+      ],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Sesam",
+        "Crispy ui"
+      ],
+      "base": "Rijst"
+    },
+    {
+      "id": "sea",
+      "name": "XL Royal Sea Bowl",
+      "file": "sea",
+      "tagline": "Zalm en scampi. Royaal genieten.",
+      "protein": "Scampi, verse en gerookte zalm",
+      "vegetables": [
+        "Avocado",
+        "Tomaat",
+        "Mango",
+        "Komkommer",
+        "Edamame"
+      ],
+      "sauces": [
+        "Teriyaki mayo",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "kb",
+      "name": "Korean Chicken",
+      "file": "korean",
+      "tagline": "Krokante kip met een rijke glaze.",
+      "protein": "Korean chicken",
+      "vegetables": [
+        "Mango",
+        "Komkommer",
+        "Edamame",
+        "Avocado",
+        "Rode kool"
+      ],
+      "sauces": [
+        "Teriyaki"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst"
+    },
+    {
+      "id": "texas",
+      "name": "Texas Strips",
+      "file": "texas",
+      "tagline": "Een krokante bite, een frisse finish.",
+      "protein": "Texas strips",
+      "vegetables": [
+        "Komkommer",
+        "Maïs",
+        "Mango",
+        "Rode ui",
+        "Avocado"
+      ],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst"
+    },
+    {
+      "id": "smoked",
+      "name": "Smoked Salmon",
+      "file": "smoked",
+      "tagline": "Zacht gerookt. Heerlijk fris.",
+      "protein": "Gerookte zalm",
+      "vegetables": [
+        "Avocado",
+        "Komkommer",
+        "Rode ui",
+        "Edamame",
+        "Tomaat"
+      ],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui",
+        "Sesam"
+      ],
+      "base": "Rijst"
+    },
+    {
+      "id": "grilled",
+      "name": "Grilled Salmon",
+      "file": "grilled",
+      "tagline": "Gegrilde zalm, kleurrijk geserveerd.",
+      "protein": "Gegrilde zalm",
+      "vegetables": [
+        "Komkommer",
+        "Avocado",
+        "Maïs",
+        "Edamame"
+      ],
+      "sauces": [
+        "Teriyaki mayo",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Sesam"
+      ],
+      "base": "Rijst"
+    },
+    {
+      "id": "protein",
+      "name": "Protein Bowl",
+      "file": "protein",
+      "tagline": "Kip als basis. Vol smaak.",
+      "protein": "Kip",
+      "vegetables": [
+        "Tomaat",
+        "Komkommer",
+        "Maïs",
+        "Edamame",
+        "Mango"
+      ],
+      "sauces": [
+        "Mayonaise",
+        "Teriyaki"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Kip"
+    },
+    {
+      "id": "royal",
+      "name": "XL Royal Chicken Madness",
+      "file": "royal",
+      "tagline": "Jouw kipfavorieten, samen in één bowl.",
+      "protein": "Korean chicken, tenders, nuggets en Texas strips",
+      "vegetables": [
+        "Avocado",
+        "Tomaat",
+        "Edamame",
+        "Mango"
+      ],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "xl-crousty",
+      "name": "XL Crousty Super Bowl",
+      "file": "xl-crousty-rect",
+      "imageType": "png",
+      "tagline": "Drie kipfavorieten. Extra royaal.",
+      "protein": "Crispy tenders, Korean chicken en nuggets",
+      "vegetables": [],
+      "sauces": [
+        "Speciale Crousty-saus",
+        "Teriyaki mayo",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "xl-side",
+      "name": "XL Sidebowl",
+      "file": "xl-side",
+      "tagline": "Vier porties. Helemaal jouw keuze.",
+      "protein": "Vier porties naar keuze",
+      "vegetables": [],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [],
+      "base": "Zonder rijst",
+      "xl": true,
+      "custom": true
+    }
+  ],
+  "xlBowls": [
+    {
+      "id": "royal",
+      "name": "XL Royal Chicken Madness",
+      "file": "royal",
+      "tagline": "Jouw kipfavorieten, samen in één bowl.",
+      "protein": "Korean chicken, tenders, nuggets en Texas strips",
+      "vegetables": [
+        "Avocado",
+        "Tomaat",
+        "Edamame",
+        "Mango"
+      ],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "sea",
+      "name": "XL Royal Sea Bowl",
+      "file": "sea",
+      "tagline": "Zalm en scampi. Royaal genieten.",
+      "protein": "Scampi, verse en gerookte zalm",
+      "vegetables": [
+        "Avocado",
+        "Tomaat",
+        "Mango",
+        "Komkommer",
+        "Edamame"
+      ],
+      "sauces": [
+        "Teriyaki mayo",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "xl-crousty",
+      "name": "XL Crousty Super Bowl",
+      "file": "xl-crousty-rect",
+      "imageType": "png",
+      "tagline": "Drie kipfavorieten. Extra royaal.",
+      "protein": "Crispy tenders, Korean chicken en nuggets",
+      "vegetables": [],
+      "sauces": [
+        "Speciale Crousty-saus",
+        "Teriyaki mayo",
+        "Sriracha mayo"
+      ],
+      "toppings": [
+        "Crispy ui"
+      ],
+      "base": "Rijst",
+      "xl": true
+    },
+    {
+      "id": "xl-side",
+      "name": "XL Sidebowl",
+      "file": "xl-side",
+      "tagline": "Vier porties. Helemaal jouw keuze.",
+      "protein": "Vier porties naar keuze",
+      "vegetables": [],
+      "sauces": [
+        "Teriyaki",
+        "Sriracha mayo"
+      ],
+      "toppings": [],
+      "base": "Zonder rijst",
+      "xl": true,
+      "custom": true
+    }
+  ],
+  "sideProteins": [
+    "Crispy chicken bites original",
+    "Spicy bites",
+    "Nuggets",
+    "Korean chicken",
+    "Crispy tenders"
+  ],
+  "sideSauces": [
+    "Teriyaki",
+    "Sriracha mayo"
+  ],
+  "normalizationOptions": {
+    "vegetables": [
+      "Mango",
+      "Avocado",
+      "Komkommer",
+      "Edamame",
+      "Maïs",
+      "Rode ui",
+      "Tomaat"
+    ],
+    "protein": [
+      "Kip",
+      "Verse zalm",
+      "Gerookte zalm",
+      "Gegrilde zalm",
+      "Scampi",
+      "Korean chicken",
+      "Spicy tenders",
+      "Texas strips",
+      "Nuggets",
+      "Crispy tenders"
+    ],
+    "sauces": [
+      "Teriyaki",
+      "Teriyaki mayo",
+      "Sriracha mayo",
+      "Zoete sriracha",
+      "Truffelmayonaise",
+      "Huisgemaakte Dyna-saus",
+      "BBQ-saus"
+    ],
+    "toppings": [
+      "Sesam",
+      "Krokante uitjes",
+      "Crispy ui"
+    ]
+  }
+}

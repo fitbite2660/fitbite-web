@@ -1,0 +1,156 @@
+/* Ingredient lists share their row styling and selection feedback. */
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) {
+  --menu-rule: #f0dfc345;
+  --menu-cream: #f4e8d3;
+  --menu-ink: #282117;
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 22px;
+  row-gap: 0;
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 6px 1px;
+  border: 0;
+  border-bottom: 1px solid var(--menu-rule);
+  border-radius: 0;
+  background: transparent;
+  color: #eee4d5;
+  text-align: left;
+  font: 400 18px/1.1 var(--reading);
+  letter-spacing: -.02em;
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice:nth-child(-n+2) {
+  border-top: 1px solid var(--menu-rule);
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice[aria-pressed="true"] {
+  color: #ffefce;
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice-mark {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #f1e4ce70;
+  border-radius: 50%;
+  color: #ece2d0;
+  font: 15px/1 var(--reading);
+  opacity: 1;
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) [aria-pressed="true"] .choice-mark {
+  border-color: var(--menu-cream);
+  background: var(--menu-cream);
+  color: var(--menu-ink);
+}
+.choice-group:is([data-group="vegetables"],[data-group="protein"],[data-group="sauces"],[data-group="toppings"]) .choice:focus-visible {
+  z-index: 1;
+  outline: 2px solid #f6dbad;
+  outline-offset: 2px;
+}
+
+/* A color and photo position for each of the actual bins in the two Fitbite photos. */
+.choice[data-value="Mango"] { --kleur: #ffbf57; --vak-x: 62%; --vak-y: 55%; --vak-foto: url("media/gevulde-saladette.jpg"); }
+.choice[data-value="Avocado"] { --kleur: #ccd887; --vak-x: 8%; --vak-y: 79%; }
+.choice[data-value="Komkommer"] { --kleur: #afce96; --vak-x: 35%; --vak-y: 50%; }
+.choice[data-value="Edamame"] { --kleur: #8db966; --vak-x: 39%; --vak-y: 74%; }
+.choice[data-value="Maïs"] { --kleur: #f0ce73; --vak-x: 77%; --vak-y: 32%; }
+.choice[data-value="Rode ui"] { --kleur: #d5a3bc; --vak-x: 56%; --vak-y: 34%; }
+.choice[data-value="Tomaat"] { --kleur: #ee9a83; --vak-x: 7%; --vak-y: 53%; }
+
+[data-keuzestijl="kleur"] .choice-group[data-group="vegetables"] .choice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 6px;
+}
+[data-keuzestijl="kleur"] .choice-group[data-group="vegetables"] .choice {
+  justify-content: flex-start;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px 11px;
+  border: 1px solid #eee3ce60;
+  border-radius: 30px;
+  background: #2c2620;
+  font-size: 16px;
+}
+[data-keuzestijl="kleur"] .choice::before {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--kleur);
+}
+[data-keuzestijl="kleur"] .choice-group[data-group="vegetables"] .choice[aria-pressed="true"] {
+  border-color: var(--kleur);
+  background: var(--kleur);
+  color: #242116;
+}
+[data-keuzestijl="kleur"] .choice[aria-pressed="true"]::before {
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  background: transparent;
+}
+[data-keuzestijl="kleur"] .choice-group[data-group="vegetables"] .choice-mark {
+  width: 12px;
+  height: auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+}
+
+[data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+[data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  justify-content: stretch;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 4px 0 0;
+  border: 1px solid #f3e3ca55;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #302921;
+  font-size: clamp(15px,4vw,17px);
+}
+[data-keuzestijl="strook"] .choice::before {
+  content: "";
+  align-self: stretch;
+  width: 36px;
+  background: var(--vak-foto, url("media/groentebakken.jpg")) var(--vak-x) var(--vak-y) / 680% auto no-repeat;
+}
+[data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice[aria-pressed="true"] {
+  border-color: var(--menu-cream);
+  background: var(--menu-cream);
+  color: var(--menu-ink);
+}
+[data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice-mark {
+  position: absolute;
+  bottom: 1px;
+  left: 18px;
+  width: 17px;
+  height: 17px;
+  background: #261d15e6;
+  border-color: #f1e5d29c;
+  font-size: 12px;
+}
+[data-keuzestijl="strook"] .choice-group[data-group="vegetables"] [aria-pressed="true"] .choice-mark {
+  background: var(--menu-cream);
+  border-color: var(--menu-cream);
+}
+@media (max-width: 349px) {
+  .choice-group[data-group="vegetables"] .choice-grid { column-gap: 14px; }
+  [data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice { gap: 6px; }
+}

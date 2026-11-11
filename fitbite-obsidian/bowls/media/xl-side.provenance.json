@@ -1,0 +1,20 @@
+{
+  "asset": "XL Sidebowl",
+  "created": "2026-11-10",
+  "sourceProvider": "Higgsfield",
+  "sourceJobId": "631db02f-d320-4075-99d5-fc6bfb627305",
+  "sourceImage": "assets/higgsfield-menu-2026-11-10/631db02f-d320-4075-99d5-fc6bfb627305.png",
+  "editReference": "assets/higgsfield-menu-2026-11-10/631db02f-d320-4075-99d5-fc6bfb627305-review.jpg",
+  "editingTool": "Built-in image_gen",
+  "higgsfieldCreditsConsumed": 0,
+  "generatedSource": "/Users/adnane/.codex/generated_images/01a1c710-03ec-7503-ad83-ee427c003b94/exec-234f53b6-c3b9-4222-94e4-076dfa998e37.png",
+  "purpose": "Example of four snack portions; actual portions selectable by customer. No rice.",
+  "changes": [
+    "Removed visible rice; filled gaps with existing crispy chicken types",
+    "Removed tabletop and background to alpha",
+    "Padded subject for complete mobile product view",
+    "Exported PNG 1536x1024 and WebP 1024px width"
+  ],
+  "review": "No visible rice. White specks on chicken are preserved sesame seeds. Alpha visually checked on solid green; entire bowl in frame.",
+  "prompt": "Use case: precise-object-edit and background-extraction.\nEdit target: the supplied XL chicken sidebowl photograph. Create a photorealistic transparent product cutout for a restaurant's mobile menu.\nChange ONLY: 1) REMOVE ALL WHITE RICE inside the bowl. There must be zero visible rice grains and no rice bed. Fill those small gaps naturally with extra pieces of the same existing golden crispy breaded chicken, without changing the existing types or main arrangement. This is a snack chicken bowl only. 2) Remove the entire tabletop and background to actual transparent alpha.\nPreserve the exact cream-white ceramic bowl shape, its oval rim, thickness, sidewall, original three-quarter elevated camera perspective and warm light. Preserve chicken nuggets/bites, crispy tenders and dark glossy Korean chicken, existing few sesame seeds. Keep natural irregular crispy surfaces and photographic detail.\nNo rice, no vegetables, no new sauce drizzle, no added garnish, no text, no graphic background, no checkerboard painted into pixels, no room or table. Entire bowl visible, not cropped, centered with approximately 4% minimum transparent margin, landscape canvas 1536x1024. A clean natural alpha edge, no external cast shadow outside the bowl."
+}

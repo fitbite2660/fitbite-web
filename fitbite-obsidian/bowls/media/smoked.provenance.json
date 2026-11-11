@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen",
+  "references": ["salmon.png", "../../voorpagina/media/bowls.webp"],
+  "generated_source": "/Users/adnane/.codex/generated_images/01a1c6e7-e6ba-7a63-a88c-43217b071d95/exec-20a45e6d-f4f7-45b8-b18b-caafd4a5757e.png",
+  "width": 1536,
+  "height": 1024,
+  "alpha": true,
+  "notes": "Generated companion Smoked Salmon with lilac ceramic, transparent alpha preserved, complete silhouette visually inspected. No Higgsfield credits."
+}

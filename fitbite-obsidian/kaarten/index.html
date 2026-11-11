@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0b09">
+<title>Kies je favoriet · Fitbite</title>
+<link rel="icon" href="../voorpagina/media/logo.jpeg">
+<script src="../assets/menu-products.js" defer></script>
+<style>
+@font-face{font-family:Outfit;src:url('../assets/fonts/outfit-latin.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{--bg:#0d0b09;--cream:#efe6d6;--muted:#efe6d68c;--line:#efe6d626;--ink:#16120e;--accent:#c9a46a;--gutter:clamp(18px,6vw,30px);--display:Futura,'Futura Medium',Outfit,sans-serif;--serif:'Bodoni 72',Didot,'Playfair Display',Baskerville,Georgia,serif;--reading:Optima,Candara,'Segoe UI',sans-serif;--card-w:min(58vw,272px);--card-h:calc(var(--card-w)*1.36);color:var(--cream);background:var(--bg);font-family:var(--reading);font-synthesis:none;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,.stage:focus-visible{outline:1px solid var(--cream);outline-offset:4px}
+
+/* ---------- Achtergrond: donker, één warm spotlicht ---------- */
+.backdrop{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg)}
+.backdrop::before{content:'';position:absolute;inset:0;background:radial-gradient(70% 45% at 50% 48%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%);transition:background 1.2s ease}
+.backdrop::after{content:'';position:absolute;left:50%;top:-10%;width:120%;height:70%;transform:translateX(-50%);background:radial-gradient(closest-side,#efe6d60d,transparent)}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.app{position:relative;max-width:500px;height:100svh;margin:auto;display:grid;grid-template-rows:auto auto 1fr auto;overflow:hidden}
+
+/* ---------- Header ---------- */
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:max(8px,env(safe-area-inset-top)) var(--gutter) 8px;position:relative;z-index:5}
+.header::after{content:'';position:absolute;bottom:0;left:var(--gutter);right:var(--gutter);height:1px;background:var(--line)}
+.brand,.bag{display:flex;align-items:center}.brand{gap:12px}
+.wordmark{font:500 22px/1 var(--display);letter-spacing:-.05em}
+.brand-logo{display:block;position:relative;width:34px;height:34px;border-radius:50%;overflow:hidden;background:#f6f2df}
+.brand-logo img{position:absolute;width:128%;height:128%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.bag{min-height:44px;gap:8px;font:500 14px var(--display);letter-spacing:.08em}.bag img{width:19px;height:21px;opacity:.9}
+.bag.bump{animation:bump .45s ease}
+@keyframes bump{40%{transform:scale(1.12)}}
+
+.intro{padding:18px var(--gutter) 0;position:relative;z-index:5}
+.eyebrow{display:flex;justify-content:space-between;font:500 10.5px/1.3 var(--display);letter-spacing:.32em;text-transform:uppercase;margin:0 0 10px;color:var(--muted)}
+.intro h1{font:400 clamp(32px,9.6vw,44px)/1 var(--serif);letter-spacing:-.01em;margin:0}
+.intro h1 em{font-style:italic;color:var(--accent);transition:color 1s}
+.chips{display:flex;gap:22px;margin:16px 0 0;border-bottom:1px solid var(--line)}
+.chip{position:relative;flex:none;min-height:40px;padding:0;border:0;background:none;font:500 11.5px var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.chip::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--cream);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.6,0,.2,1)}
+.chip[aria-pressed=true]{color:var(--cream)}.chip[aria-pressed=true]::after{transform:scaleX(1)}
+
+/* ---------- 3D-podium ---------- */
+.stage{position:relative;min-height:0;touch-action:none;cursor:grab;outline:none}
+.stage.dragging{cursor:grabbing}
+.ghost{position:absolute;left:0;right:0;top:50%;transform:translate3d(var(--gx-off,0px),-50%,0);text-align:center;pointer-events:none;font:italic 400 clamp(90px,34vw,170px)/1 var(--serif);letter-spacing:-.03em;color:var(--cream);opacity:.045;white-space:nowrap;transition:opacity .6s}
+.scene{position:absolute;inset:0;perspective:1200px;perspective-origin:50% 42%}
+.world{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg))}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.card{position:absolute;left:calc(var(--card-w)/-2);top:calc(var(--card-h)/-2);width:var(--card-w);height:var(--card-h);transform-style:preserve-3d}
+.flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.65,0,.25,1)}
+.card.flipped .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:6px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#17130f;box-shadow:0 40px 70px -20px #000,0 0 0 1px #efe6d61c inset}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transform:scale(var(--z,1));transform-origin:var(--pos,50% 50%);pointer-events:none}
+.front::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(#0d0b09b0,transparent 30%,transparent 65%,#0d0b09d0)}
+.glare{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:var(--glare,0);background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),#ffffff80,transparent 60%)}
+.tag{position:absolute;z-index:3;top:16px;left:16px;font:500 9.5px/1 var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+.num{position:absolute;z-index:3;top:16px;right:16px;font:400 13px var(--serif);font-style:italic;color:var(--muted)}
+.hint{position:absolute;z-index:3;left:0;right:0;bottom:16px;text-align:center;font:500 9.5px var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .6s}
+.card.active .hint{opacity:1}
+/* Voorkant: donkere studio met één spotlicht, gerecht zweeft eruit */
+.front.studio{background:radial-gradient(80% 55% at 50% 38%,#3a3128 0%,#211b16 45%,#120f0c 100%)}
+.front.studio::before{background:radial-gradient(70% 40% at 50% 54%,color-mix(in srgb,var(--c) 22%,transparent),transparent 70%),linear-gradient(#0d0b0966,transparent 25%,transparent 75%,#0d0b09aa)}
+.front.studio .floor{position:absolute;left:10%;right:10%;top:62%;height:1px;z-index:1;background:linear-gradient(90deg,transparent,#efe6d630,transparent)}
+.dish-wrap{position:absolute;left:50%;top:50%;width:112%;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate(-50%,-50%) translateZ(var(--lift,40px)) translateY(var(--bob,0px));pointer-events:none}
+.dish{display:block;width:100%;transform:rotate(var(--spin,0deg));filter:saturate(.92) contrast(1.04)}
+.dish-wrap::before{content:"";position:absolute;left:16%;right:16%;top:64%;height:28%;border-radius:50%;background:radial-gradient(closest-side,#000d,transparent);transform:translateZ(-50px)}
+.dish-wrap.wide{width:108%}
+.dish-wrap.round{width:98%}
+.back{transform:rotateY(180deg)}.card:not(.flipped) .back{visibility:hidden}.card.flipped .dish-wrap{opacity:0;transition:opacity .25s}
+.back img{filter:grayscale(.35) brightness(.55)}
+.back::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(#0d0b0955,#0d0b09f2 70%)}
+.back .bt{position:absolute;z-index:2;left:20px;right:20px;bottom:20px}
+.back h3{font:500 9.5px var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.back ul{list-style:none;padding:0;margin:0}
+.back li{font:400 17px/1 var(--serif);padding:9px 0;border-top:1px solid var(--line)}
+.back li:last-child{border-bottom:1px solid var(--line)}
+
+/* ---------- Info onderaan ---------- */
+.info{padding:4px var(--gutter) max(16px,env(safe-area-inset-bottom));position:relative;z-index:5}
+.dots{display:flex;align-items:center;gap:0;margin-bottom:14px}
+.dot{flex:1;height:22px;display:grid;align-items:center;border:0;background:none;padding:0}
+.dot::after{content:'';height:1px;background:var(--line);transition:background .5s}
+.dot[aria-current=true]::after{background:var(--cream)}
+.text{min-height:76px}
+.text h2{font:400 clamp(28px,8.4vw,38px)/1.02 var(--serif);letter-spacing:-.01em;margin:0 0 8px;animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px);filter:blur(6px)}}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;animation:rise .8s .12s cubic-bezier(.2,.7,.2,1) both}
+.desc{margin:0;font:400 clamp(14px,4vw,16px)/1.35 var(--reading);color:var(--muted)}
+.price{font:500 16px var(--display);letter-spacing:.06em;white-space:nowrap}
+.primary{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:54px;margin-top:16px;background:var(--cream);color:var(--ink);padding:12px 22px;border:0;border-radius:2px;font:500 12.5px/1.2 var(--display);letter-spacing:.22em;text-transform:uppercase;transition:background .3s}
+.primary:active{background:#fff}
+.primary img{width:20px;height:20px;transform:rotate(-45deg);flex:none}
+.fly{position:fixed;z-index:20;pointer-events:none;border-radius:6px;overflow:hidden;box-shadow:0 20px 40px #000a}
+.fly img{width:100%;height:100%;object-fit:cover}
+
+@media(max-height:700px){.intro{padding-top:10px}.intro h1{font-size:30px}.chips{margin-top:8px}.primary{min-height:48px;margin-top:10px}.text{min-height:66px}.dots{margin-bottom:8px}:root{--card-w:min(52vw,245px)}}
+@media(max-width:360px){.wordmark{font-size:20px}.brand-logo{width:30px;height:30px}.chips{gap:16px}}
+@media(prefers-reduced-motion:reduce){.text h2,.row{animation:none}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="app">
+  <header class="header">
+    <a class="brand" href="../voorpagina/index.html" aria-label="Fitbite, terug naar de voorpagina"><span class="wordmark">Fitbite.</span><span class="brand-logo"><img src="../voorpagina/media/logo.jpeg" alt="Fit Bite"></span></a>
+    <a class="bag" href="../index.html?menu=mand" aria-label="Bekijk je bestelling"><img src="../voorpagina/media/shopping-bag.svg" alt=""><span id="count">0</span></a>
+  </header>
+
+  <section class="intro">
+    <p class="eyebrow"><span>Fitbite · De kaart</span><span id="idx">01 / 08</span></p>
+    <h1>Kies je <em>favoriet</em>.</h1>
+    <div class="chips" role="group" aria-label="Categorie">
+      <button class="chip" type="button" data-cat="crousty" aria-pressed="true">Croustys</button>
+      <button class="chip" type="button" data-cat="bowl" aria-pressed="false">Bowls</button>
+      <button class="chip" type="button" data-cat="drink" aria-pressed="false">Smoothies</button>
+    </div>
+  </section>
+
+  <div class="stage" id="stage" tabindex="0" role="region" aria-roledescription="3D-carrousel" aria-label="Producten. Veeg of gebruik de pijltjestoetsen; tik op de kaart om ze om te draaien.">
+    <div class="ghost" id="ghost" aria-hidden="true"></div>
+    <div class="scene">
+      <div class="world" id="world">
+        <div class="ring" id="ring"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="info">
+    <div class="dots" id="dots" role="group" aria-label="Kies een product"></div>
+    <div class="text" id="text" aria-live="polite"></div>
+    <button class="primary" id="add" type="button"><span id="add-label">Voeg toe</span><img src="../voorpagina/media/arrow-dark.svg" alt=""></button>
+  </section>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const IMG = '../assets/', VEG = '../eigen-bowl/media/keuken/';
+  // pos/z: staande uitsnede uit de liggende foto's. back: actiebeeld op de achterkant.
+  const products = [
+    {id:'bbq',    cat:'crousty', name:'Crousty BBQ',            desc:'Sriracha mayo & BBQ-saus',      price:12.99, img:'crousty-bbq.webp',    pos:'53% 100%', z:1.42, tag:'Nieuw', cut:'bbq', shape:'wide', accent:'#c8693f', back:'crousty.png', bpos:'50% 50%', parts:['Krokante kip','Sriracha mayo','BBQ-saus','Crispy uitjes']},
+    {id:'pops',   cat:'crousty', name:'Crousty Pops',           desc:'Teriyaki mayo & sriracha mayo', price:12.99, img:'crousty-pops.webp',   pos:'57% 100%', z:1.55, tag:'Nieuw', cut:'pops', shape:'wide', accent:'#c9a046', back:'crousty.png', bpos:'20% 50%', parts:['Krokante kip','Teriyaki mayo','Sriracha mayo']},
+    {id:'loubs',  cat:'crousty', name:'Crousty Loubs',          desc:'Sweet dyna saus & teriyaki',    price:12.99, img:'crousty-loubs.webp',  pos:'50% 100%', z:1.5,  tag:'Nieuw', cut:'loubs', shape:'wide', accent:'#b98a4e', back:'crousty.png', bpos:'85% 50%', parts:['Krokante kip','Sweet dyna saus','Teriyaki']},
+    {id:'kc',     cat:'crousty', name:'Korean Crousty Chicken', desc:'Krokante Korean chicken',       price:15.99, img:'korean-crousty.webp', pos:'53% 50%',  z:1,    tag:'Nieuw', cut:'kc', shape:'round', accent:'#b5484a', back:'korean.png',  bpos:'50% 50%', parts:['Korean chicken','Lente-ui','Sesam']},
+    {id:'salmon', cat:'bowl',    name:'Fresh Salmon Bowl',      desc:'Vers gemarineerde zalm',        price:null,  img:'fresh-salmon.webp',   pos:'77% 50%',  z:1,    tag:'Bowl', cut:'salmon', shape:'round',  accent:'#d08a6a', back:'bowls.png',   bpos:'50% 50%', parts:['Zalm','Avocado','Edamame','Komkommer','Tomaat','Rode ui']},
+    {id:'kb',     cat:'bowl',    name:'Korean Chicken Bowl',    desc:'Sweet of spicy',                price:null,  img:'korean-bowl.webp',    pos:'71% 50%',  z:1,    tag:'Bowl', cut:'kb', shape:'round',  accent:'#b86a48', back:'bowls.png',   bpos:'90% 50%', parts:['Korean chicken','Mango','Edamame','Komkommer','Zeewier']},
+    {id:'texas',  cat:'bowl',    name:'Texas Strips Bowl',      desc:'Krokante Texas strips',         price:null,  img:'texas-bowl.webp',     pos:'80% 50%',  z:1,    tag:'Bowl', cut:'texas', shape:'round',  accent:'#c49a55', back:'bowls.png',   bpos:'10% 50%', parts:['Texas strips','Mango','Rode kool','Wortel','Edamame']},
+    {id:null,     cat:'drink',   name:'Smoothies',              desc:'Tropical, Strawblina, Red Fruits & Surprise', price:null, img:'smoothies.webp', pos:'50% 72%', z:1.05, tag:'Vers', accent:'#9b7fb0', back:'smoothies.webp', bpos:'30% 60%', parts:['Tropical','Strawblina','Red Fruits','Surprise'], link:'../index.html?menu=verder'}
+  ];
+  const N = products.length, STEP = 360 / N;
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), ring = $('ring'), world = $('world'), dots = $('dots'), text = $('text'), ghost = $('ghost');
+  const chips = [...document.querySelectorAll('.chip')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const euro = n => '€ ' + n.toFixed(2).replace('.', ',');
+  const mod = (a, n) => ((a % n) + n) % n;
+
+  /* ---------- Kaarten op een 3D-ring ---------- */
+  const cards = products.map((p, i) => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.dataset.i = i;
+    c.setAttribute('role', 'group');
+    c.setAttribute('aria-label', `${i + 1} van ${N}: ${p.name}`);
+    const label = `<span class="tag">${p.tag}</span><span class="num">${String(i + 1).padStart(2, '0')}</span><span class="hint">Tik om te draaien</span>`;
+    const front = p.cut
+      ? `<div class="face front studio" style="--c:${p.accent}"><div class="floor"></div><div class="glare"></div>${label}</div>
+         <div class="dish-wrap ${p.shape}"><img class="dish" src="media/${p.cut}.png" alt="${p.name}" decoding="async" ${i > 2 && i < N - 1 ? 'loading="lazy"' : ''}></div>`
+      : `<div class="face front" style="--pos:${p.pos};--z:${p.z}"><img src="${IMG + p.img}" alt="${p.name}" decoding="async"><div class="glare"></div>${label}</div>`;
+    c.innerHTML = `<div class="flip">
+      ${front}
+      <div class="face back" style="--pos:${p.bpos}"><img src="${IMG + p.back}" alt="" loading="lazy" decoding="async"><div class="glare"></div>
+        <div class="bt"><h3>Ingrediënten</h3><ul>${p.parts.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
+    </div>`;
+    ring.append(c);
+    const d = document.createElement('button');
+    d.className = 'dot'; d.type = 'button'; d.setAttribute('aria-label', p.name);
+    d.addEventListener('click', () => goTo(i));
+    dots.append(d);
+    return c;
+  });
+  const dotEls = [...dots.children];
+  let radius = 300;
+  function layout() {
+    const w = cards[0].offsetWidth;
+    radius = Math.round((w / 2) / Math.tan(Math.PI / N) + 26);
+    cards.forEach((c, i) => c.style.transform = `rotateY(${i * STEP}deg) translateZ(${radius}px)`);
+  }
+
+  /* ---------- Draaien, slepen en traagheid ---------- */
+  let rot = 0, vel = 0, target = 0, dragging = false, startX = 0, startRot = 0, lastX = 0, lastT = 0, moved = 0, active = -1;
+  function nearestRot(i) { const base = -i * STEP; return base + Math.round((rot - base) / 360) * 360; }
+  function goTo(i) { flipOff(); target = nearestRot(mod(i, N)); }
+
+  stage.addEventListener('pointerdown', e => {
+    dragging = true; moved = 0; startX = lastX = e.clientX; startRot = rot; lastT = performance.now(); vel = 0;
+    stage.setPointerCapture(e.pointerId); stage.classList.add('dragging'); askMotion();
+  });
+  stage.addEventListener('pointermove', e => {
+    tiltFromPointer(e);
+    if (!dragging) return;
+    const dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+    if (moved > 6) flipOff();
+    rot = startRot + dx * 0.32;
+    const now = performance.now(), dt = Math.max(1, now - lastT);
+    vel = vel * .5 + ((e.clientX - lastX) * 0.32 / dt * 16) * .5; lastX = e.clientX; lastT = now;
+  });
+  const release = e => {
+    if (!dragging) return;
+    dragging = false; stage.classList.remove('dragging');
+    if (moved < 6) {
+      const c = document.elementFromPoint(e.clientX, e.clientY)?.closest('.card');
+      if (c) { const i = +c.dataset.i; if (i === active) c.classList.toggle('flipped'); else goTo(i); }
+      target = nearestRot(active); return;
+    }
+    // Zwiepen geeft extra draai, maar hoogstens twee kaarten verder.
+    const fling = Math.max(-2 * STEP, Math.min(2 * STEP, vel * 9));
+    target = Math.round((rot + fling) / STEP) * STEP;
+  };
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
+  stage.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
+  stage.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(active + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(active - 1); }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cards[active].classList.toggle('flipped'); }
+  });
+  chips.forEach(c => c.addEventListener('click', () => goTo(products.findIndex(p => p.cat === c.dataset.cat))));
+  function flipOff() { cards.forEach(c => c.classList.remove('flipped')); }
+
+  /* ---------- Kantelen: vinger/muis of gyroscoop ---------- */
+  let tx = 0, ty = 0, ctx = 0, cty = 0, gyro = false, asked = false;
+  function tiltFromPointer(e) {
+    if (gyro) return;
+    const r = stage.getBoundingClientRect();
+    ty = ((e.clientX - r.left) / r.width - .5) * 2;
+    tx = ((e.clientY - r.top) / r.height - .5) * 2;
+  }
+  function onOrient(e) {
+    if (e.gamma == null) return;
+    gyro = true;
+    ty = Math.max(-1, Math.min(1, e.gamma / 25));
+    tx = Math.max(-1, Math.min(1, (e.beta - 45) / 25));
+  }
+  function askMotion() {
+    if (asked || reduce) return; asked = true;
+    const D = window.DeviceOrientationEvent;
+    if (D && typeof D.requestPermission === 'function') D.requestPermission().then(s => { if (s === 'granted') addEventListener('deviceorientation', onOrient); }).catch(() => {});
+    else if (D) addEventListener('deviceorientation', onOrient);
+  }
+
+  /* ---------- Actief product tonen ---------- */
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    const p = products[i];
+    document.documentElement.style.setProperty('--accent', p.accent);
+    cards.forEach((c, j) => c.classList.toggle('active', j === i));
+    dotEls.forEach((d, j) => d.setAttribute('aria-current', j === i));
+    chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.cat === p.cat));
+    text.innerHTML = `<h2>${p.name}</h2><div class="row"><p class="desc">${p.desc}</p>${p.price ? `<span class="price">${euro(p.price)}</span>` : ''}</div>`;
+    $('add-label').textContent = p.id ? 'Voeg toe aan bestelling' : 'Bekijk de smoothies';
+    ghost.textContent = p.name.split(' ').find(w => !/^crousty$/i.test(w)) || p.name;
+    $('idx').textContent = `${String(i + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')}`;
+  }
+
+  /* ---------- Animatielus ---------- */
+  let t0 = performance.now();
+  function frame(now) {
+    const dt = Math.min(2.5, (now - t0) / 16.67); t0 = now;
+    if (!dragging) {
+      if (reduce) rot = target;
+      else { vel += (target - rot) * 0.045 * dt; vel *= Math.pow(0.70, dt); rot += vel * dt; }
+    }
+    ring.style.transform = `translateZ(${-radius}px) rotateY(${rot}deg)`;
+    const idx = mod(Math.round(-rot / STEP), N);
+    setActive(idx);
+
+    // kanteling zacht volgen
+    ctx += (tx - ctx) * .08 * dt; cty += (ty - cty) * .08 * dt;
+    world.style.setProperty('--tx', (-ctx * 4).toFixed(2) + 'deg');
+    world.style.setProperty('--ty', (cty * 6).toFixed(2) + 'deg');
+    const card = cards[active];
+    card.style.setProperty('--gx', (50 + cty * 40).toFixed(1) + '%');
+    card.style.setProperty('--gy', (40 + ctx * 40).toFixed(1) + '%');
+    cards.forEach(c => c.style.setProperty('--glare', c === card ? (.35 + Math.abs(cty) * .3).toFixed(2) : 0));
+
+    // Gerechten: ronde bowls draaien traag, bakjes wiegen; het actieve gerecht komt verder naar voren.
+    const tsec = now / 1000;
+    cards.forEach((c, j) => {
+      const p = products[j];
+      if (!p.cut) return;
+      const on = j === active;
+      c._lift = (c._lift ?? 20) + ((on ? 70 : 20) - (c._lift ?? 20)) * .06 * dt;
+      c.style.setProperty('--lift', c._lift.toFixed(1) + 'px');
+      if (p.shape === 'round') c._spin = ((c._spin ?? j * 40) + (on ? .06 : 0) * dt + vel * .25) % 360;
+      else c._spin = Math.sin(tsec * .6 + j) * 1.2 + vel * .3;
+      c.style.setProperty('--spin', c._spin.toFixed(2) + 'deg');
+      c.style.setProperty('--bob', (on ? Math.sin(tsec * 1.2) * 4 : 0).toFixed(2) + 'px');
+    });
+
+    // grote naam op de achtergrond schuift traag mee (parallax)
+    ghost.style.setProperty('--gx-off', (vel * -6 + cty * -14).toFixed(1) + 'px');
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- Winkelmand + vliegende kaart ---------- */
+  function count() {
+    let own = [];
+    try { const v = JSON.parse(localStorage.getItem('fitbite:saladette:proefmand:v1') || '[]'); if (Array.isArray(v)) own = v.filter(x => ['Medium','Large'].includes(x?.size)); } catch {}
+    const cart = window.fitbiteMenu ? window.fitbiteMenu.readCart() : {};
+    const n = own.length + Object.values(cart).reduce((s, q) => s + q, 0);
+    $('count').textContent = n;
+    document.querySelector('.bag').setAttribute('aria-label', `Bekijk je bestelling, ${n} ${n === 1 ? 'item' : 'items'}`);
+  }
+  function flyToBag() {
+    if (reduce) return;
+    const from = cards[active].querySelector('.front').getBoundingClientRect();
+    const to = document.querySelector('.bag img').getBoundingClientRect();
+    const f = document.createElement('div');
+    f.className = 'fly';
+    Object.assign(f.style, {left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px'});
+    f.innerHTML = `<img src="${IMG + products[active].img}" alt="" style="object-position:${products[active].pos}">`;
+    document.body.append(f);
+    const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top + to.height / 2 - (from.top + from.height / 2);
+    f.animate([
+      {transform: 'translate(0,0) scale(1) rotate(0)', opacity: 1},
+      {transform: `translate(${dx}px,${dy}px) scale(.05)`, opacity: 0}
+    ], {duration: 700, easing: 'cubic-bezier(.65,0,.35,1)'}).onfinish = () => {
+      f.remove();
+      const bag = document.querySelector('.bag'); bag.classList.remove('bump'); void bag.offsetWidth; bag.classList.add('bump');
+      count();
+    };
+  }
+  $('add').addEventListener('click', () => {
+    const p = products[active];
+    if (!p) return;
+    if (!p.id) { location.href = p.link; return; }
+    try {
+      const store = window.fitbiteMenu;
+      const cart = store ? store.readCart() : {};
+      cart[p.id] = Math.min(99, (cart[p.id] || 0) + 1);
+      localStorage.setItem(store ? store.storageKey : 'fitbite-obsidian-cart', JSON.stringify(cart));
+    } catch {}
+    flyToBag();
+    if (reduce) count();
+  });
+  addEventListener('storage', count);
+  addEventListener('pageshow', count);
+  addEventListener('load', count);
+  addEventListener('resize', layout);
+
+  /* ---------- Start: ring draait binnen ---------- */
+  layout();
+  rot = reduce ? 0 : -STEP * 1.2; target = 0; vel = 0;
+  setActive(mod(Math.round(-rot / STEP), N));
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

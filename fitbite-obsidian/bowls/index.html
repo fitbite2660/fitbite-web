@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#261d15"><title>Jouw favoriete bowl · Fitbite</title>
+<link rel="icon" href="../voorpagina/media/logo.jpeg">
+<link rel="stylesheet" href="../voorpagina/page.css"><link rel="stylesheet" href="page.css?v=20261110-trip2">
+<link rel="preload" as="image" href="media/room.webp">
+<script src="../assets/menu-products.js?v=20261110-trip2" defer></script><script src="page.js?v=20261110-trip2" defer></script>
+</head>
+<body>
+<div class="bowl-app" id="app">
+  <div class="room" aria-hidden="true"><img src="media/room.webp" alt="" width="850" height="1850"></div>
+  <header class="header">
+    <a class="brand" href="../voorpagina/index.html#bowls" aria-label="Fitbite, terug naar de voorpagina"><span class="wordmark">Fitbite.</span><span class="brand-logo"><img src="../voorpagina/media/logo.jpeg" alt="Fit Bite"></span></a>
+    <nav class="header-actions" aria-label="Hoofdnavigatie">
+      <a class="bag" href="../eigen-bowl/index.html?bestelling=mand" aria-label="Bekijk je bestelling"><img src="../voorpagina/media/shopping-bag.svg" alt=""><span id="count">0</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open het menu" aria-controls="navigation" aria-expanded="false"><img src="../voorpagina/media/menu.svg" alt=""></button>
+    </nav>
+  </header>
+  <main id="table-view">
+    <div class="table-heading"><a class="back-link" href="../voorpagina/index.html#bowls"><img src="../voorpagina/media/arrow-right.svg" alt="">Alle categorieën</a><p class="eyebrow">02 / Kies jouw favoriet</p><h1>XL<br>bowls.</h1><p class="description">Vier XL-specials. Welke kies jij?</p></div>
+    <div class="table-bowls" id="table-bowls" role="group" aria-label="Kies een bowl op tafel"></div>
+    <div class="table-footer"><p>Tik op een bowl en ontdek meer.</p><button type="button" class="text-link" id="play-demo">Speel de bestelreis af ↗</button><button type="button" class="text-link" id="show-list">Bekijk de namen<img src="../voorpagina/media/arrow-right.svg" alt=""></button></div>
+  </main>
+  <section class="detail" id="detail" aria-labelledby="product-title" hidden>
+    <button class="back-link" type="button" id="back-table"><img src="../voorpagina/media/arrow-right.svg" alt="">Terug naar de tafel</button>
+    <div class="detail-heading"><p class="eyebrow" id="product-kicker">Fitbite / Jouw favoriet</p><h2 id="product-title" tabindex="-1"></h2><p id="product-tagline" class="description"></p></div>
+    <div class="hero-slot"><img id="hero-bowl" class="hero-bowl" alt=""></div>
+    <div class="product-info"><p class="ingredients" id="ingredients"></p><button type="button" id="more-ingredients" class="text-link">Alle ingrediënten</button></div>
+    <fieldset id="sizes"><legend>Royaal formaat</legend><label><input type="radio" name="size" value="Medium" checked><span>Medium</span></label><label><input type="radio" name="size" value="Large"><span id="large-label">Large</span></label></fieldset>
+    <button class="primary" type="button" id="add-bowl"><span>Voeg toe aan mijn bestelling</span><img src="../voorpagina/media/arrow-dark.svg" alt=""></button>
+    <div class="added" id="added" hidden><p role="status" id="added-message"></p><a class="primary" id="go-checkout" href="../eigen-bowl/index.html?bestelling=kassa">Naar de kassa<img src="../voorpagina/media/arrow-dark.svg" alt=""></a><button class="text-link" type="button" id="keep-looking">Verder kiezen</button></div>
+    <p class="demo-note">Bestelproef · prijzen volgen</p>
+  </section>
+  <section class="checkout-journey" id="checkout-journey" aria-labelledby="checkout-title" hidden>
+    <img class="checkout-background" id="checkout-background" src="media/checkout/counter.jpg" alt="De Fitbite-kassa met donkere toonbank en het houten keukenluik erachter.">
+    <img class="checkout-generic" id="checkout-generic" src="../eigen-bowl/media/afwerking/gekozen-kassa.webp" alt="Een ingepakte bowl bij de kassa." hidden>
+    <div class="checkout-shade" aria-hidden="true"></div>
+    <div class="checkout-heading"><button class="back-link" id="checkout-back" type="button"><img src="../voorpagina/media/arrow-right.svg" alt="">Terug naar je bowl</button><p class="eyebrow" id="checkout-step">03 / Naar de kassa</p><h2 id="checkout-title" tabindex="-1">We gaan<br>naar de kassa.</h2><p class="description" id="checkout-caption" role="status"></p></div>
+    <div class="checkout-product" id="checkout-product"><img id="travel-open" alt=""><img id="travel-packed" src="media/checkout/crousty-packed.png" alt="XL Crousty in hetzelfde rechthoekige bakje, afgesloten met deksel en papieren band."></div>
+    <div class="checkout-actions" id="checkout-actions" hidden><p id="checkout-order"></p><a class="primary" id="review-order" href="../eigen-bowl/index.html?bestelling=mand">Bekijk mijn bestelling<img src="../voorpagina/media/arrow-dark.svg" alt=""></a><button class="text-link" id="replay-journey" type="button">Bekijk de beweging opnieuw ↻</button><button class="text-link" id="checkout-menu" type="button">Verder kiezen</button><p class="demo-note" id="journey-note">Visuele bestelproef · er is niets betaald.</p></div>
+  </section>
+</div>
+<dialog id="navigation" aria-labelledby="nav-title"><div class="nav-top"><p id="nav-title">Waar heb je zin in?</p><button type="button" data-close>Sluiten</button></div><nav aria-label="Categorieën"><a href="../voorpagina/index.html">Alle categorieën</a><a href="../eigen-bowl/index.html?type=crousty">Stel je eigen Crousty samen</a><a href="../eigen-bowl/index.html">Stel je eigen pokébowl samen</a><a href="../eigen-bowl/index.html?type=protein">Stel je eigen proteïnebowl samen</a><a href="../eigen-bowl/index.html?bestelling=mand">Jouw bestelling</a></nav></dialog>
+<dialog id="bowl-list" aria-labelledby="list-title"><div class="nav-top"><p id="list-title">Welke bowl kies je?</p><button type="button" data-close>Sluiten</button></div><div id="name-list"></div></dialog>
+<dialog id="recipe" aria-labelledby="recipe-title"><div class="nav-top"><p id="recipe-title">In jouw bowl</p><button type="button" data-close>Sluiten</button></div><dl id="recipe-parts"></dl></dialog>
+<dialog id="side-options" aria-labelledby="side-title"><div class="nav-top"><p id="side-title">Jouw XL Sidebowl</p><button type="button" data-close>Sluiten</button></div><p>Vier porties, ook vier keer jouw favoriet. Zonder rijst.</p><form id="side-form"><div id="portions" class="side-selects"></div><p>Twee sauzen inbegrepen</p><div id="side-sauces" class="side-selects"></div><label class="onion-choice"><input type="checkbox" name="onion"> Met crispy ui</label><p class="side-note">De foto toont een voorbeeldmix. Jouw keuzes staan in je bestelling.</p><button class="primary" type="submit">Voeg mijn Sidebowl toe</button></form></dialog>
+<noscript><p class="no-script">Zet JavaScript aan om een bowl te kiezen, of <a href="../index.html?menu=bowls">bekijk het menu</a>.</p></noscript>
+</body></html>

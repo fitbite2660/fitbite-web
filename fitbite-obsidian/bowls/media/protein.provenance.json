@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen",
+  "references": ["salmon.png", "../../voorpagina/media/bowls.webp"],
+  "generated_source": "/Users/adnane/.codex/generated_images/01a1c6e7-e6ba-7a63-a88c-43217b071d95/exec-40011bc4-f1c6-4ab2-84cb-ab2c740eec62.png",
+  "width": 1536,
+  "height": 1024,
+  "alpha": true,
+  "notes": "Generated companion Protein Bowl, chicken base with no visible rice. Transparent alpha preserved, complete silhouette inspected. Corrected initial extra avocado to cucumber and edamame, retaining other ingredients and viewpoint. Original kept as protein-before-correction.png. No Higgsfield credits."
+}

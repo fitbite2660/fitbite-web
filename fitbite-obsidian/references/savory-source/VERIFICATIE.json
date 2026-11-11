@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-03T02:25:20.407Z",
+  "inlineScriptsParse": true,
+  "localFiles": [
+    {
+      "file": "assets/savory-logo.png",
+      "bytes": 160482
+    },
+    {
+      "file": "assets/savory-source.css",
+      "bytes": 95928
+    },
+    {
+      "file": "assets/savory-hero.png",
+      "bytes": 4046893
+    },
+    {
+      "file": "assets/savory-hero-motion.mp4",
+      "bytes": 4659136
+    },
+    {
+      "file": "assets/savory-crousty.jpg",
+      "bytes": 285474
+    },
+    {
+      "file": "assets/savory-korean-bowl.jpg",
+      "bytes": 340495
+    }
+  ],
+  "homepageSha256": "6246ce0495a8641d4e697db63712e371209342575e6eb2244bed6b8aeaa95e30",
+  "browser": {
+    "desktop": "1280×720",
+    "mobile": [
+      "390×844",
+      "375×667"
+    ],
+    "video": "1920×1080; 5.041667 seconds; readyState 4; play, pause, ended and replay observed",
+    "search": [
+      "zalm → Fresh Salmon Bowl",
+      "smoothie → four results"
+    ],
+    "cart": "Added and removed only test Tropical; original Korean Chicken Bowl retained",
+    "navigation": [
+      "Menu overlay",
+      "Contact anchor",
+      "Bestel nu → Bowl selection"
+    ],
+    "freshConsoleErrors": 0,
+    "reducedMotion": "CSS and JS statically reviewed; no OS preference changed",
+    "physicalDeviceTest": false
+  }
+}

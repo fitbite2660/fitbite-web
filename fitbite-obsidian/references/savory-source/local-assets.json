@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-03",
+  "sourcePage": "https://savory-ease-copy-ae387405.base44.app/",
+  "assets": [
+    {
+      "sourceURL": "https://savory-ease-copy-ae387405.base44.app/assets/index-C20sRs4i.css",
+      "sourceBundlePath": "/var/folders/hh/3vbvsn017g7bvcsp_q5c_1980000gn/T/browser-use/assets/ca276e0e-07e2-4a84-9101-6667c3dfaf5d/c4f9e30c45bb997c.css",
+      "target": "assets/savory-source.css",
+      "bytes": 95928,
+      "sha256": "3626f1717df26ab58d4c13625ac88fcf933e33e2482e4664a2226141df302c26",
+      "transformation": "Source CSS unchanged except replacing the remote Google Fonts import with ./savory-fonts.css; the original bundled CSS remains in the source bundle.",
+      "sourceSha256": "9d2757d223892da55adad5273e8b03b240f9b4f01797dba63e5b1919949db0dc"
+    },
+    {
+      "sourceURL": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png",
+      "sourceBundlePath": "/var/folders/hh/3vbvsn017g7bvcsp_q5c_1980000gn/T/browser-use/assets/ca276e0e-07e2-4a84-9101-6667c3dfaf5d/8c331793effd90f1.png",
+      "target": "assets/savory-hero.png",
+      "bytes": 4046893,
+      "sha256": "deae13aed7f31fca14fbf6a1896ed833d057f1da2c2adb10d9a0a3e82325fc55",
+      "transformation": "byte-for-byte copy"
+    },
+    {
+      "sourceURL": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/2a290d949_IMG_9214.jpg",
+      "sourceBundlePath": "/var/folders/hh/3vbvsn017g7bvcsp_q5c_1980000gn/T/browser-use/assets/ca276e0e-07e2-4a84-9101-6667c3dfaf5d/ef03d32180d2d413.jpg",
+      "target": "assets/savory-korean-bowl.jpg",
+      "bytes": 340495,
+      "sha256": "b94ecdaa6adbd60c315540db88384dc2d362896e7374b35a15ba8a42801eafd3",
+      "transformation": "byte-for-byte copy"
+    },
+    {
+      "sourceURL": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/f0174956b_ChatGPT-afbeelding201520okt2020262C206.jpg",
+      "sourceBundlePath": "/var/folders/hh/3vbvsn017g7bvcsp_q5c_1980000gn/T/browser-use/assets/ca276e0e-07e2-4a84-9101-6667c3dfaf5d/03ec4eb6ab9e15c3.jpg",
+      "target": "assets/savory-crousty.jpg",
+      "bytes": 285474,
+      "sha256": "9245717a24841be900e362d609ba9a1e6ebcc8db9be0b94da43138dad9c1a031",
+      "transformation": "byte-for-byte copy"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Inter",
+      "sourceURL": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+      "target": "assets/fonts/inter-latin.woff2",
+      "bytes": 48432,
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+      "format": "woff2",
+      "weights": "300 700"
+    },
+    {
+      "family": "Outfit",
+      "sourceURL": "https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2",
+      "target": "assets/fonts/outfit-latin.woff2",
+      "bytes": 32228,
+      "sha256": "92684e4acde79ef07758cd09380b7e01e9824d8b061eddeda046f78c166d7b12",
+      "format": "woff2",
+      "weights": "400 900"
+    }
+  ],
+  "sourceFontStylesheet": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Anton&display=swap",
+  "failures": []
+}

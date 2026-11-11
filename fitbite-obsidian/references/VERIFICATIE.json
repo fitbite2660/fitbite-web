@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-03",
+  "inlineJavaScript": "syntax-valid",
+  "menuMediaChecked": 13,
+  "missingMenuMedia": [],
+  "legacyUnchanged": [
+    {
+      "name": "app.js",
+      "unchanged": true
+    },
+    {
+      "name": "style.css",
+      "unchanged": true
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 375,
+      "height": 667
+    }
+  ],
+  "browserConsole": "No warnings or errors in final browser check",
+  "evidence": [
+    "soda-mobile-390x844.jpg",
+    "soda-desktop.jpg",
+    "geverifieerde-storykaart.png"
+  ],
+  "limitations": [
+    "No physical iPhone test",
+    "Native external share not sent",
+    "Operating-system reduced-motion preference reviewed in code; pause button tested",
+    "No interactive 3D builder or real checkout"
+  ]
+}

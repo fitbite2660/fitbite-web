@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#261d15">
+  <meta name="description" content="Ontdek Croustys en kleurrijke bowls bij Fitbite. Kies je favoriet of stel je eigen bowl samen.">
+  <title>Ontdek Fitbite · Croustys & bowls</title>
+  <link rel="icon" href="media/logo.jpeg"><link rel="preload" href="media/croustys.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="page.css?v=20261110-xl1"><script src="../assets/menu-products.js?v=20261110-trip1" defer></script><script src="page.js?v=20261110-xl1" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#croustys" aria-label="Fitbite, terug naar het begin"><span class="wordmark">Fitbite.</span><span class="brand-logo"><img src="media/logo.jpeg" alt="Fit Bite"></span></a>
+    <nav class="header-actions" aria-label="Hoofdnavigatie">
+      <a class="bag" href="../eigen-bowl/index.html?bestelling=mand" aria-label="Bekijk je bestelling"><img src="media/shopping-bag.svg" alt=""><span id="count">0</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open het menu" aria-controls="navigation" aria-expanded="false"><img src="media/menu.svg" alt=""></button>
+    </nav>
+  </header>
+  <main class="story" id="croustys">
+    <div class="stage">
+      <section class="panel is-active" id="crousty-panel" aria-labelledby="crousty-title">
+        <img class="photo" src="media/croustys.webp" alt="Crousty op de tafel bij Fitbite, met de bar en het keukenluik erachter." fetchpriority="high" width="850" height="1850">
+        <div class="copy"><p class="eyebrow">01 / Ontdek</p><h1 id="crousty-title" tabindex="-1">Croustys.</h1><p class="description">Krokant. Romig. Vol smaak.</p></div>
+        <footer class="actions"><a class="primary" href="../eigen-bowl/index.html?type=crousty">Stel je Crousty samen<img src="media/arrow-dark.svg" alt=""></a><a class="next-scene" href="#bowls">Verder naar XL bowls<img src="media/arrow-right.svg" alt=""></a></footer>
+      </section>
+      <section class="panel" id="bowl-panel" aria-labelledby="bowl-title">
+        <div class="photo xl-scene" aria-label="Vier XL-specials op de tafel in Fitbite" role="img"><img class="xl-room" src="../bowls/media/room.webp" alt=""><img class="xl-food xl-royal" src="../bowls/media/royal.webp" alt=""><img class="xl-food xl-sea" src="../bowls/media/sea.webp" alt=""><img class="xl-food xl-crousty" src="../bowls/media/xl-crousty-rect.png" alt=""><img class="xl-food xl-side" src="../bowls/media/xl-side.webp" alt=""></div>
+        <div class="copy"><p class="eyebrow">02 / Ontdek</p><h2 id="bowl-title" tabindex="-1">XL<br>bowls.</h2><p class="description">Vier specials. Royaal genieten.</p></div>
+        <footer class="actions"><a class="primary" href="../bowls/index.html">Bekijk de bowls<img src="media/arrow-dark.svg" alt=""></a><button class="next-scene builder-trigger" type="button">Liever zelf samenstellen?<img src="media/arrow-right.svg" alt=""></button></footer>
+      </section>
+    </div>
+    <span id="bowls" class="scroll-target" aria-hidden="true"></span>
+  </main>
+  <dialog id="navigation" aria-labelledby="nav-title">
+    <div class="nav-top"><p id="nav-title">Waar heb je zin in?</p><button id="close-menu" type="button">Sluiten</button></div>
+    <nav aria-label="Categorieën"><a href="#croustys">Croustys</a><a href="#bowls">XL bowls</a><a href="../eigen-bowl/index.html">Stel je eigen pokébowl samen</a><a href="../eigen-bowl/index.html?type=crousty">Stel je eigen Crousty samen</a><a href="../eigen-bowl/index.html?type=protein">Stel je eigen proteïnebowl samen</a><a href="../index.html?menu=verder">Het volledige menu</a><a href="../eigen-bowl/index.html?bestelling=mand">Jouw bestelling</a></nav>
+  </dialog>
+<dialog id="builder-routes" aria-labelledby="routes-title"><div class="nav-top"><p id="routes-title">Helemaal jouw smaak.</p><button id="close-routes" type="button">Sluiten</button></div><nav aria-label="Stel zelf samen"><a href="../eigen-bowl/index.html?type=poke">Pokébowl <small>Rijst · groenten · jouw proteïne</small></a><a href="../eigen-bowl/index.html?type=crousty">Crousty <small>Krokante kip · speciale Crousty-saus</small></a><a href="../eigen-bowl/index.html?type=protein">Proteïnebowl <small>Zonder rijst · vijf mix-ins</small></a></nav></dialog>
+</body>
+</html>

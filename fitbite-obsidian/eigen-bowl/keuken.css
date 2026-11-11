@@ -1,0 +1,125 @@
+#kitchen-frame, .protein-stage { display: none; }
+body[data-scene="proteine"] #kitchen-frame {
+  display: block; position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 48%;
+}
+body[data-scene="proteine"] .shot-greens,
+body[data-scene="proteine"] .shot-room { display: none; }
+body[data-scene="proteine"] .station { --photo-min: clamp(235px,35svh,400px); }
+body[data-scene="proteine"] .shade {
+  background: linear-gradient(180deg,#151311be 0%,#211a1478 20%,transparent 34%,transparent 57%,#211913b8 68%,#211a15f7 84%,#211a15 100%);
+}
+body[data-scene="proteine"] .title-area { padding-bottom: 6px; }
+body[data-scene="proteine"] #choices { padding-top: 13px; }
+body[data-scene="proteine"] #scene-description:empty { display: none; }
+
+body:is([data-scene="groenten"],[data-scene="proteine"]) .protein-stage {
+  display: block; position: absolute; z-index: 1; inset: 0; pointer-events: none;
+}
+#bowl-follow { position: absolute; }
+#bowl-follow::before {
+  content: ''; position: absolute; z-index: -1; inset: 80% 14% 0 15%;
+  border-radius: 50%; background: #2716069e; filter: blur(6px);
+}
+#bowl-follow .rice { display: block; width: 100%; height: auto; }
+body[data-scene="groenten"] #bowl-follow {
+  width: 20%; max-width: 85px; bottom: 3px; right: 3px;
+}
+body[data-scene="groenten"] :is(#protein-detail,#protein-caption) { display: none; }
+body[data-scene="proteine"] #bowl-follow {
+  width: 25%; left: 8%; bottom: 1%; opacity: 0;
+}
+#bowl-follow [data-veg-layer] {
+  position: absolute; width: var(--serving,23%); left: var(--x); top: var(--y);
+  transform: translate(-50%, -50%); filter: drop-shadow(0 1px 1px #4e351844);
+}
+[data-veg-layer="Mango"] { --x: 27%; --y: 34%; }
+[data-veg-layer="Avocado"] { --x: 48%; --y: 29%; }
+[data-veg-layer="Komkommer"] { --x: 70%; --y: 34%; }
+[data-veg-layer="Edamame"] { --x: 21%; --y: 48%; --serving: 19%; }
+[data-veg-layer="Maïs"] { --x: 41%; --y: 52%; --serving: 18%; }
+[data-veg-layer="Rode ui"] { --x: 60%; --y: 51%; --serving: 18%; }
+[data-veg-layer="Tomaat"] { --x: 77%; --y: 48%; --serving: 19%; }
+#bowl-follow[data-portions="1"] [data-veg-layer] { --serving: 33%; --x: 49%; --y: 40%; }
+#bowl-follow[data-portions="2"] [data-veg-layer] { --serving: 30%; --x: var(--pair-x); --y: 41%; }
+
+#protein-detail {
+  position: absolute; inset: 0; margin: auto;
+  width: 100%; height: auto; max-height: 100%; aspect-ratio: 3/2; object-fit: contain;
+}
+#protein-caption {
+  position: absolute; left: var(--gutter); bottom: 1%; padding: 4px 8px;
+  color: var(--paper); background: #211b16df; font: 500 17px/1.1 var(--display);
+}
+
+#sauce-scene, #topping-scene { display: none; }
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .station {
+  --photo-min: clamp(350px, 51svh, 550px);
+  background: #251e17;
+}
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .scenery { display: none; }
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .station > * { grid-column: 1; }
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .bar { grid-row: 1; }
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .title-area {
+  grid-row: 3; align-self: end; padding: 14px var(--gutter) 16px;
+}
+body:is([data-scene="sauzen"], [data-scene="toppings"]) :is(.bar, .title-area) {
+  position: relative; z-index: 1;
+}
+body:is([data-scene="sauzen"], [data-scene="toppings"]) .viewfinder { pointer-events: none; }
+body[data-scene="sauzen"] #sauce-scene,
+body[data-scene="toppings"] #topping-scene {
+  display: block; grid-row: 1 / 4; position: relative; overflow: hidden; isolation: isolate;
+}
+body:is([data-scene="sauzen"], [data-scene="toppings"]) #choices { padding-top: 4px; }
+.topping-view { position: absolute; inset: 0; overflow: hidden; }
+.topping-view img {
+  /* Frame the upper 1,000 pixels of photo 02 to keep the bins and the wooden rim in view. */
+  display: block; width: 100%; height: 167.2%; object-fit: cover; object-position: 50% top;
+}
+#topping-scene::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(180deg, #20170e77, transparent 18%, transparent 66%, #251e17dd 91%, #251e17);
+}
+.sauce-window {
+  position: absolute; left: 0; top: 50%;
+  width: 100%; aspect-ratio: 9 / 16; transform: translateY(-50%);
+}
+.sauce-window > img { display: block; width: 100%; height: 100%; }
+#sauce-scene::after {
+  content: ''; pointer-events: none; position: absolute; inset: 0;
+  background: linear-gradient(180deg, #18120c8c, transparent 20%, transparent 60%, #261c14cc 83%, #251e17);
+}
+#sauce-pumps { position: absolute; inset: 0; pointer-events: none; }
+.sauce-pump {
+  pointer-events: auto; position: absolute; z-index: 1;
+  left: var(--x); top: calc(var(--y) - 17%); transform: translateX(-50%);
+  width: clamp(48px, 16%, 74px); height: calc(17% + 22px);
+  padding: 0; border: 0; border-radius: 4px; background: transparent;
+}
+.pump-mark, .pump-key {
+  display: inline-grid; place-items: center; border-radius: 50%;
+  font-family: var(--display); font-weight: 500; line-height: 1;
+}
+.pump-mark {
+  position: absolute; left: 50%; bottom: 22px; transform: translate(-50%, 50%);
+  width: 26px; height: 26px; border: 1px solid #ffefcf; color: #fff7e6; background: #241b13e6;
+  box-shadow: 0 1px 4px #1b110c55; font-size: 14px;
+}
+.sauce-pump[aria-pressed="true"] .pump-mark { background: var(--cream); color: var(--ink); }
+.sauce-pump[aria-pressed="true"] .pump-mark::after {
+  content: '✓'; position: absolute; top: -5px; right: -6px; display: grid;
+  place-items: center; width: 14px; height: 14px; border-radius: 50%;
+  color: var(--cream); background: var(--ink); font: 10px/1 var(--reading);
+}
+.pump-key {
+  width: 18px; height: 18px; flex: none;
+  border: 1px solid #d8c6a98c; color: #f6e5c5; font-size: 11px;
+}
+.choice[data-group="sauces"] .choice-label {
+  min-width: 0; margin-right: auto; overflow-wrap: anywhere;
+}
+@media(max-width: 359px) {
+  .choice-group[data-group="sauces"] .choice-grid { column-gap: 12px; }
+  .choice-group[data-group="sauces"] .choice { font-size: 16px; }
+}

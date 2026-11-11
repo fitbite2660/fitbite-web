@@ -1,0 +1,274 @@
+{
+  "assets": [
+    {
+      "id": "3d0acda225abc85d",
+      "kind": "script",
+      "name": "index-Bc7LjCTN.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 24,
+          "property": "src"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/assets/index-Bc7LjCTN.js"
+    },
+    {
+      "id": "c4f9e30c45bb997c",
+      "kind": "stylesheet",
+      "name": "index-C20sRs4i.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 27,
+          "property": "href"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/assets/index-C20sRs4i.css"
+    },
+    {
+      "id": "49cbafed1a614040",
+      "kind": "stylesheet",
+      "name": "css2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Anton&display=swap"
+    },
+    {
+      "id": "5658368c0e1f2936",
+      "kind": "other",
+      "name": "batch",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        },
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        },
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/api/apps/6aa6db9ff61c3aceae387405/analytics/track/batch"
+    },
+    {
+      "id": "07bff9ebd6aeb8f1",
+      "kind": "other",
+      "name": "home",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/api/app-logs/6aa6db9ff61c3aceae387405/log-user-in-app/home"
+    },
+    {
+      "id": "8c331793effd90f1",
+      "kind": "image",
+      "name": "38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 104,
+          "property": "src"
+        }
+      ],
+      "url": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png"
+    },
+    {
+      "id": "ba4f9b1b70dd5b76",
+      "kind": "image",
+      "name": "bf77b728e_IMG_5396.jpg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/bf77b728e_IMG_5396.jpg"
+    },
+    {
+      "id": "98e828afbced101f",
+      "kind": "other",
+      "name": "SiteImage",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/api/apps/6aa6db9ff61c3aceae387405/entities/SiteImage?sort=-created_date&limit=200"
+    },
+    {
+      "id": "261855f3daf0775b",
+      "kind": "other",
+      "name": "SiteText",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/api/apps/6aa6db9ff61c3aceae387405/entities/SiteText?sort=-created_date&limit=300"
+    },
+    {
+      "id": "01d3134127d2309f",
+      "kind": "other",
+      "name": "6aa6db9ff61c3aceae387405",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://savory-ease-copy-ae387405.base44.app/api/apps/public/prod/public-settings/by-id/6aa6db9ff61c3aceae387405"
+    },
+    {
+      "id": "ef03d32180d2d413",
+      "kind": "image",
+      "name": "2a290d949_IMG_9214.jpg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 4,
+          "property": "src"
+        }
+      ],
+      "url": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/2a290d949_IMG_9214.jpg"
+    },
+    {
+      "id": "03ec4eb6ab9e15c3",
+      "kind": "image",
+      "name": "f0174956b_ChatGPT-afbeelding201520okt2020262C206.jpg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 3,
+          "property": "src"
+        }
+      ],
+      "url": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/f0174956b_ChatGPT-afbeelding201520okt2020262C206.jpg"
+    },
+    {
+      "id": "9ae2c62adda2c671",
+      "kind": "image",
+      "name": "c4effc9f8_WhatsAppImage2026-09-13at2215001.jpeg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "other"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 13,
+          "property": "href"
+        }
+      ],
+      "url": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/c4effc9f8_WhatsAppImage2026-09-13at2215001.jpeg"
+    }
+  ],
+  "id": "856afde8-e983-4aa8-8247-4df5c7dc1823",
+  "inlineSvgs": [
+    {
+      "id": "902100ae3749e116",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-search h-[18px] w-[18px]\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg>",
+      "name": "svg-1"
+    },
+    {
+      "id": "20d695cc1ff48928",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shopping-bag h-[18px] w-[18px]\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"></path><path d=\"M3 6h18\"></path><path d=\"M16 10a4 4 0 0 1-8 0\"></path></svg>",
+      "name": "svg-2"
+    },
+    {
+      "id": "701032c83892e894",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-menu h-[18px] w-[18px]\"><line x1=\"4\" x2=\"20\" y1=\"12\" y2=\"12\"></line><line x1=\"4\" x2=\"20\" y1=\"6\" y2=\"6\"></line><line x1=\"4\" x2=\"20\" y1=\"18\" y2=\"18\"></line></svg>",
+      "name": "svg-3"
+    },
+    {
+      "id": "be2efd63d10ec0d6",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-5 w-5\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-4"
+    },
+    {
+      "id": "b5b4d89b0b298267",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3.5 w-3.5\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-5"
+    },
+    {
+      "id": "f56d76c51dd20ed0",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-6"
+    },
+    {
+      "id": "4f3d14f0d76435d6",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-7"
+    },
+    {
+      "id": "2ae996faa099c276",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-8"
+    },
+    {
+      "id": "cd6de869837877b3",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-9"
+    },
+    {
+      "id": "3632ca83071b5b12",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-10"
+    },
+    {
+      "id": "e39e87c695004f8b",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-4 w-4\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg>",
+      "name": "svg-11"
+    },
+    {
+      "id": "40350b2b6541b036",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-instagram h-4 w-4\"><rect width=\"20\" height=\"20\" x=\"2\" y=\"2\" rx=\"5\" ry=\"5\"></rect><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"></path><line x1=\"17.5\" x2=\"17.51\" y1=\"6.5\" y2=\"6.5\"></line></svg>",
+      "name": "svg-12"
+    }
+  ],
+  "pageUrl": "https://savory-ease-copy-ae387405.base44.app/",
+  "summary": {
+    "byKind": {
+      "font": 0,
+      "image": 5,
+      "other": 5,
+      "script": 1,
+      "stylesheet": 2,
+      "video": 0
+    },
+    "inlineSvgCount": 12,
+    "totalCount": 13
+  }
+}

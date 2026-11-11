@@ -1,0 +1,35 @@
+{
+  "source_video": "outputs/fitbite-fresh-salmon-video-2026-11-04/01-higgsfield-original-1080p.mp4",
+  "higgsfield_job_id": "325ce055-4997-4ea4-a22b-d884d4655eaf",
+  "source_fps": 24,
+  "source_frames": 121,
+  "source_duration_seconds": 5.041666666666667,
+  "poses": {
+    "table": 0,
+    "hero": 33,
+    "checkout": 120
+  },
+  "local_changes": "H.264 compatibility transcode; stills extracted from existing video",
+  "new_generations": 0,
+  "credits_spent_this_prototype": 0,
+  "visual_limit": "User accepted movement flow. Food identity and room continuity in this existing clip remain incorrect and must be fixed before final product use.",
+  "price_reference": "work/recovered/context/Fitbite_menu_voor_de_website.docx: Fresh Salmon Medium15.99 Large17.99, earlier size correction, used as prototype prices only",
+  "files": {
+    "scene.mp4": {
+      "bytes": 3792834,
+      "sha256": "cf097e3dd8b3bb4aa5b7b2790ab45890dcfcdef017311a0683ce77e8d4287d24"
+    },
+    "table.jpg": {
+      "bytes": 380984,
+      "sha256": "7553d92ab0aff0484499ba590e9cd7886800f6034aadc9b6acb85770af5959eb"
+    },
+    "hero.jpg": {
+      "bytes": 237429,
+      "sha256": "f094a78f92688e96835e4840d31493c7efad3eecd3f232c441bfb753706e321e"
+    },
+    "checkout.jpg": {
+      "bytes": 262865,
+      "sha256": "82caa668b3e2490544415821b3f63d9c0767be6b3eb00c5b678bae4c1a00d498"
+    }
+  }
+}

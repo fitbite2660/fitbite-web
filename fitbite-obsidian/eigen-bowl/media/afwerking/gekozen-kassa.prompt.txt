@@ -1,0 +1,13 @@
+Use case: precise-object-edit.
+Asset: clean photo background extracted from the selected checkout website screenshot.
+Input image 1 is the EXACT edit target. Remove ONLY the flat website interface overlays, keeping the entire photograph unchanged in camera, crop, subject positions, scale, perspective, colour and light.
+Output one full-bleed clean photorealistic portrait image with the SAME very tall 594:1312 composition/aspect ratio. No collage.
+
+Remove the top website header text “Fitbite.” and “PUURS”, round back arrow and shopping-bag/count pill and their separator line. Inpaint those covered areas with the same existing wooden slat wall and subtle blue glow, without moving the photo.
+Remove all lower website UI: “Afrekenen.”, horizontal divider, “Je bestelling · 1 item”, cream payment button with its text and arrow, “Terug naar het menu” and underline. Replace the covered regions with a continuous photographic dark anthracite counter surface in correct perspective, subtle natural grain and reflections. Remove the artificial dark UI gradient in this lower area, allowing naturally lit counter to extend to the bottom.
+
+STRICT INVARIANTS:
+Preserve the kraft takeaway bowl and low clear plastic lid exactly, centered at the same place and same size around 46% image height. Preserve the cream paper belly band front-to-back across the lid and down the front, including the actual small green FB / FIT BITE printed mark. This is physical packaging print and MUST REMAIN.
+Preserve existing black T-shirt torso at left, existing sleeve and forearm, and actual gold FB shirt mark. Do not add a head or face, do not replace or invent another employee.
+Preserve the black cashier tablet and its kickstand at left, the small payment terminal with coloured keys, the warm oak slat wall, rectangular wooden hatch behind with the exact same kitchen view and bottles, depth of field and subtle neon blue light at upper right.
+No new props, no reframing, no zoom, no movement of bowl, no food added outside package, no interface text or controls remaining, no watermark. Only UI removal/inpainting. Photographic logos on bowl band and shirt stay.

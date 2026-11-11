@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-03",
+  "status": "completed",
+  "authorized": true,
+  "jobId": "80cb423a-2211-4901-86ac-76b96ada636f",
+  "purpose": "Reuse completed front clip, generate only 4s opposite-side clip, join with two quick camera-swish transitions and loop",
+  "params": {
+    "model": "seedance_2_5",
+    "mode": "omni_reference",
+    "duration": 4,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Generate ONLY the opposite-side shot for a two-angle food montage. The supplied image and existing video establish the exact food identities, table layout, bowl materials, lighting and photographic style; do NOT copy their front-facing camera position or camera path. From the first frame, place the camera on the physically opposite side of this same tabletop arrangement, approximately 180 degrees around the central wooden poke bowl from the reference view. Use a slightly elevated wide food composition that clearly shows the food and reveals the reverse side of the arrangement, with plausible reversed spatial relationships and occlusions. Do not mirror the reference or simply slide its pixels. The only movement during this four-second shot is a small smooth 10-to-15-degree clockwise camera arc from that opposite viewpoint, at constant camera height, radius and focal length. Keep the same bowls, sushi plate, red smoothie cup and takeaway container fixed and grounded on the same table. Preserve bowl shapes, materials, scale, colours, contents and overall ingredient arrangement; preserve coherent contact shadows and warm restaurant lighting. Reconstruct the unseen rear views plausibly without adding, removing, multiplying or morphing food, bowls or tableware. The table and dishes must never spin or move. No transition, whip-pan, zoom, camera shake, rapid full orbit, new objects, people, hands, steam, particles, captions or audio. Transitions and the front view will be added separately during website editing. Realistic food cinematography.",
+    "medias": [
+      {
+        "role": "image",
+        "value": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png"
+      },
+      {
+        "role": "video",
+        "value": "9a0aface-0ae2-4cd3-8543-9e8a894bd767"
+      }
+    ]
+  },
+  "quote": {
+    "cost": {
+      "credits": 28,
+      "credits_exact": 28
+    },
+    "resolution": "720p"
+  },
+  "editPlan": {
+    "frontSeconds": 4,
+    "transitionSeconds": 0.25,
+    "backSeconds": 4,
+    "repeat": true,
+    "mediaOnlyTransition": true,
+    "whiteFlashes": false,
+    "reducedMotion": "static original photo",
+    "originalFilePreserved": true
+  },
+  "supersedes": "orbit-proposal-2026-11-03.json (not generated)",
+  "authorizedCredits": 28,
+  "authorizedCount": 1,
+  "authorizationText": "720p voor 28 credits — goedkoper",
+  "lastSubmissionError": "Out of credits on pro (monthly) plan in Private workspace",
+  "submissionAttemptedAt": "2026-11-03T04:59:35.063Z",
+  "balanceAfterRefusal": 52.21,
+  "creditsShort": 11.79,
+  "alternativeQuote": {
+    "resolution": "720p",
+    "duration": 4,
+    "credits": 28,
+    "authorized": true,
+    "priceOnly": true
+  },
+  "previous1080pAttempt": {
+    "status": "rejected-insufficient-credits",
+    "jobId": null,
+    "quotedCredits": 64
+  },
+  "submittedAt": "2026-11-03T05:01:48.560Z",
+  "previous1080pQuote": {
+    "cost": {
+      "credits": 64,
+      "credits_exact": 64
+    },
+    "adjustments": {
+      "medias[0].role": {
+        "requested": "image",
+        "used": "image_references",
+        "reason": "Seedance 2.5 backend expects schema-key media roles"
+      },
+      "medias[1].role": {
+        "requested": "video",
+        "used": "video_references",
+        "reason": "Seedance 2.5 backend expects schema-key media roles"
+      }
+    }
+  },
+  "resultURL": "https://d8j0ntlcm91z4.cloudfront.net/user_3KWfsWMn3JDhmyCCpCOON1Hleat/hf_20261103_050114_80cb423a-2211-4901-86ac-76b96ada636f.mp4",
+  "outputFile": "assets/savory-hero-opposite.mp4",
+  "bytes": 1318585,
+  "sha256": "91366f472f800e6c98b128073803c3bc0fe089f04befaad0efd41c698fc57deb",
+  "visualReview": {
+    "status": "rejected-for-requested-angle",
+    "reason": "Begin/middle/end all remain on the original front side. Bowls retain the same left-to-right arrangement and restaurant background; this is not an approximately 180-degree opposite view.",
+    "reviewTimesSeconds": [
+      0.05,
+      2,
+      3.8
+    ],
+    "durationSeconds": 4.041667,
+    "width": 1280,
+    "height": 720
+  },
+  "integration": "Separate montage-preview.html only; main index.html preserved",
+  "authorizationUsed": true,
+  "generationCount": 1,
+  "montagePreview": "montage-preview.html",
+  "qualityGate": "blocked: opposite viewpoint missing"
+}

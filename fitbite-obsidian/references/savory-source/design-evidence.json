@@ -1,0 +1,106 @@
+{
+  "bodyClass": "",
+  "bodyStyle": {
+    "background": "rgb(244, 242, 235)",
+    "font": "Inter, sans-serif"
+  },
+  "headings": [
+    {
+      "rect": {
+        "bottom": 709,
+        "height": 36,
+        "left": 52,
+        "right": 452.546875,
+        "top": 673,
+        "width": 400.546875,
+        "x": 52,
+        "y": 673
+      },
+      "text": "Stel je eigen bowl samen"
+    },
+    {
+      "rect": {
+        "bottom": 854.5,
+        "height": 28,
+        "left": 44,
+        "right": 175.203125,
+        "top": 826.5,
+        "width": 131.203125,
+        "x": 44,
+        "y": 826.5
+      },
+      "text": "Best sellers"
+    },
+    {
+      "rect": {
+        "bottom": 1569.9765625,
+        "height": 28,
+        "left": 44,
+        "right": 188.546875,
+        "top": 1541.9765625,
+        "width": 144.546875,
+        "x": 44,
+        "y": 1541.9765625
+      },
+      "text": "Fitbite bowls "
+    },
+    {
+      "rect": {
+        "bottom": 1569.9765625,
+        "height": 28,
+        "left": 663,
+        "right": 769.671875,
+        "top": 1541.9765625,
+        "width": 106.671875,
+        "x": 663,
+        "y": 1541.9765625
+      },
+      "text": "Crousty's"
+    },
+    {
+      "rect": {
+        "bottom": 1749.9765625,
+        "height": 28,
+        "left": 44,
+        "right": 121.21875,
+        "top": 1721.9765625,
+        "width": 77.21875,
+        "x": 44,
+        "y": 1721.9765625
+      },
+      "text": "Snacks"
+    },
+    {
+      "rect": {
+        "bottom": 1749.9765625,
+        "height": 28,
+        "left": 663,
+        "right": 842.53125,
+        "top": 1721.9765625,
+        "width": 179.53125,
+        "x": 663,
+        "y": 1721.9765625
+      },
+      "text": "Verse smoothies"
+    },
+    {
+      "rect": {
+        "bottom": 1937.4765625,
+        "height": 40,
+        "left": 52,
+        "right": 310.1484375,
+        "top": 1897.4765625,
+        "width": 258.1484375,
+        "x": 52,
+        "y": 1897.4765625
+      },
+      "text": "Snel & Makkelijk"
+    }
+  ],
+  "hero": "<div><section class=\"relative h-[420px] w-full overflow-hidden rounded-b-[24px] bg-fit-green-deep sm:h-[520px] lg:h-[600px]\"><img src=\"https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png\" alt=\"Fit Bite poké bowls, sushi en smoothie op een donkere tafel\" class=\"absolute inset-0 h-full w-full object-cover\" style=\"object-position: 50% 50%;\"><div class=\"absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/35\"></div><a class=\"absolute bottom-6 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full bg-fit-action px-8 py-4 font-heading text-base font-extrabold uppercase tracking-[0.04em] text-white transition-transform active:scale-95 sm:bottom-8 sm:text-lg\" href=\"/menu\">Bestel nu<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-5 w-5\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></a></section><section id=\"over-ons\" class=\"px-4 pt-3 sm:px-6\"><div class=\"mx-auto max-w-7xl\"><div class=\"flex min-h-[180px] items-center overflow-hidden rounded-[24px] bg-fit-green p-5 sm:p-7\"><div class=\"flex flex-col items-start gap-3\"><span class=\"text-[11px] font-semibold uppercase tracking-[0.3em] text-fit-label\">Pokébowls</span><h2 class=\"max-w-[15rem] font-heading text-2xl font-extrabold uppercase leading-[1.02] tracking-tight text-white sm:max-w-md sm:text-3xl\">Stel je eigen bowl samen</h2><a class=\"inline-flex items-center gap-2 rounded-full border border-white/85 px-4 py-2.5 font-heading text-[11px] font-bold uppercase tracking-[0.04em] text-white transition-colors hover:bg-white hover:text-fit-green\" href=\"/menu\">Bekijk menu<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3.5 w-3.5\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></a></div></div></div></section><section class=\"px-4 pt-3 sm:px-6\"><div class=\"mx-auto max-w-7xl\"><div class=\"grid grid-cols-2 gap-3\"><div class=\"col-span-2 rounded-[24px] bg-fit-green p-4 sm:p-5\"><div class=\"flex items-center justify-between gap-3\"><h3 class=\"font-heading text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-xl\">Best sellers</h3><a class=\"inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/85 px-3 py-2 font-heading text-[10px] font-bold uppercase tracking-[0.04em] text-white transition-colors hover:bg-white hover:text-fit-green\" href=\"/menu/bestsellers\">Bekijk best sellers<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></a></div><div class=\"mt-4 grid grid-cols-2 gap-3\"><a aria-label=\"Crousty Loubs\" class=\"group block overflow-hidden rounded-[14px] bg-fit-green-deep\" href=\"/menu/croustys?dish=Crousty%20Loubs\"><img src=\"https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/f0174956b_ChatGPT-afbeelding201520okt2020262C206.jpg\" alt=\"Crousty Loubs\" loading=\"lazy\" class=\"block h-auto w-full\" style=\"object-position: 50% 50%;\"></a><a aria-label=\"Korean Fried Chicken Bowl\" class=\"group block overflow-hidden rounded-[14px] bg-fit-green-deep\" href=\"/menu/bowls?dish=Korean%20Fried%20Chicken%20Bowl\"><img src=\"https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/2a290d949_IMG_9214.jpg\" alt=\"Korean Fried Chicken Bowl\" loading=\"lazy\" class=\"block h-auto w-full\" style=\"object-position: 50% 50%;\"></a></div></div><a class=\"group flex min-h-[168px] flex-col items-start justify-between gap-3 overflow-hidden rounded-[24px] bg-fit-green p-4 sm:p-5\" href=\"/menu/bowls\"><span class=\"text-[10px] font-semibold uppercase tracking-[0.3em] text-fit-label\">Fitbite bowls</span><h3 class=\"font-heading text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-xl\">Fitbite bowls </h3><span class=\"inline-flex items-center gap-1.5 rounded-full border border-white/85 px-3 py-2 font-heading text-[10px] font-bold uppercase tracking-[0.04em] text-white transition-colors group-hover:bg-white group-hover:text-fit-green\">Bekijk bowls<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></span></a><a class=\"group flex min-h-[168px] flex-col items-start justify-between gap-3 overflow-hidden rounded-[24px] bg-fit-green p-4 sm:p-5\" href=\"/menu/croustys\"><span class=\"text-[10px] font-semibold uppercase tracking-[0.3em] text-fit-label\">Crousty's</span><h3 class=\"font-heading text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-xl\">Crousty's</h3><span class=\"inline-flex items-center gap-1.5 rounded-full border border-white/85 px-3 py-2 font-heading text-[10px] font-bold uppercase tracking-[0.04em] text-white transition-colors group-hover:bg-white group-hover:text-fit-green\">Bekijk crousty's<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></span></a><a class=\"group flex min-h-[168px] flex-col items-start justify-between gap-3 overflow-hidden rounded-[24px] bg-fit-green p-4 sm:p-5\" href=\"/menu/snacks\"><span class=\"text-[10px] font-semibold uppercase tracking-[0.3em] text-fit-label\">Snacks</span><h3 class=\"font-heading text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-xl\">Snacks</h3><span class=\"inline-flex items-center gap-1.5 rounded-full border border-white/85 px-3 py-2 font-heading text-[10px] font-bold uppercase tracking-[0.04em] text-white transition-colors group-hover:bg-white group-hover:text-fit-green\">Bekijk snacks<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></span></a><a class=\"group flex min-h-[168px] flex-col items-start justify-between gap-3 overflow-hidden rounded-[24px] bg-fit-green p-4 sm:p-5\" href=\"/menu/smoothies\"><span class=\"text-[10px] font-semibold uppercase tracking-[0.3em] text-fit-label\">Smoothies</span><h3 class=\"font-heading text-lg font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-xl\">Verse smoothies</h3><span class=\"inline-flex items-center gap-1.5 rounded-full border border-white/85 px-3 py-2 font-heading text-[10px] font-bold uppercase tracking-[0.04em] text-white transition-colors group-hover:bg-white group-hover:text-fit-green\">Bekijk smoothies<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3 w-3\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></span></a></div></div></section><section class=\"px-4 pt-3 sm:px-6\"><div class=\"mx-auto max-w-7xl\"><div class=\"banner-green flex min-h-[180px] items-center justify-between gap-5 overflow-hidden rounded-[24px] p-5 sm:p-7\"><div class=\"flex flex-col items-start gap-3\"><span class=\"text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70\">Online bestellen</span><h2 class=\"font-heading text-3xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-4xl\">Snel &amp; <span class=\"text-fit-mint\">Makkelijk</span></h2><a class=\"inline-flex items-center gap-2 rounded-full bg-fit-action px-6 py-3 font-heading text-sm font-extrabold uppercase tracking-[0.04em] text-white transition-transform active:scale-95\" href=\"/menu\">Bestel nu<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-4 w-4\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></a></div></div></div></section></div>",
+  "htmlClass": "",
+  "inlineStyles": [],
+  "stylesheets": [
+    "https://savory-ease-copy-ae387405.base44.app/assets/index-C20sRs4i.css"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "asset": "crousty-soda-cutout.png",
+  "use_case": "background-extraction",
+  "purpose": "Fitbite website Crousty category meal cutout",
+  "created_at_utc": "2026-11-03 01:28:41 UTC",
+  "generator": {
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "transparent_background": true,
+    "model": "not disclosed by built-in tool",
+    "output_source_path": "/Users/adnane/.codex/generated_images/01a19f00-162a-7c93-8b44-9be5f4ed1b79/exec-687049e4-b1a7-4299-9953-a480e30fc2fb.png"
+  },
+  "input": {
+    "path": "/Users/adnane/Documents/ChatGPT/website FB/work/recovered/codex-2026-10-28/fitbite-obsidian/assets/crousty-pops.webp",
+    "role": "edit target",
+    "original_preserved": true,
+    "inspected_with": "view_image"
+  },
+  "prompt": "Use case: background-extraction.\nAsset type: transparent PNG photo cutout for Fitbite website Crousty category.\nInput image 1 is the edit target.\nPrimary request: extract ONLY the complete original meal and its complete original white rectangular food tray. Remove the entire restaurant/counter background, remove the exterior cast/contact shadow, and remove all text and logos outside the tray, including the CROUSTY POPS heading, sauce subtitle, and lower-left FB FIT BITE logo. Replace all those areas with genuinely transparent alpha.\nPreserve the meal and tray as photographed: exact original elevated three-quarter camera angle, rectangular white tray shape and rounded corners, front and right projecting rim tabs, textured white material, all visible outer edges, full piled meal with existing golden crispy pieces and toppings, existing orange/cream and dark sauces, arrangement, proportions, colors and lighting. Preserve the original mound silhouette, ingredient texture, sauce drizzle paths, front tray wall, and rim.\nComposition/framing: single full tray and meal, centered with a small transparent margin on all sides, no cropped tray edges or food. No other objects.\nConstraints: background removal only; do not add, remove, restyle, regenerate or rearrange food; no new ingredients; no text or logos anywhere in output; no shadow outside tray silhouette; no opaque background or checkerboard; no halo. Output an actual transparent PNG with alpha channel.",
+  "output": {
+    "path": "/Users/adnane/Documents/ChatGPT/website FB/work/recovered/codex-2026-10-28/fitbite-obsidian/assets/crousty-soda-cutout.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 1900480,
+    "sha256": "77049ed5a790c041d50f3866200c5d6a2f5777da10eb1630bc3cdb8cfd7ce10f",
+    "format": "PNG",
+    "channels": "RGBA",
+    "bit_depth": 8
+  },
+  "validation": {
+    "visual_inspection": "Complete white rectangular tray and mound of original crispy meal are visible without cropped edges. Restaurant/counter background and external heading, subtitle and Fit Bite logo removed. Camera angle, tray form, food groups, sauces and overall arrangement are visually retained. No added ingredients, new text/logo or visible exterior cast shadow.",
+    "alpha": {
+      "transparent": 695326,
+      "partial": 877491,
+      "opaque": 535,
+      "nonzeroEdgePixels": 14,
+      "bounds": {
+        "minX": 0,
+        "minY": 19,
+        "maxX": 1641,
+        "maxY": 926
+      },
+      "margin": {
+        "left": 0,
+        "top": 19,
+        "right": 30,
+        "bottom": 14
+      },
+      "mostCommonValues": [
+        {
+          "alpha": 0,
+          "count": 695326
+        },
+        {
+          "alpha": 253,
+          "count": 670596
+        },
+        {
+          "alpha": 252,
+          "count": 162977
+        },
+        {
+          "alpha": 251,
+          "count": 8831
+        },
+        {
+          "alpha": 1,
+          "count": 8602
+        },
+        {
+          "alpha": 250,
+          "count": 3296
+        },
+        {
+          "alpha": 2,
+          "count": 2704
+        },
+        {
+          "alpha": 249,
+          "count": 1934
+        },
+        {
+          "alpha": 254,
+          "count": 1735
+        },
+        {
+          "alpha": 3,
+          "count": 1481
+        },
+        {
+          "alpha": 248,
+          "count": 1270
+        },
+        {
+          "alpha": 247,
+          "count": 1011
+        }
+      ],
+      "solidBoundsAt128": {
+        "minX": 37,
+        "minY": 55,
+        "maxX": 1635,
+        "maxY": 923
+      }
+    },
+    "original_output_bytes_preserved": true
+  },
+  "limitations": [
+    "Generative background extraction is visually faithful, not a guarantee of pixel-identical food, sauce or tray detail.",
+    "Most subject pixels have near-opaque alpha 252–253/255; faint low-alpha fringe and a small number of low-alpha pixels extend outside the visible silhouette. No external alpha normalization or image editing was performed.",
+    "Visible subject at alpha >=128 has complete margins (left 37px, top 55px, right 36px, bottom 17px).",
+    "Raster photo cutout, not a 3D model."
+  ]
+}

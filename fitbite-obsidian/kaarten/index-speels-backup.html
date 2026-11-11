@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#120e0b">
+<title>Kies je favoriet · Fitbite</title>
+<link rel="icon" href="../voorpagina/media/logo.jpeg">
+<script src="../assets/menu-products.js" defer></script>
+<style>
+@font-face{font-family:Outfit;src:url('../assets/fonts/outfit-latin.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{--cream:#f4e8d3;--ink:#221b15;--accent:#e2462b;--gutter:clamp(16px,5.5vw,28px);--display:Futura,'Futura Medium',Outfit,sans-serif;--reading:Optima,Candara,'Segoe UI',sans-serif;--card-w:min(60vw,280px);--card-h:calc(var(--card-w)*1.36);color:var(--cream);background:#120e0b;font-family:var(--reading);font-synthesis:none}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,.stage:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+
+/* ---------- Achtergrond: vervaagd product + gekleurde gloed ---------- */
+.backdrop{position:fixed;inset:0;z-index:-2;overflow:hidden;background:#120e0b}
+.backdrop img{position:absolute;inset:-15%;width:130%;height:130%;object-fit:cover;filter:blur(44px) saturate(1.4) brightness(.5);opacity:0;transition:opacity .8s ease}
+.backdrop img.on{opacity:1}
+.backdrop::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(60% 40% at 50% 52%,color-mix(in srgb,var(--accent) 45%,transparent),transparent 70%);transition:background .8s;mix-blend-mode:screen}
+.backdrop::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(#120e0bcc,#120e0b22 30%,#120e0b33 60%,#120e0bf0 88%)}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.app{position:relative;max-width:500px;height:100svh;margin:auto;display:grid;grid-template-rows:auto auto 1fr auto;overflow:hidden}
+
+/* ---------- Header (zoals voorpagina) ---------- */
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:max(5px,env(safe-area-inset-top)) var(--gutter) 5px;position:relative;z-index:5}
+.header::after{content:'';position:absolute;bottom:0;left:var(--gutter);right:var(--gutter);height:1px;background:#f4e8d355}
+.brand,.bag{display:flex;align-items:center}.brand{gap:14px}
+.wordmark{font:500 26px/1 var(--display);letter-spacing:-.065em}
+.brand-logo{display:block;position:relative;width:40px;height:40px;border-radius:50%;overflow:hidden;background:#f6f2df}
+.brand-logo img{position:absolute;width:128%;height:128%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.bag{min-height:44px;gap:7px;font:500 17px var(--display)}.bag img{width:22px;height:24px}
+.bag.bump{animation:bump .5s cubic-bezier(.3,1.8,.5,1)}
+@keyframes bump{40%{transform:scale(1.35) rotate(-8deg)}}
+
+.intro{padding:14px var(--gutter) 0;position:relative;z-index:5}
+.eyebrow{font:500 11px/1.3 var(--display);letter-spacing:.25em;text-transform:uppercase;margin:0 0 4px;opacity:.85}
+.intro h1{font:500 clamp(30px,9vw,42px)/.98 var(--display);letter-spacing:-.04em;margin:0}
+.chips{display:flex;gap:8px;margin:12px calc(-1*var(--gutter)) 0;padding:0 var(--gutter);overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:36px;padding:7px 15px;border:1px solid #f4e8d366;border-radius:99px;background:#f4e8d314;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font:500 14px var(--display);transition:background .25s,color .25s,border-color .25s}
+.chip[aria-pressed=true]{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+
+/* ---------- 3D-podium ---------- */
+.stage{position:relative;min-height:0;touch-action:none;cursor:grab;outline:none}
+.stage.dragging{cursor:grabbing}
+.marquee{position:absolute;left:0;right:0;top:4%;transform:skewX(var(--skew,0deg));white-space:nowrap;pointer-events:none;overflow:hidden;opacity:.9}
+.marquee span{display:inline-block;font:700 clamp(84px,30vw,150px)/1 var(--display);letter-spacing:-.05em;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--accent) 75%,var(--cream));padding-right:.35em;animation:marq 16s linear infinite}
+@keyframes marq{to{transform:translateX(-100%)}}
+.scene{position:absolute;inset:0;perspective:950px;perspective-origin:50% 45%}
+.world{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg))}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.card{position:absolute;left:calc(var(--card-w)/-2);top:calc(var(--card-h)/-2);width:var(--card-w);height:var(--card-h);transform-style:preserve-3d}
+.flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.4,.4,1)}
+.card.flipped .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:26px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#2d241c;box-shadow:0 30px 60px -10px #000c,0 0 0 1px #f4e8d322 inset}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transform:scale(var(--z,1));transform-origin:var(--pos,50% 50%);pointer-events:none}
+.front::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(#120e0bd0,transparent 30%,transparent 70%,#120e0bb0)}
+.glare{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;opacity:var(--glare,0);background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),#fff9,transparent 55%),linear-gradient(115deg,transparent 30%,#ffffff30 45%,#9ef3ff26 50%,#ff9ef126 55%,transparent 70%);background-size:100% 100%,240% 240%;background-position:0 0,var(--gx,50%) var(--gy,50%)}
+.tag{position:absolute;z-index:3;top:14px;left:14px;font:500 11px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;padding:7px 10px;border-radius:99px;background:var(--cream);color:var(--ink)}
+.tag.new{background:#e2462b;color:#fff}
+.num{position:absolute;z-index:3;top:14px;right:16px;font:500 12px var(--display);letter-spacing:.15em;opacity:.85}
+.hint{position:absolute;z-index:3;left:0;right:0;bottom:14px;text-align:center;font:500 11px var(--display);letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .4s}
+.card.active .hint{opacity:.85}
+/* Voorkant met vrijstaand gerecht dat uit de kaart komt */
+.front.studio{background:radial-gradient(120% 70% at 50% 55%,color-mix(in srgb,var(--c) 72%,#fff) 0%,color-mix(in srgb,var(--c) 55%,#120e0b) 45%,#120e0b 100%)}
+.front.studio::before{background:radial-gradient(circle at 50% 50%,transparent 30%,#0000 60%),linear-gradient(#120e0b99,transparent 25%,transparent 75%,#120e0bcc)}
+.front.studio .rings{position:absolute;inset:0;z-index:0;background:repeating-radial-gradient(circle at 50% 52%,#fff0 0 22px,#ffffff10 23px 24px);mask:radial-gradient(circle at 50% 52%,#000 20%,transparent 70%);-webkit-mask:radial-gradient(circle at 50% 52%,#000 20%,transparent 70%)}
+.front.studio .big{position:absolute;z-index:1;left:0;right:0;bottom:44px;text-align:center;font:700 clamp(40px,14vw,64px)/.85 var(--display);letter-spacing:-.05em;text-transform:uppercase;color:#fff;opacity:.14}
+.dish-wrap{position:absolute;left:50%;top:51%;width:122%;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate(-50%,-50%) translateZ(var(--lift,70px));pointer-events:none}
+.dish{display:block;width:100%;transform:rotate(var(--spin,0deg)) rotateX(var(--wob,0deg));}
+.dish-wrap::before{content:"";position:absolute;left:12%;right:12%;top:62%;height:34%;border-radius:50%;background:radial-gradient(closest-side,#000c,transparent);transform:translateZ(-40px)}
+.dish-wrap.wide{width:116%}
+.dish-wrap.round{width:106%}
+.back{transform:rotateY(180deg)}.card:not(.flipped) .back{visibility:hidden}.card.flipped .dish-wrap{opacity:0;transition:opacity .2s}
+.back::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(transparent 35%,#120e0bf2 78%)}
+.back .bt{position:absolute;z-index:2;left:18px;right:18px;bottom:18px}
+.back h3{font:500 24px/1 var(--display);letter-spacing:-.03em;margin:0 0 8px}
+.back ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.back li{font:500 12px var(--display);padding:5px 9px;border-radius:99px;background:#f4e8d322;border:1px solid #f4e8d344}
+
+/* Zwevende ingrediënten */
+.bits{position:absolute;left:50%;top:50%;transform-style:preserve-3d;pointer-events:none}
+.bit{position:absolute;left:-30px;top:-30px;width:60px;will-change:transform;filter:drop-shadow(0 12px 14px #0008)}
+
+/* Flits bij wissel */
+.flash{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#fff,color-mix(in srgb,var(--accent) 70%,transparent) 40%,transparent 70%);opacity:0}
+.flash.go{animation:flash .7s ease-out}
+@keyframes flash{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(70)}}
+
+/* ---------- Info onderaan ---------- */
+.info{padding:2px var(--gutter) max(14px,env(safe-area-inset-bottom));position:relative;z-index:5}
+.dots{display:flex;justify-content:center;gap:4px;margin-bottom:8px}
+.dot{width:22px;height:22px;display:grid;place-items:center;border:0;background:none;padding:0}
+.dot::after{content:'';width:6px;height:6px;border-radius:99px;background:#f4e8d366;transition:width .3s,background .3s}
+.dot[aria-current=true]::after{width:20px;background:var(--cream)}
+.text{min-height:72px;perspective:400px}
+.text h2{font:500 clamp(28px,8.4vw,38px)/1 var(--display);letter-spacing:-.035em;margin:0 0 6px;display:flex;flex-wrap:wrap}
+.text h2 .l{display:inline-block;transform-origin:50% 100%;animation:letter .6s cubic-bezier(.2,1.4,.4,1) both;animation-delay:calc(var(--i)*28ms)}
+.text h2 .sp{width:.28em}
+@keyframes letter{from{opacity:0;transform:translateY(.5em) rotateX(-95deg)}}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;animation:fadeup .5s .15s both}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}}
+.desc{margin:0;font:400 clamp(15px,4.3vw,18px)/1.3 var(--reading);opacity:.9}
+.price{font:500 20px var(--display);white-space:nowrap}
+.primary{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;margin-top:12px;background:var(--cream);color:var(--ink);padding:12px 22px;border:0;border-radius:3px;font:500 clamp(19px,5.6vw,24px)/1.2 var(--display);letter-spacing:-.03em}
+.primary::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#fff8 50%,transparent 70%);transform:translateX(-100%);animation:shine 3.2s 1.5s infinite}
+@keyframes shine{30%,100%{transform:translateX(100%)}}
+.primary img{width:26px;height:26px;transform:rotate(-45deg);flex:none}
+.fly{position:fixed;z-index:20;pointer-events:none;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px #000a}
+.fly img{width:100%;height:100%;object-fit:cover}
+
+@media(max-height:700px){.intro{padding-top:8px}.intro h1{font-size:30px}.chips{margin-top:8px}.primary{min-height:50px;margin-top:8px}.text{min-height:64px}:root{--card-w:min(54vw,250px)}}
+@media(max-width:360px){.wordmark{font-size:23px}.brand-logo{width:36px;height:36px}.brand{gap:10px}}
+@media(prefers-reduced-motion:reduce){.marquee span,.primary::after{animation:none}.text h2 .l,.row{animation:none}.bits{display:none}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"><img alt=""><img alt=""></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="app">
+  <header class="header">
+    <a class="brand" href="../voorpagina/index.html" aria-label="Fitbite, terug naar de voorpagina"><span class="wordmark">Fitbite.</span><span class="brand-logo"><img src="../voorpagina/media/logo.jpeg" alt="Fit Bite"></span></a>
+    <a class="bag" href="../index.html?menu=mand" aria-label="Bekijk je bestelling"><img src="../voorpagina/media/shopping-bag.svg" alt=""><span id="count">0</span></a>
+  </header>
+
+  <section class="intro">
+    <p class="eyebrow">Ons menu</p>
+    <h1>Kies je favoriet.</h1>
+    <div class="chips" role="group" aria-label="Categorie">
+      <button class="chip" type="button" data-cat="crousty" aria-pressed="true">Croustys</button>
+      <button class="chip" type="button" data-cat="bowl" aria-pressed="false">Bowls</button>
+      <button class="chip" type="button" data-cat="drink" aria-pressed="false">Smoothies</button>
+    </div>
+  </section>
+
+  <div class="stage" id="stage" tabindex="0" role="region" aria-roledescription="3D-carrousel" aria-label="Producten. Veeg of gebruik de pijltjestoetsen; tik op de kaart om ze om te draaien.">
+    <div class="marquee" aria-hidden="true"><span id="mq1"></span><span id="mq2"></span></div>
+    <div class="scene">
+      <div class="world" id="world">
+        <div class="bits" id="bits" aria-hidden="true"></div>
+        <div class="ring" id="ring"></div>
+      </div>
+    </div>
+    <div class="flash" id="flash" aria-hidden="true"></div>
+  </div>
+
+  <section class="info">
+    <div class="dots" id="dots" role="group" aria-label="Kies een product"></div>
+    <div class="text" id="text" aria-live="polite"></div>
+    <button class="primary" id="add" type="button"><span id="add-label">Voeg toe</span><img src="../voorpagina/media/arrow-dark.svg" alt=""></button>
+  </section>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const IMG = '../assets/', VEG = '../eigen-bowl/media/keuken/';
+  // pos/z: staande uitsnede uit de liggende foto's. back: actiebeeld op de achterkant.
+  const products = [
+    {id:'bbq',    cat:'crousty', name:'Crousty BBQ',            desc:'Sriracha mayo & BBQ-saus',      price:12.99, img:'crousty-bbq.webp',    pos:'53% 100%', z:1.42, tag:'Nieuw', cut:'bbq', shape:'wide', accent:'#e2462b', back:'crousty.png', bpos:'50% 50%', parts:['Krokante kip','Sriracha mayo','BBQ-saus','Crispy uitjes']},
+    {id:'pops',   cat:'crousty', name:'Crousty Pops',           desc:'Teriyaki mayo & sriracha mayo', price:12.99, img:'crousty-pops.webp',   pos:'57% 100%', z:1.55, tag:'Nieuw', cut:'pops', shape:'wide', accent:'#f0a63a', back:'crousty.png', bpos:'20% 50%', parts:['Krokante kip','Teriyaki mayo','Sriracha mayo']},
+    {id:'loubs',  cat:'crousty', name:'Crousty Loubs',          desc:'Sweet dyna saus & teriyaki',    price:12.99, img:'crousty-loubs.webp',  pos:'50% 100%', z:1.5,  tag:'Nieuw', cut:'loubs', shape:'wide', accent:'#d98b2b', back:'crousty.png', bpos:'85% 50%', parts:['Krokante kip','Sweet dyna saus','Teriyaki']},
+    {id:'kc',     cat:'crousty', name:'Korean Crousty Chicken', desc:'Krokante Korean chicken',       price:15.99, img:'korean-crousty.webp', pos:'53% 50%',  z:1,    tag:'Nieuw', cut:'kc', shape:'round', accent:'#e0313a', back:'korean.png',  bpos:'50% 50%', parts:['Korean chicken','Lente-ui','Sesam']},
+    {id:'salmon', cat:'bowl',    name:'Fresh Salmon Bowl',      desc:'Vers gemarineerde zalm',        price:null,  img:'fresh-salmon.webp',   pos:'77% 50%',  z:1,    tag:'Bowl', cut:'salmon', shape:'round',  accent:'#ff8a5c', back:'bowls.png',   bpos:'50% 50%', parts:['Zalm','Avocado','Edamame','Komkommer','Tomaat','Rode ui']},
+    {id:'kb',     cat:'bowl',    name:'Korean Chicken Bowl',    desc:'Sweet of spicy',                price:null,  img:'korean-bowl.webp',    pos:'71% 50%',  z:1,    tag:'Bowl', cut:'kb', shape:'round',  accent:'#e04b2f', back:'bowls.png',   bpos:'90% 50%', parts:['Korean chicken','Mango','Edamame','Komkommer','Zeewier']},
+    {id:'texas',  cat:'bowl',    name:'Texas Strips Bowl',      desc:'Krokante Texas strips',         price:null,  img:'texas-bowl.webp',     pos:'80% 50%',  z:1,    tag:'Bowl', cut:'texas', shape:'round',  accent:'#e9a23b', back:'bowls.png',   bpos:'10% 50%', parts:['Texas strips','Mango','Rode kool','Wortel','Edamame']},
+    {id:null,     cat:'drink',   name:'Smoothies',              desc:'Tropical, Strawblina, Red Fruits & Surprise', price:null, img:'smoothies.webp', pos:'50% 72%', z:1.05, tag:'Vers', accent:'#9b5de5', back:'smoothies.webp', bpos:'30% 60%', parts:['Tropical','Strawblina','Red Fruits','Surprise'], link:'../index.html?menu=verder'}
+  ];
+  const N = products.length, STEP = 360 / N;
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), ring = $('ring'), world = $('world'), bitsEl = $('bits'), dots = $('dots'), text = $('text');
+  const chips = [...document.querySelectorAll('.chip')], bg = [...document.querySelectorAll('.backdrop img')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const euro = n => '€ ' + n.toFixed(2).replace('.', ',');
+  const mod = (a, n) => ((a % n) + n) % n;
+
+  /* ---------- Kaarten op een 3D-ring ---------- */
+  const cards = products.map((p, i) => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.dataset.i = i;
+    c.setAttribute('role', 'group');
+    c.setAttribute('aria-label', `${i + 1} van ${N}: ${p.name}`);
+    const label = `<span class="tag ${p.tag === 'Nieuw' ? 'new' : ''}">${p.tag}</span><span class="num">${String(i + 1).padStart(2, '0')}</span><span class="hint">Tik om te draaien</span>`;
+    const front = p.cut
+      ? `<div class="face front studio" style="--c:${p.accent}"><div class="rings"></div><span class="big">${p.name.split(' ').slice(-1)[0]}</span><div class="glare"></div>${label}</div>
+         <div class="dish-wrap ${p.shape}"><img class="dish" src="media/${p.cut}.png" alt="${p.name}" decoding="async" ${i > 2 && i < N - 1 ? 'loading="lazy"' : ''}></div>`
+      : `<div class="face front" style="--pos:${p.pos};--z:${p.z}"><img src="${IMG + p.img}" alt="${p.name}" decoding="async"><div class="glare"></div>${label}</div>`;
+    c.innerHTML = `<div class="flip">
+      ${front}
+      <div class="face back" style="--pos:${p.bpos}"><img src="${IMG + p.back}" alt="" loading="lazy" decoding="async"><div class="glare"></div>
+        <div class="bt"><h3>Wat zit erin?</h3><ul>${p.parts.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
+    </div>`;
+    ring.append(c);
+    const d = document.createElement('button');
+    d.className = 'dot'; d.type = 'button'; d.setAttribute('aria-label', p.name);
+    d.addEventListener('click', () => goTo(i));
+    dots.append(d);
+    return c;
+  });
+  const dotEls = [...dots.children];
+  let radius = 300;
+  function layout() {
+    const w = cards[0].offsetWidth;
+    radius = Math.round((w / 2) / Math.tan(Math.PI / N) + 26);
+    cards.forEach((c, i) => c.style.transform = `rotateY(${i * STEP}deg) translateZ(${radius}px)`);
+  }
+
+  /* ---------- Zwevende ingrediënten (echte 3D-diepte) ---------- */
+  const vegFiles = ['groente-avocado','groente-edamame','groente-komkommer','groente-mais','groente-mango','groente-rode-ui','groente-tomaat'];
+  const bits = [];
+  if (!reduce) {
+    for (let k = 0; k < 18; k++) {
+      const el = document.createElement('img');
+      el.className = 'bit'; el.alt = ''; el.decoding = 'async';
+      el.src = VEG + vegFiles[k % vegFiles.length] + '.webp';
+      const front = k % 3 === 0;
+      const b = {el, x:(Math.random() - .5) * 420, y:(Math.random() - .5) * stage.clientHeight * .85, z: front ? 120 + Math.random() * 260 : -520 + Math.random() * 380,
+        vx:0, vy:0, vz:0, rot:Math.random() * 360, vr:(Math.random() - .5) * .6, s:.45 + Math.random() * .7, ph:Math.random() * 6.28};
+      b.hx = b.x; b.hy = b.y; b.hz = b.z;
+      bitsEl.append(el); bits.push(b);
+    }
+  }
+  function burst(power) {
+    for (const b of bits) {
+      const a = Math.atan2(b.y, b.x) + (Math.random() - .5) * .8;
+      const f = (6 + Math.random() * 10) * power;
+      b.vx += Math.cos(a) * f; b.vy += Math.sin(a) * f - 4 * power; b.vz += (Math.random() * 12 + 4) * power; b.vr += (Math.random() - .5) * 18 * power;
+    }
+    const fl = $('flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  }
+
+  /* ---------- Draaien, slepen en traagheid ---------- */
+  let rot = 0, vel = 0, target = 0, dragging = false, startX = 0, startRot = 0, lastX = 0, lastT = 0, moved = 0, active = -1;
+  function nearestRot(i) { const base = -i * STEP; return base + Math.round((rot - base) / 360) * 360; }
+  function goTo(i) { flipOff(); target = nearestRot(mod(i, N)); }
+
+  stage.addEventListener('pointerdown', e => {
+    dragging = true; moved = 0; startX = lastX = e.clientX; startRot = rot; lastT = performance.now(); vel = 0;
+    stage.setPointerCapture(e.pointerId); stage.classList.add('dragging'); askMotion();
+  });
+  stage.addEventListener('pointermove', e => {
+    tiltFromPointer(e);
+    if (!dragging) return;
+    const dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+    if (moved > 6) flipOff();
+    rot = startRot + dx * 0.32;
+    const now = performance.now(), dt = Math.max(1, now - lastT);
+    vel = vel * .5 + ((e.clientX - lastX) * 0.32 / dt * 16) * .5; lastX = e.clientX; lastT = now;
+  });
+  const release = e => {
+    if (!dragging) return;
+    dragging = false; stage.classList.remove('dragging');
+    if (moved < 6) {
+      const c = document.elementFromPoint(e.clientX, e.clientY)?.closest('.card');
+      if (c) { const i = +c.dataset.i; if (i === active) c.classList.toggle('flipped'); else goTo(i); }
+      target = nearestRot(active); return;
+    }
+    // Zwiepen geeft extra draai, maar hoogstens twee kaarten verder.
+    const fling = Math.max(-2 * STEP, Math.min(2 * STEP, vel * 9));
+    target = Math.round((rot + fling) / STEP) * STEP;
+  };
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
+  stage.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
+  stage.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(active + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(active - 1); }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cards[active].classList.toggle('flipped'); }
+  });
+  chips.forEach(c => c.addEventListener('click', () => goTo(products.findIndex(p => p.cat === c.dataset.cat))));
+  function flipOff() { cards.forEach(c => c.classList.remove('flipped')); }
+
+  /* ---------- Kantelen: vinger/muis of gyroscoop ---------- */
+  let tx = 0, ty = 0, ctx = 0, cty = 0, gyro = false, asked = false;
+  function tiltFromPointer(e) {
+    if (gyro) return;
+    const r = stage.getBoundingClientRect();
+    ty = ((e.clientX - r.left) / r.width - .5) * 2;
+    tx = ((e.clientY - r.top) / r.height - .5) * 2;
+  }
+  function onOrient(e) {
+    if (e.gamma == null) return;
+    gyro = true;
+    ty = Math.max(-1, Math.min(1, e.gamma / 25));
+    tx = Math.max(-1, Math.min(1, (e.beta - 45) / 25));
+  }
+  function askMotion() {
+    if (asked || reduce) return; asked = true;
+    const D = window.DeviceOrientationEvent;
+    if (D && typeof D.requestPermission === 'function') D.requestPermission().then(s => { if (s === 'granted') addEventListener('deviceorientation', onOrient); }).catch(() => {});
+    else if (D) addEventListener('deviceorientation', onOrient);
+  }
+
+  /* ---------- Actief product tonen ---------- */
+  let bgSlot = 0, firstSet = true;
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    const p = products[i];
+    document.documentElement.style.setProperty('--accent', p.accent);
+    cards.forEach((c, j) => c.classList.toggle('active', j === i));
+    dotEls.forEach((d, j) => d.setAttribute('aria-current', j === i));
+    chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.cat === p.cat));
+    const letters = [...p.name].map((ch, k) => ch === ' ' ? '<span class="sp"></span>' : `<span class="l" style="--i:${k}">${ch}</span>`).join('');
+    text.innerHTML = `<h2 aria-label="${p.name}">${letters}</h2><div class="row"><p class="desc">${p.desc}</p>${p.price ? `<span class="price">${euro(p.price)}</span>` : ''}</div>`;
+    $('add-label').textContent = p.id ? 'Voeg toe aan bestelling' : 'Bekijk de smoothies';
+    const word = (p.name.split(' ').find(w => !/^crousty$/i.test(w)) || p.name) + ' ';
+    $('mq1').textContent = word.repeat(3); $('mq2').textContent = word.repeat(3);
+    bgSlot ^= 1; bg[bgSlot].src = IMG + p.img; bg[bgSlot].classList.add('on'); bg[bgSlot ^ 1].classList.remove('on');
+    if (!firstSet) burst(.7); firstSet = false;
+  }
+
+  /* ---------- Animatielus ---------- */
+  let t0 = performance.now();
+  function frame(now) {
+    const dt = Math.min(2.5, (now - t0) / 16.67); t0 = now;
+    if (!dragging) {
+      if (reduce) rot = target;
+      else { vel += (target - rot) * 0.07 * dt; vel *= Math.pow(0.74, dt); rot += vel * dt; }
+    }
+    ring.style.transform = `translateZ(${-radius}px) rotateY(${rot}deg)`;
+    const idx = mod(Math.round(-rot / STEP), N);
+    setActive(idx);
+
+    // kanteling zacht volgen
+    ctx += (tx - ctx) * .08 * dt; cty += (ty - cty) * .08 * dt;
+    world.style.setProperty('--tx', (-ctx * 7).toFixed(2) + 'deg');
+    world.style.setProperty('--ty', (cty * 10).toFixed(2) + 'deg');
+    const card = cards[active];
+    card.style.setProperty('--gx', (50 + cty * 40).toFixed(1) + '%');
+    card.style.setProperty('--gy', (40 + ctx * 40).toFixed(1) + '%');
+    cards.forEach(c => c.style.setProperty('--glare', c === card ? (.45 + Math.abs(cty) * .4 + Math.abs(vel) * .03).toFixed(2) : 0));
+
+    // Gerechten: ronde bowls draaien traag, bakjes wiegen; het actieve gerecht komt verder naar voren.
+    const tsec = now / 1000;
+    cards.forEach((c, j) => {
+      const p = products[j];
+      if (!p.cut) return;
+      const on = j === active;
+      c._lift = (c._lift ?? 30) + ((on ? 95 : 30) - (c._lift ?? 30)) * .1 * dt;
+      c.style.setProperty('--lift', c._lift.toFixed(1) + 'px');
+      if (p.shape === 'round') c._spin = ((c._spin ?? j * 40) + (on ? .22 : .08) * dt + vel * .5) % 360;
+      else c._spin = Math.sin(tsec * 1.1 + j) * 3 + vel * .6;
+      c.style.setProperty('--spin', c._spin.toFixed(2) + 'deg');
+      c.style.setProperty('--wob', (Math.sin(tsec * .9 + j) * 4).toFixed(2) + 'deg');
+    });
+
+    // typografie schuift mee met de snelheid
+    stage.style.setProperty('--skew', Math.max(-18, Math.min(18, -vel * 1.6)).toFixed(1) + 'deg');
+
+    // ingrediënten: zweven, terugveren, meedrijven met het draaien
+    const time = now / 1000;
+    for (const b of bits) {
+      b.vx += (b.hx - b.x) * .012 * dt - vel * .06 * (b.z / 300) * dt;
+      b.vy += (b.hy + Math.sin(time * .8 + b.ph) * 18 - b.y) * .012 * dt;
+      b.vz += (b.hz - b.z) * .01 * dt;
+      b.vx *= Math.pow(.93, dt); b.vy *= Math.pow(.93, dt); b.vz *= Math.pow(.93, dt); b.vr *= Math.pow(.97, dt);
+      b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.rot += (b.vr + .15) * dt;
+      b.el.style.transform = `translate3d(${(b.x + cty * b.z * .12).toFixed(1)}px,${(b.y + ctx * b.z * .1).toFixed(1)}px,${b.z.toFixed(1)}px) rotate(${b.rot.toFixed(1)}deg) scale(${b.s})`;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- Winkelmand + vliegende kaart ---------- */
+  function count() {
+    let own = [];
+    try { const v = JSON.parse(localStorage.getItem('fitbite:saladette:proefmand:v1') || '[]'); if (Array.isArray(v)) own = v.filter(x => ['Medium','Large'].includes(x?.size)); } catch {}
+    const cart = window.fitbiteMenu ? window.fitbiteMenu.readCart() : {};
+    const n = own.length + Object.values(cart).reduce((s, q) => s + q, 0);
+    $('count').textContent = n;
+    document.querySelector('.bag').setAttribute('aria-label', `Bekijk je bestelling, ${n} ${n === 1 ? 'item' : 'items'}`);
+  }
+  function flyToBag() {
+    if (reduce) return;
+    const from = cards[active].querySelector('.front').getBoundingClientRect();
+    const to = document.querySelector('.bag img').getBoundingClientRect();
+    const f = document.createElement('div');
+    f.className = 'fly';
+    Object.assign(f.style, {left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px'});
+    f.innerHTML = `<img src="${IMG + products[active].img}" alt="" style="object-position:${products[active].pos}">`;
+    document.body.append(f);
+    const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top + to.height / 2 - (from.top + from.height / 2);
+    f.animate([
+      {transform: 'translate(0,0) scale(1) rotate(0)', opacity: 1},
+      {transform: `translate(${dx * .35}px,${dy * .2 - 80}px) scale(.55) rotate(-14deg)`, opacity: 1, offset: .45},
+      {transform: `translate(${dx}px,${dy}px) scale(.06) rotate(-40deg)`, opacity: .4}
+    ], {duration: 800, easing: 'cubic-bezier(.5,0,.3,1)'}).onfinish = () => {
+      f.remove();
+      const bag = document.querySelector('.bag'); bag.classList.remove('bump'); void bag.offsetWidth; bag.classList.add('bump');
+      count();
+    };
+  }
+  $('add').addEventListener('click', () => {
+    const p = products[active];
+    if (!p) return;
+    if (!p.id) { location.href = p.link; return; }
+    try {
+      const store = window.fitbiteMenu;
+      const cart = store ? store.readCart() : {};
+      cart[p.id] = Math.min(99, (cart[p.id] || 0) + 1);
+      localStorage.setItem(store ? store.storageKey : 'fitbite-obsidian-cart', JSON.stringify(cart));
+    } catch {}
+    burst(1.3);
+    flyToBag();
+    if (reduce) count();
+  });
+  addEventListener('storage', count);
+  addEventListener('pageshow', count);
+  addEventListener('load', count);
+  addEventListener('resize', layout);
+
+  /* ---------- Start: ring draait binnen ---------- */
+  layout();
+  rot = reduce ? 0 : -STEP * 3; target = 0; vel = 0;
+  setActive(mod(Math.round(-rot / STEP), N));
+  requestAnimationFrame(frame);
+  if (!reduce) setTimeout(() => burst(1), 350);
+})();
+</script>
+</body>
+</html>

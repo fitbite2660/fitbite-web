@@ -1,0 +1,12 @@
+{
+  "created": "2026-11-10",
+  "tool": "built-in image_gen",
+  "reference": "../../voorpagina/media/bowls.webp",
+  "generated_source": "/Users/adnane/.codex/generated_images/01a1c6e7-c137-7f10-9795-0c4e3df0eadf/exec-cde19a03-38bd-4413-a5a1-eb5c6dbe4305.png",
+  "output": "room.webp",
+  "width": 850,
+  "height": 1850,
+  "webp_quality": 92,
+  "bytes": 242198,
+  "review": "All eight bowls removed. Empty table preserves room framing, lighting and major architecture. Generative edit is not pixel-identical in background signage; no claim of unchanged pixels."
+}

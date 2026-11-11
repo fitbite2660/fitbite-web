@@ -1,0 +1,37 @@
+FITBITE — GEKOZEN SAVORY-VOORPAGINA / OBSIDIAN
+Bijgewerkt: 3 november 2026
+
+OPENEN
+Actuele lokale preview: http://127.0.0.1:4173/
+index.html is de huidige voorpagina. Bewaar de map assets ernaast.
+Geen build nodig; alle homepagebeelden en lettertypes zijn lokaal.
+Een eenvoudige lokale HTTP-server wordt aanbevolen voor betrouwbare videoweergave.
+
+WAT IS GEBOUWD
+De door de gebruiker gekozen voorpagina van https://savory-ease-copy-ae387405.base44.app/ is lokaal overgenomen met dezelfde beelden, fonts, kleuren, indeling en tekst.
+De hero bevat één goedgekeurde image-to-video-proef: 5,04 seconden, 1920×1080, zonder geluid. Een kleine zijwaartse camerabeweging en push-in geven diepte; bowls blijven op tafel.
+De clip speelt eenmaal, houdt het laatste frame vast en biedt pauze/opnieuw afspelen. Bij verminderde beweging begint de pagina met de oorspronkelijke foto.
+De andere productfoto's hebben subtiele hover/focusbeweging.
+Zoeken (ook zalm en smoothie), categorieën, lokaal bewaarde selectie en demo-afronding werken.
+
+TECHNIEK EN GRENZEN
+Originele bron-CSS: assets/savory-source.css. Lokale fonts: assets/savory-fonts.css en assets/fonts/.
+De pagina bevat inline interactiecode en aanvullende styling. Oude style.css en app.js zijn historiek.
+Video: assets/savory-hero-motion.mp4; herkomst/prompt/job-ID in het gelijknamige JSON-bestand.
+AI-video kan kleine textuurdetails veranderen. Dit is een bewegende foodfoto, geen interactieve 3D-bowl.
+Bestellen is een lokale demo. Er wordt niets verstuurd of betaald. Prijzen buiten de behouden Crousty-prijzen en bezorging zijn niet bevestigd.
+De volledige Bowl Builder, saladette-route, macrovluchten en proteïne-inslag blijven nog te bouwen.
+
+CONTROLE EN BEWIJS
+Zie design-qa.md en references/savory-source/VERIFICATIE.json.
+Browsercontrole op 1280×720, 390×844 en 375×667. Geen fysieke iPhone-test.
+Bron- en implementatiescreenshots, videoframes en assetherkomst staan in references/savory-source/.
+
+BEHOUD
+Vorige Soda-uitvoering: soda.html (inclusief de eerdere storykaartfunctie).
+Backup vóór deze wijziging: ../../../backups/fitbite-soda-before-savory-2026-11-03/.
+Oorspronkelijke Obsidian-backup: ../../../backups/fitbite-obsidian-before-soda-2026-11-03/.
+Alle eerdere assets blijven aanwezig. Dit betreft de lokale map; er is niets naar Base44 gepubliceerd.
+
+APARTE OVERGANGSPROEF — 3 NOVEMBER 2026
+montage-preview.html toont een herhalende montage met twee camerazwiepen. De nieuwe 720p-clip is GEEN geslaagd overkantshot; Higgsfield maakte opnieuw de voorkant. Daarom blijft index.html ongewijzigd. Eén generatie voor 28 credits uitgevoerd; geen extra poging geautoriseerd. Controle: references/savory-source/montage-qa.md.

@@ -1,0 +1,114 @@
+{
+  "asset": "bowl-soda-cutout.png",
+  "use_case": "background-extraction",
+  "purpose": "Fitbite homepage photo-based hero example bowl",
+  "created_at_utc": "2026-11-03 01:24:35 UTC",
+  "generator": {
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "transparent_background": true,
+    "model": "not disclosed by built-in tool",
+    "output_source_path": "/Users/adnane/.codex/generated_images/01a19f00-162a-7c93-8b44-9be5f4ed1b79/exec-638d59e4-963f-40c3-bc0a-38fd82ccef21.png"
+  },
+  "input": {
+    "path": "/Users/adnane/Documents/ChatGPT/website FB/assets/originals/hf_20261028_222040_281b4fad-d2bd-4f23-9287-46dca2b6be43-3840x2160.png",
+    "role": "edit target",
+    "original_preserved": true,
+    "inspected_with": "view_image"
+  },
+  "prompt": "Use case: background-extraction.\nAsset type: transparent PNG photo cutout for a Fitbite homepage hero.\nInput image 1 is the edit target.\nPrimary request: remove ONLY the pale wooden tabletop background and its exterior contact/cast shadow. Make every area outside the bowl truly transparent with an alpha channel.\nPreserve the original photographed bowl exactly: cobalt blue textured glazed ceramic, original circular bowl shape seen at the original elevated three-quarter/top angle, the rim and visible front wall, original lighting, original proportions and camera perspective.\nPreserve all existing food and its precise arrangement: white rice center; avocado fanned at upper left; cucumber at upper right; red onion on right; edamame lower right; red cherry tomatoes lower left; existing sesame, spring onion and crisp garnish. Do not add, remove, restyle, regenerate or rearrange any food.\nComposition/framing: complete single bowl with every outside edge visible and a little transparent breathing room on all sides. Keep centered. No crop to the bowl, no cut edges.\nConstraints: background removal only; high fidelity to input photograph; no text, no logo, no extra objects, no added ingredients, no artificial halo, no opaque/checkerboard background, no shadow painted outside the bowl silhouette. Actual transparent alpha is required. This hero is an example complete bowl, not a selection state.",
+  "output": {
+    "path": "/Users/adnane/Documents/ChatGPT/website FB/work/recovered/codex-2026-10-28/fitbite-obsidian/assets/bowl-soda-cutout.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 1949516,
+    "sha256": "19c3a140d04d0645ef71bad9fcb85df2ba220d46c42ed5d3d344252e82294286",
+    "format": "PNG",
+    "channels": "RGBA",
+    "bit_depth": 8
+  },
+  "validation": {
+    "visual_inspection": "Full blue ceramic bowl visible without cropped edges; original elevated camera angle and same ingredient groups/placement retained; wooden tabletop removed; no text, extra objects, added ingredients or visible exterior cast shadow.",
+    "alpha": {
+      "transparent": 823375,
+      "partial": 749190,
+      "opaque": 787,
+      "nonzeroEdgePixels": 0,
+      "bounds": {
+        "minX": 162,
+        "minY": 18,
+        "maxX": 1388,
+        "maxY": 926
+      },
+      "margin": {
+        "left": 162,
+        "top": 18,
+        "right": 283,
+        "bottom": 14
+      },
+      "mostCommonValues": [
+        {
+          "alpha": 0,
+          "count": 823375
+        },
+        {
+          "alpha": 253,
+          "count": 635311
+        },
+        {
+          "alpha": 254,
+          "count": 80755
+        },
+        {
+          "alpha": 252,
+          "count": 12970
+        },
+        {
+          "alpha": 251,
+          "count": 3552
+        },
+        {
+          "alpha": 1,
+          "count": 2884
+        },
+        {
+          "alpha": 250,
+          "count": 1494
+        },
+        {
+          "alpha": 2,
+          "count": 1196
+        },
+        {
+          "alpha": 249,
+          "count": 936
+        },
+        {
+          "alpha": 3,
+          "count": 823
+        },
+        {
+          "alpha": 255,
+          "count": 787
+        },
+        {
+          "alpha": 248,
+          "count": 752
+        }
+      ],
+      "solidBoundsAt128": {
+        "minX": 291,
+        "minY": 22,
+        "maxX": 1345,
+        "maxY": 923
+      }
+    },
+    "original_output_bytes_preserved": true
+  },
+  "limitations": [
+    "Generative background extraction is visually faithful, not a guarantee of pixel-identical food or ceramic detail.",
+    "Built-in output is 1672×941, below the original 3840×2160 resolution.",
+    "Most bowl interior pixels have near-opaque alpha 253/255; faint low-alpha antialias pixels extend beyond the visible silhouette. No external alpha normalization or image editing was performed.",
+    "Raster photo cutout; this is not a 3D bowl model."
+  ]
+}

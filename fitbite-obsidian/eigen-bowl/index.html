@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1e1a16">
+  <meta name="description" content="Stap achter de bar bij Fitbite in Puurs en stel je eigen pokébowl samen.">
+  <title>Stel je eigen bowl samen · Fitbite Puurs</title>
+  <link rel="icon" href="../assets/logo.webp">
+  <link rel="preload" href="openingsbeelden/01-schep-hout.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="page.css?v=20261110-xl2">
+  <link rel="stylesheet" href="keuzestijlen.css">
+  <link rel="stylesheet" href="keuken.css">
+  <link rel="stylesheet" href="afwerking.css?v=20261110-cart1">
+  <script src="../assets/menu-products.js?v=20261110-cart1" defer></script>
+  <script src="builder.js?v=20261110-cart2" defer></script>
+  <script src="angles.js" defer></script>
+</head>
+<body data-scene="intro" data-keuzestijl="lijst">
+  <main class="station">
+    <div class="scenery">
+      <div class="shot shot-room"></div>
+      <div class="shot shot-greens"></div>
+      <img id="kitchen-frame" src="media/keuken/keukenluik.jpg" width="940" height="1672" fetchpriority="low" decoding="async" alt="Het werkblad langs de houten lattenwand, met zicht door het keukenluik.">
+      <img class="opening-photo" src="openingsbeelden/01-schep-hout.jpg" width="940" height="1672" fetchpriority="high" alt="Een hand schept rijst in de houten bowl, met de kleurrijke groentebakken erachter.">
+      <div class="shade"></div>
+    </div>
+    <header class="bar">
+      <div class="identity">
+        <button type="button" id="back" class="round" hidden aria-label="Terug naar de vorige stap"><span aria-hidden="true">‹</span></button>
+        <span class="wordmark" aria-label="Fitbite">Fitbite<span>.</span></span><a class="builder-logo" href="../voorpagina/index.html" aria-label="Fitbite, naar het menu"><img src="../voorpagina/media/logo.jpeg" alt="Fit Bite"></a>
+      </div>
+      <button type="button" id="basket" class="basket" aria-label="Bekijk je bestelling">
+        <svg width="17" height="19" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 7h14l1 13H2L3 7Zm4 1V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span id="basket-count">0</span>
+      </button>
+    </header>
+    <div class="title-area">
+      <div class="scene-context"><span id="scene-kicker">Achter de bar</span><span id="step-label"></span></div>
+      <h1 id="scene-title">Stel je eigen bowl samen.</h1>
+      <p id="scene-description"></p>
+    </div>
+    <div class="viewfinder">
+      <div class="ingredient-photo" role="group" aria-label="Tik op een bak in de saladette">
+        <div class="photo-track">
+          <img id="tray-photo" src="media/groentebakken.jpg" width="1087" height="1450" alt="Fitbites open saladette, met de verse ingrediënten elk in een eigen bak.">
+          <button type="button" class="pin" data-pick="Mango" style="--x:60%;--y:56%" aria-label="Mango" hidden></button>
+          <button type="button" class="pin" data-pick="Avocado" style="--x:13%;--y:74%" aria-label="Avocado"></button>
+          <button type="button" class="pin" data-pick="Edamame" style="--x:40%;--y:70%" aria-label="Edamame"></button>
+          <button type="button" class="pin" data-pick="Tomaat" style="--x:12%;--y:51%" aria-label="Tomaat"></button>
+          <button type="button" class="pin" data-pick="Komkommer" style="--x:37%;--y:49%" aria-label="Komkommer"></button>
+          <button type="button" class="pin" data-pick="Rode ui" style="--x:55%;--y:35%" aria-label="Rode ui"></button>
+          <button type="button" class="pin" data-pick="Maïs" style="--x:73%;--y:33%" aria-label="Maïs"></button>
+        </div>
+        <button type="button" id="angle" aria-controls="tray-photo"><span aria-hidden="true">⤾</span> Andere hoek</button>
+      </div>
+      <div class="protein-stage">
+        <img id="protein-detail" alt="" hidden>
+        <span id="protein-caption" hidden></span>
+        <div id="bowl-follow" role="img" aria-label="Bowl met rijst">
+          <img class="rice" src="media/keuken/houten-bowl.webp" alt="">
+          <img data-veg-layer="Mango" src="media/keuken/groente-mango.webp" alt="" hidden>
+          <img data-veg-layer="Avocado" src="media/keuken/groente-avocado.webp" alt="" hidden>
+          <img data-veg-layer="Komkommer" src="media/keuken/groente-komkommer.webp" alt="" hidden>
+          <img data-veg-layer="Edamame" src="media/keuken/groente-edamame.webp" alt="" hidden>
+          <img data-veg-layer="Maïs" src="media/keuken/groente-mais.webp" alt="" hidden>
+          <img data-veg-layer="Rode ui" src="media/keuken/groente-rode-ui.webp" alt="" hidden>
+          <img data-veg-layer="Tomaat" src="media/keuken/groente-tomaat.webp" alt="" hidden>
+        </div>
+      </div>
+    </div>
+    <div id="sauce-scene" role="group" aria-label="Drie sauspompen in de saladette">
+      <div class="sauce-window">
+        <img src="media/keuken/sauzen/pompen-luik-frontaal.webp" width="941" height="1672" decoding="async" fetchpriority="low" alt="Recht voor het houten keukenluik: drie witte sauspompen op een rij; erachter de Fitbite-zaal met betonkolom, twee verlichte automaten en tafels tegen de zwarte wand.">
+        <div id="sauce-pumps"></div>
+      </div>
+    </div>
+    <div id="topping-scene">
+      <div class="topping-view">
+        <img src="openingsbeelden/02-boven-hout.jpg" width="941" height="1672" decoding="async" fetchpriority="low" alt="De open bakken van de saladette schuin van bovenaf, met de rand van de houten kom vooraan.">
+      </div>
+    </div>
+    <div id="finish-view">
+      <img class="pass-photo" src="media/afwerking/gekozen-bar.webp" width="850" height="1850" alt="Je houten bowl vooraan op de donkere toonbank, met het keukenluik en de kassa verder langs de bar." decoding="async" fetchpriority="low">
+      <div class="checkout-art"><img id="checkout-crousty" class="checkout-crousty" src="../bowls/media/checkout/crousty-packed.png" alt="XL Crousty in het rechthoekige bakje met gesloten deksel en crème band." hidden>
+        <img class="checkout-photo" src="media/afwerking/gekozen-kassa.webp" width="844" height="1864" alt="Je ingepakte kraftbowl met doorzichtig deksel en Fitbite-band bij de kassa, met een medewerker erachter." decoding="async" fetchpriority="low">
+      </div>
+    </div>
+    <div id="choices"></div>
+    <footer class="controls">
+      <div id="progress" hidden aria-hidden="true"></div>
+      <button id="continue" type="button" disabled><span data-cta-label>Kies je groenten</span><span class="arrow" aria-hidden="true">↗</span></button>
+      <a id="menu-verder" href="../voorpagina/index.html" hidden><span data-menu-label>Verder kijken op het menu</span><span class="arrow" aria-hidden="true">↗</span></a>
+    </footer>
+    <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+    <noscript>Schakel JavaScript in om je bowl samen te stellen.</noscript>
+  </main>
+</body>
+</html>

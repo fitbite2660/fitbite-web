@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173d30">
+  <title>Fitbite — ontdek jouw favoriet</title>
+  <link rel="preload" href="assets/hero.jpg" as="image">
+  <link rel="preload" href="assets/checkout.jpg" as="image">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="discovery.css">
+  <script src="discovery.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div id="discovery" class="discovery" role="main" aria-label="Ontdek Fitbite">
+  <section class="discovery-track" aria-label="Van Crousty’s naar Fitbite bowls">
+    <div class="discovery-stage">
+      <div class="discovery-crousty-scene" aria-hidden="true">
+        <img class="discovery-blur" src="assets/crousty-poster.jpg" alt="">
+        <div class="discovery-crousty-media">
+          <img id="discovery-crousty-poster" src="assets/crousty-poster.jpg" alt="">
+          <video id="discovery-video" muted playsinline preload="none" data-src="assets/crousty-scroll.mp4" tabindex="-1" aria-hidden="true"></video>
+        </div>
+      </div>
+      <div class="discovery-bowl-scene" aria-hidden="true">
+        <img class="discovery-blur" src="assets/table.jpg" alt="">
+        <img class="discovery-table" src="assets/table.jpg" alt="">
+      </div>
+      <div class="discovery-shade" aria-hidden="true"></div>
+
+      <header class="discovery-header">
+        <a class="discovery-brand" href="#croustys" data-discovery-chapter="croustys" aria-label="Fitbite, naar Crousty’s">FITBITE<span>FRESH. YOUR WAY.</span></a>
+        <span class="discovery-demo">PROEF</span>
+        <button class="discovery-bag" type="button" aria-label="Bekijk je bestelling, 0 items">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Zm3 0V6a4 4 0 0 1 8 0v2"/></svg>
+          <span class="discovery-count">0</span>
+        </button>
+      </header>
+
+      <nav class="discovery-chapters" aria-label="Menucategorieën">
+        <button type="button" data-discovery-chapter="croustys" aria-current="true"><span>01</span> Crousty’s</button>
+        <span class="discovery-chapter-line" aria-hidden="true"></span>
+        <button type="button" data-discovery-chapter="bowls"><span>02</span> Fitbite bowls</button>
+      </nav>
+
+      <section class="discovery-copy discovery-crousty-copy" aria-labelledby="discovery-crousty-title">
+        <p class="discovery-eyebrow">VOL VAN SMAAK</p>
+        <h1 id="discovery-crousty-title" tabindex="-1">Crousty’s.</h1>
+        <p class="discovery-intro">Krokant van buiten.<br>Volop smaak, tot de laatste hap.</p>
+      </section>
+      <section class="discovery-copy discovery-bowl-copy" aria-labelledby="discovery-bowl-title" aria-hidden="true" inert>
+        <p class="discovery-eyebrow">KLEUR OP TAFEL</p>
+        <h1 id="discovery-bowl-title" tabindex="-1">Fitbite<br>bowls.</h1>
+        <p class="discovery-intro">Jouw bowl. Jouw moment.</p>
+      </section>
+
+      <div class="discovery-actions discovery-crousty-actions">
+        <p class="discovery-scroll-hint"><span aria-hidden="true">↓</span> Scroll en ontdek je volgende favoriet</p>
+        <button class="discovery-next" type="button" data-discovery-chapter="bowls">Naar Fitbite bowls <span aria-hidden="true">↓</span></button>
+      </div>
+      <div class="discovery-actions discovery-bowl-actions" aria-hidden="true" inert>
+        <p class="discovery-selection-hint">Tik, kies je formaat en maak hem van jou.</p>
+        <button class="discovery-select" type="button">Kies Fresh Salmon <span aria-hidden="true">↗</span></button>
+        <button class="discovery-back" type="button" data-discovery-chapter="croustys">Terug naar Crousty’s</button>
+      </div>
+      <div class="discovery-progress" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+</div>
+
+  <main class="phone" id="app" data-view="table" aria-busy="false" hidden>
+    <header class="topbar">
+      <button class="icon-button back-button" data-action="back" aria-label="Terug" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12"/></svg></button>
+      <a class="brand" href="#" data-action="home" aria-label="Fitbite, terug naar de tafel">FITBITE<span>FRESH. YOUR WAY.</span></a>
+      <span class="demo-badge">PROEF</span>
+      <button class="bag-button" data-action="cart" aria-label="Bekijk je bestelling, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Zm3 0V6a4 4 0 0 1 8 0v2"/></svg><span id="bag-count" class="bag-count">0</span></button>
+    </header>
+
+    <section class="stage" aria-label="De bowl in de zaak">
+      <div class="scene-frame">
+        <img class="scene-still" id="scene-still" src="assets/table.jpg" alt="Kleurrijke bowls op tafel in de Fitbite-zaak" fetchpriority="high">
+        <video id="scene-video" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"><source src="assets/scene.mp4" type="video/mp4"></video>
+        <div class="scene-veil" aria-hidden="true"></div>
+      </div>
+      <div class="stage-shade" aria-hidden="true"></div>
+      <div class="stage-kicker" id="stage-kicker"><span class="live-dot"></span>IN JOUW FITBITE</div>
+      <button class="bowl-hit" data-action="select" aria-label="Bekijk Fresh Salmon"><span>Fresh Salmon <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg></span></button>
+      <p class="motion-label" id="motion-label" aria-live="polite"></p>
+      <span class="step-label" id="step-label">01 / KIEZEN</span>
+    </section>
+
+    <section class="panel" id="table-panel" aria-labelledby="table-title">
+      <p class="eyebrow">FITBITE BOWLS</p>
+      <h1 id="table-title" tabindex="-1">Jouw bowl.<br>Jouw moment.</h1>
+      <p class="intro">Bekijk je bowl van dichtbij en kies het formaat dat bij je past.</p>
+      <div class="table-actions"><button class="primary wide" data-action="select">Bekijk Fresh Salmon <span aria-hidden="true">↗</span></button>
+      <button class="text-button table-cart" data-action="cart" hidden>Verder met je bestelling <span aria-hidden="true">→</span></button></div>
+    </section>
+
+    <section class="panel" id="product-panel" aria-labelledby="product-title" hidden>
+      <div class="product-info"><div class="title-line"><div><p class="eyebrow">JOUW KEUZE</p><h1 id="product-title" tabindex="-1">Fresh Salmon</h1></div><span class="product-price" id="product-price">€ 15,99</span></div>
+      <p class="product-intro">Gemarineerde zalm, romige avocado en frisse mango. Jouw combinatie, op rijst.</p>
+      <details class="ingredients"><summary>Wat zit erin? <span aria-hidden="true">+</span></summary><p>Rijst, gemarineerde zalm, avocado, komkommer, edamame, mango, tomaat, sesam en krokante ui. Met teriyaki en srirachamayo.</p></details></div>
+      <div class="product-controls">
+      <fieldset class="size-picker"><legend>Kies je formaat</legend><div class="size-options">
+        <label class="size-option"><input type="radio" name="size" value="medium" checked><span><strong>Medium</strong><small>€ 15,99</small></span><i aria-hidden="true"></i></label>
+        <label class="size-option"><input type="radio" name="size" value="large"><span><strong>Large</strong><small>€ 17,99</small></span><i aria-hidden="true"></i></label>
+      </div></fieldset>
+      <div class="add-row"><div class="quantity" aria-label="Aantal bowls"><button data-action="quantity-minus" aria-label="Eén minder">−</button><output id="quantity" aria-label="Aantal">1</output><button data-action="quantity-plus" aria-label="Eén meer">+</button></div><button class="primary add-button" data-action="add"><span>Voeg toe</span><strong id="add-price">€ 15,99</strong></button></div>
+      <div class="added-message" id="added-message" role="status" hidden></div>
+      <div class="product-next" id="product-next" hidden><button class="secondary" data-action="home">Verder kiezen</button><button class="primary" data-action="cart">Je bestelling <span aria-hidden="true">→</span></button></div>
+      </div>
+    </section>
+
+    <section class="panel" id="cart-panel" aria-labelledby="cart-title" hidden>
+      <p class="eyebrow">ALLES BIJ ELKAAR</p><h1 id="cart-title" tabindex="-1">Je bestelling</h1>
+      <p class="intro cart-intro">Nog iets erbij? Je keuze blijft bewaard.</p>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total"><span>Totaal</span><strong id="cart-total-price">€ 0,00</strong></div>
+      <button class="primary wide" data-action="checkout" id="checkout-button">Afrekenen <span aria-hidden="true">→</span></button>
+      <button class="text-button wide" data-action="home">Verder kiezen</button>
+    </section>
+
+    <section class="panel" id="checkout-panel" aria-labelledby="checkout-title" hidden>
+      <div class="checkout-info"><p class="eyebrow">BIJ DE KASSA</p><h1 id="checkout-title" tabindex="-1">Klaar om af te rekenen.</h1>
+      <p class="intro checkout-intro">Je volledige bestelling gaat mee.</p></div>
+      <div class="checkout-controls">
+      <div id="checkout-items" class="checkout-items"></div>
+      <div class="cart-total"><span>Totaal</span><strong id="checkout-total-price">€ 0,00</strong></div>
+      <button class="primary wide" data-action="payment">Verder naar online betalen <span aria-hidden="true">→</span></button>
+      <div class="payment-note" id="payment-note" role="status" hidden><strong>Dit is de betaalproef.</strong><span>Er wordt niets besteld of betaald. Je mand blijft bewaard.</span></div>
+      <button class="text-button wide" data-action="home">Verder kiezen</button>
+      </div>
+    </section>
+    <div class="sr-only" role="status" aria-live="polite" id="announcement"></div>
+  </main>
+  <aside class="demo-note">Klikbare proef · productbeeld wordt nog gecorrigeerd.<br><span>Proefprijzen uit je menuconcept · geen echte bestelling of betaling.</span></aside>
+  <footer class="prototype-footer">Een proef van de bestelreis. De ingepakte bowl is een presentatie van je keuze.</footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-03",
+  "status": "completed",
+  "params": {
+    "model": "seedance_2_5",
+    "mode": "omni_reference",
+    "duration": 5,
+    "resolution": "1080p",
+    "aspect_ratio": "16:9",
+    "generate_audio": false,
+    "count": 1,
+    "prompt": "Create a subtle photorealistic food cinematograph from this exact image. The camera makes an extremely small, smooth lateral dolly movement along the table, with only a very gentle push-in. Every bowl, plate, sushi piece, drink and container remains stationary and grounded on the table. Preserve the exact bowl shapes, rim geometry, ingredients, ingredient arrangement, textures, colours, labels, reflections and contact shadows. No food moves, melts, morphs or multiplies. No objects appear or disappear. No floating bowls, rotating dishes, steam, particles, splashes, hands, people or added text. Keep the original lighting and composition. Motion must be slow and almost imperceptible, suitable for a premium restaurant homepage. No audio.",
+    "medias": [
+      {
+        "role": "start_image",
+        "value": "https://media.base44.com/images/public/6aa6db9ff61c3aceae387405/38dc7a3c8_8F1426D4-2A08-48B5-BD9A-EB00DEEABD8D.png"
+      }
+    ]
+  },
+  "quotedCredits": 80,
+  "authorized": true,
+  "generationCount": 1,
+  "jobId": "9a0aface-0ae2-4cd3-8543-9e8a894bd767",
+  "previousRejectedAttempt": {
+    "reason": "insufficient credits",
+    "jobId": null
+  },
+  "outputFile": "assets/savory-hero-motion.mp4",
+  "resultURL": "https://d8j0ntlcm91z4.cloudfront.net/user_3KWfsWMn3JDhmyCCpCOON1Hleat/hf_20261103_021006_9a0aface-0ae2-4cd3-8543-9e8a894bd767.mp4",
+  "metadata": {
+    "durationSeconds": 5.042,
+    "tracks": [
+      {
+        "type": "vide",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "bytes": 4659136
+  },
+  "visualReview": "Pending parent CUA playback review; local ffmpeg/PyAV unavailable."
+}

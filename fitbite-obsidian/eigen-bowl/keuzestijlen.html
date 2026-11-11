@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4e8d3">
+  <title>Drie stijlen voor de groentekeuze · Fitbite</title>
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="keuzestijlen.css">
+  <style>
+    :root { background: #f2e8d8; color: #30271d; }
+    body { background: #f2e8d8; }
+    .study { max-width: 1380px; margin: 0 auto; padding: 20px clamp(16px,3.4vw,50px) 32px; }
+    .study-bar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #3c302d55; }
+    .study-bar strong { font: 500 27px/1 var(--display); letter-spacing: -.08em; }
+    .study-bar a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-size: 15px; text-decoration: none; }
+    .study-intro { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap: 2px 18px; margin: 23px 0 18px; }
+    .study-intro h1 { font: 500 clamp(30px,3.5vw,44px)/1.02 var(--display); letter-spacing: -.058em; margin: 0; }
+    .study-intro p { margin: 4px 0; font-size: 16px; color: #4d4233; }
+    .samples { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: start; gap: clamp(12px,2.2vw,28px); }
+    .sample { min-width: 0; color: #f7efdf; border: 1px solid #251e17; background: #261f18; }
+    .sample h2 { font: 500 clamp(18px,1.8vw,25px)/1.05 var(--display); letter-spacing: -.035em; margin: 0; }
+    .sample-heading { padding: 14px 16px; background: #e8d8bf; color: #282017; border-bottom: 1px solid #453b31; }
+    .sample-photo { position:relative; overflow:hidden; height: clamp(150px,17vw,244px); background: #2e2c21; }
+    .sample-photo img { width:100%; height:100%; display:block; object-fit:cover; object-position: 50% 55%; }
+    .sample-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 32%,rgba(25,17,10,.72) 100%); pointer-events:none; }
+    .sample-photo span { position:absolute; z-index:1; left:16px; bottom:13px; font: 500 clamp(26px,2.5vw,38px)/1 var(--display); letter-spacing:-.055em; color:#fbf0dc; }
+    .sample-controls { padding: 15px clamp(10px,1.3vw,20px) 10px; }
+    .selection-count { border-top:1px solid #f1e5d34a; margin:12px 0 0; padding:11px 0 2px; color:#d8cbb6; font-size:14px; }
+    .style-links { display:none; }
+    button:focus-visible, a:focus-visible { outline: 2px solid #876430; outline-offset: 2px; }
+    @media (min-width: 801px) and (max-width: 1050px) {
+      .study { padding-inline: 16px; }
+      .samples { gap: 12px; }
+    }
+    @media (max-width: 800px) {
+      .study { max-width:520px; padding: 8px 12px 24px; }
+      .study-bar { padding-bottom: 3px; }
+      .study-intro { margin: 19px 0 12px; }
+      .study-intro p { font-size:15px; }
+      .style-links { display:flex; gap:4px; margin-bottom:10px; }
+      .style-links a { display:grid; flex:1; min-height:44px; place-items:center; padding:5px 2px; border:1px solid #41372c60; color:inherit; text-decoration:none; font:500 clamp(13px,3.75vw,16px)/1.12 var(--reading); }
+      .style-links a[aria-current="true"] { color:#f9efdc; background:#32291f; border-color:#32291f; }
+      .samples { display:block; }
+      .sample { display:none; }
+      .sample.current { display:block; }
+      .sample-heading { padding: 10px 13px; }
+      .sample-photo { height:clamp(152px,26svh,240px); }
+      .sample-controls { padding:12px; }
+    }
+    @media (prefers-reduced-motion:no-preference) {
+      .sample .choice { transition:background-color .14s,color .14s,border-color .14s; }
+    }
+  </style>
+</head>
+<body>
+  <main class="study">
+    <header class="study-bar"><strong>Fitbite.</strong><a href="index.html">← Naar de bowl</a></header>
+    <div class="study-intro"><h1>Groentekeuze</h1><p>Tik op de namen om de drie stijlen uit te proberen.</p></div>
+    <nav class="style-links" aria-label="Kies een ontwerp">
+      <a href="#lijst">A · Menulijst</a><a href="#kleur">B · Kleurlabels</a><a href="#strook">C · Fotostroken</a>
+    </nav>
+    <div class="samples"></div>
+    <noscript>Schakel JavaScript in om de stijlen te vergelijken.</noscript>
+  </main>
+  <template id="sample-template">
+    <section class="sample">
+      <div class="sample-heading"><h2></h2></div>
+      <div class="sample-photo"><img src="media/groentebakken.jpg" alt="De gevulde saladette van Fitbite"><span>Kies je groenten.</span></div>
+      <div class="sample-controls">
+        <div class="choice-group" data-group="vegetables" role="group" aria-label="Groenten"><div class="choice-grid"></div></div>
+        <p class="selection-count" aria-live="polite">2 gekozen</p>
+      </div>
+    </section>
+  </template>
+  <script>
+    const ingredients = ['Mango','Avocado','Komkommer','Edamame','Maïs','Rode ui','Tomaat'];
+    const designs = {lijst:'A · Menulijst', kleur:'B · Kleurlabels', strook:'C · Fotostroken'};
+    const samples = document.querySelector('.samples');
+    const template = document.querySelector('#sample-template');
+
+    function setChoice(button, selected) {
+      button.setAttribute('aria-pressed', String(selected));
+      button.classList.toggle('is-selected', selected);
+      button.querySelector('.choice-mark').textContent = selected ? '✓' : '+';
+    }
+    for (const [key, name] of Object.entries(designs)) {
+      const card = template.content.firstElementChild.cloneNode(true);
+      card.dataset.keuzestijl = key;
+      const heading = card.querySelector('h2');
+      heading.id = 'heading-' + key;
+      heading.textContent = name;
+      card.setAttribute('aria-labelledby', heading.id);
+      const grid = card.querySelector('.choice-grid');
+      for (const ingredient of ingredients) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'choice';
+        button.dataset.group = 'vegetables';
+        button.dataset.value = ingredient;
+        const label = document.createElement('span');
+        label.className = 'choice-label';
+        label.textContent = ingredient;
+        const mark = document.createElement('span');
+        mark.className = 'choice-mark';
+        mark.setAttribute('aria-hidden','true');
+        button.append(label, mark);
+        setChoice(button, ingredient === 'Mango' || ingredient === 'Avocado');
+        grid.append(button);
+      }
+      card.addEventListener('click', event => {
+        const button = event.target.closest('button.choice');
+        if (!button) return;
+        setChoice(button, button.getAttribute('aria-pressed') !== 'true');
+        card.querySelector('.selection-count').textContent = grid.querySelectorAll('[aria-pressed="true"]').length + ' gekozen';
+      });
+      samples.append(card);
+    }
+    function showDesign() {
+      const hash = location.hash.slice(1);
+      const selected = Object.hasOwn(designs, hash) ? hash : 'lijst';
+      samples.querySelectorAll('.sample').forEach(card => card.classList.toggle('current', card.dataset.keuzestijl === selected));
+      document.querySelectorAll('.style-links a').forEach(link => {
+        if (link.hash === '#' + selected) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('hashchange', showDesign);
+    showDesign();
+  </script>
+</body>
+</html>

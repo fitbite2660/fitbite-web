@@ -1,0 +1,36 @@
+{
+  "asset": "XL Crousty Super Bowl",
+  "sourceService": "Higgsfield",
+  "sourceJobId": "b7e83993-0490-4a8d-9748-71fa9d7036f2",
+  "sourceFile": "assets/higgsfield-menu-2026-11-10/b7e83993-0490-4a8d-9748-71fa9d7036f2-review.jpg",
+  "sourceOriginal": "assets/higgsfield-menu-2026-11-10/b7e83993-0490-4a8d-9748-71fa9d7036f2.png",
+  "editTool": "Built-in image_gen",
+  "higgsfieldCreditsUsed": 0,
+  "generatedFile": "/Users/adnane/.codex/generated_images/01a1c70f-dacf-74d2-9076-5d048cee0fe2/exec-4eb13c04-bfea-4fb4-b20a-255c5ee3ad13.png",
+  "promptFile": "xl-crousty.prompt.txt",
+  "outputs": [
+    {
+      "file": "xl-crousty.png",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "xl-crousty.webp",
+      "width": 1024,
+      "height": 683
+    }
+  ],
+  "validation": {
+    "hasAlpha": true,
+    "transparentCorners": true,
+    "fullyTransparentPixels": 583603,
+    "subjectAlpha": "Predominantly 252–253 of 255; original generated alpha preserved.",
+    "subjectBounds": {
+      "left": 112,
+      "top": 35,
+      "right": 1420,
+      "bottom": 986
+    },
+    "visualReview": "Clean full bowl silhouette on cream background. Original cream bowl, rice and three chicken types retained, sauce arrangement substantially retained; AI extraction re-renders fine texture, so not pixel-identical. No additional ingredients added."
+  }
+}
