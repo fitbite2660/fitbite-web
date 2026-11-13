@@ -119,3 +119,11 @@ body[data-scene="mand"] .cart-title{font:500 22px/1.08 var(--display);letter-spa
 .cart-total strong{font:500 26px var(--display);letter-spacing:-.02em}
 .bowl-price{font:500 20px var(--display);margin:12px 0 0}
 .choice-price{display:block;font:400 13px var(--reading);opacity:.75;margin-top:2px}
+
+/* bestelreis: videoclip tussen twee stappen */
+.reis{position:fixed;inset:0;z-index:50;background:#16110d;opacity:0;transition:opacity .36s ease;cursor:pointer}
+.reis.is-on{opacity:1}
+.reis video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reis::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#16110d80 0,#16110d00 26%,#16110d00 62%,#16110dcc 100%);pointer-events:none}
+.reis-label{position:absolute;left:22px;right:22px;bottom:max(34px,env(safe-area-inset-bottom));margin:0;z-index:1;font:500 30px/1.05 var(--display);letter-spacing:-.03em;color:#f4e8d3;text-wrap:balance}
+@media(min-width:700px){.reis video{object-fit:contain}}

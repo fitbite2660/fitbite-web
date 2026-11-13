@@ -645,6 +645,8 @@
     heading.tabIndex = -1;
     heading.focus({preventScroll: true});
     window.scrollTo(0, 0);
+    const reisClip = window.fitbiteReis?.between(kind, previousScene, destination);
+    if (reisClip) window.fitbiteReis.play(reisClip);
     if (finishLocked) enterFinish(previousScene, previousFinishPhoto, motionAllowed);
     if (from && atTrays) enterTrays(from, room, document.querySelector('.viewfinder'));
     if (pumpFrame) enterTrays(pumpFrame, pumpPhoto, toppingScene);
@@ -682,6 +684,7 @@
     if (scene === 'kassa') {
       paymentPreview = true;
       render();
+      window.fitbiteReis?.play('naar-buiten');
       return;
     }
     goTo(steps[steps.indexOf(scene) + 1]);
