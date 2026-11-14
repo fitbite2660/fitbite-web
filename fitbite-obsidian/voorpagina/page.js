@@ -60,7 +60,7 @@
     event.preventDefault();
     if (dialog.open) closeMenu();
     const bowls = link.hash === '#bowls';
-    const top = bowls ? (enhanced ? story.offsetTop + story.offsetHeight - stage.offsetHeight : panels[1].offsetTop) : 0;
+    const top = bowls ? (enhanced ? story.offsetTop + story.offsetHeight - stage.offsetHeight : story.offsetTop + panels[1].offsetTop) : link.hash === '#croustys' ? story.offsetTop : 0;
     scrollTo({top, behavior: motion.matches ? 'instant' : 'smooth'});
     history.replaceState(history.state, '', link.hash);
   }));
@@ -71,6 +71,13 @@
   motion.addEventListener('change', configure); shortScreen.addEventListener('change', configure);
   document.querySelector('.builder-trigger').addEventListener('click',()=>document.querySelector('#builder-routes').showModal());
   document.querySelector('#close-routes').addEventListener('click',()=>document.querySelector('#builder-routes').close());
+  // Achtergrondvideo: speelt vanzelf zolang het welkomstscherm in beeld is.
+  const tour = document.querySelector('.welkom-video'), pause = document.querySelector('.welkom-pause');
+  let paused = false;
+  const playTour = () => { if (!paused && !motion.matches) tour.play()?.catch(() => {}); };
+  new IntersectionObserver(([entry]) => entry.isIntersecting ? playTour() : tour.pause(), {threshold: .25}).observe(tour);
+  pause.addEventListener('click', () => { paused = !paused; paused ? tour.pause() : playTour(); pause.textContent = paused ? 'Speel video af' : 'Pauzeer video'; pause.setAttribute('aria-pressed', String(paused)); });
+  if (location.hash === '#croustys') requestAnimationFrame(() => scrollTo(0, story.offsetTop));
   configure(); count();
-  if (location.hash === '#bowls') requestAnimationFrame(() => { scrollTo(0, enhanced ? story.offsetHeight - stage.offsetHeight : panels[1].offsetTop); update(); });
+  if (location.hash === '#bowls') requestAnimationFrame(() => { scrollTo(0, story.offsetTop + (enhanced ? story.offsetHeight - stage.offsetHeight : panels[1].offsetTop)); update(); });
 })();
