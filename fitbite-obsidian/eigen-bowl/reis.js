@@ -1,5 +1,6 @@
 // Bestelreis: korte videoclips van de echte zaak die tussen twee stappen afspelen.
-// Een clip vervangen = het mp4-bestand in media/reis/ vervangen (staand, 720×1280, zonder geluid, 2–4 s).
+// AI-clips (Higgsfield, Kling 3.0) van de zaak; begin- en eindbeelden staan in ../voorpagina/media/ai-beelden.
+// Een clip vervangen = het mp4-bestand in media/reis/ vervangen (staand, 720×1280, zonder geluid, 3–5 s).
 (() => {
   'use strict';
   const clips = {
@@ -43,7 +44,7 @@
       layer.hidden = false;
       requestAnimationFrame(() => layer.classList.add('is-on'));
       video.onended = done; video.onerror = done;
-      timer = setTimeout(done, 6000);
+      timer = setTimeout(done, 7000);
       const started = video.play(); if (started?.catch) started.catch(done);
     });
   }
