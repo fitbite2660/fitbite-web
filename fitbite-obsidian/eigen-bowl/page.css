@@ -48,8 +48,8 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   opacity: 0;
   transition: opacity .55s ease, transform 1.05s cubic-bezier(.21,.65,.22,1);
 }
-.shot-room { background-image: url("media/recht-achter-de-bar.jpg"); opacity: 1; background-position: 50% 56%; }
-.shot-greens { background-image: url("media/gevulde-saladette.jpg"); }
+.shot-room { background-image: url("media/achter-de-bar.jpg"); opacity: 1; background-position: 50% 56%; }
+.shot-greens { background-image: url("media/saladette-schuin.jpg"); }
 .shade { background: linear-gradient(180deg,rgba(19,16,13,.78),rgba(28,22,17,.56) 25%,rgba(25,21,15,.05) 52%,rgba(20,16,11,.05) 76%,rgba(23,18,13,.72)); }
 .bar {
   display: flex; align-items: center; justify-content: space-between;
@@ -123,8 +123,8 @@ body[data-scene="groenten"] .shot-room, body[data-scene="groenten"] .shade { opa
 body[data-scene="groenten"] .viewfinder { overflow: hidden; }
 body[data-scene="groenten"] .ingredient-photo { display: block; position: absolute; inset: 0; overflow: hidden; }
 .photo-track {
-  position: absolute; width: 100%; aspect-ratio: 1087 / 1450;
-  top: 50%; transform: translateY(-54%);
+  position: absolute; width: 100%; aspect-ratio: 1400 / 1331;
+  top: 50%; transform: translateY(-50%);
 }
 .photo-track img { display: block; width: 100%; height: 100%; }
 .pin {

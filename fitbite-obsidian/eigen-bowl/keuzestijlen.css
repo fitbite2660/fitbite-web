@@ -58,13 +58,13 @@
 }
 
 /* A color and photo position for each of the actual bins in the two Fitbite photos. */
-.choice[data-value="Mango"] { --kleur: #ffbf57; --vak-x: 62%; --vak-y: 55%; --vak-foto: url("media/gevulde-saladette.jpg"); }
-.choice[data-value="Avocado"] { --kleur: #ccd887; --vak-x: 8%; --vak-y: 79%; }
-.choice[data-value="Komkommer"] { --kleur: #afce96; --vak-x: 35%; --vak-y: 50%; }
-.choice[data-value="Edamame"] { --kleur: #8db966; --vak-x: 39%; --vak-y: 74%; }
-.choice[data-value="Maïs"] { --kleur: #f0ce73; --vak-x: 77%; --vak-y: 32%; }
-.choice[data-value="Rode ui"] { --kleur: #d5a3bc; --vak-x: 56%; --vak-y: 34%; }
-.choice[data-value="Tomaat"] { --kleur: #ee9a83; --vak-x: 7%; --vak-y: 53%; }
+.choice[data-value="Mango"] { --kleur: #ffbf57; --vak-x: 50%; --vak-y: 21.1%; }
+.choice[data-value="Avocado"] { --kleur: #ccd887; --vak-x: 20%; --vak-y: 21.1%; }
+.choice[data-value="Komkommer"] { --kleur: #afce96; --vak-x: 20%; --vak-y: 53.5%; }
+.choice[data-value="Edamame"] { --kleur: #8db966; --vak-x: 50%; --vak-y: 53.5%; }
+.choice[data-value="Maïs"] { --kleur: #f0ce73; --vak-x: 80%; --vak-y: 53.5%; }
+.choice[data-value="Rode ui"] { --kleur: #d5a3bc; --vak-x: 20%; --vak-y: 84.5%; }
+.choice[data-value="Tomaat"] { --kleur: #ee9a83; --vak-x: 80%; --vak-y: 21.1%; }
 
 [data-keuzestijl="kleur"] .choice-group[data-group="vegetables"] .choice-grid {
   display: flex;
@@ -129,7 +129,7 @@
   content: "";
   align-self: stretch;
   width: 36px;
-  background: var(--vak-foto, url("media/groentebakken.jpg")) var(--vak-x) var(--vak-y) / 680% auto no-repeat;
+  background: var(--vak-foto, url("media/saladette-boven.jpg")) var(--vak-x) var(--vak-y) / 680% auto no-repeat;
 }
 [data-keuzestijl="strook"] .choice-group[data-group="vegetables"] .choice[aria-pressed="true"] {
   border-color: var(--menu-cream);

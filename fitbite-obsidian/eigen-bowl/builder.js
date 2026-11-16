@@ -369,6 +369,46 @@
     return row;
   }
 
+  // Bevestiging na betaling (proef): vinkje, bestelnummer, tijdstip en totaal.
+  let orderNumber = null;
+  function confirmationCard() {
+    orderNumber = orderNumber || 'FB-' + String(Math.floor(1000 + Math.random() * 9000));
+    const card = element('div', 'confirm-card');
+    card.setAttribute('role', 'status');
+    const check = element('span', 'confirm-check'); check.setAttribute('aria-hidden', 'true');
+    check.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const ready = new Date(Date.now() + 25 * 60000).toLocaleTimeString('nl-BE', {hour: '2-digit', minute: '2-digit'});
+    const rows = element('dl', 'confirm-rows');
+    for (const [k, v] of [['Bestelnummer', orderNumber], ['Klaar rond', ready], ['Totaal', window.fitbiteMenu.euro(window.fitbiteMenu.orderTotal(basket, menuCart))]]) {
+      rows.append(element('dt', '', k), element('dd', '', v));
+    }
+    card.append(check, element('p', 'confirm-title', 'Je bestelling is onderweg.'), rows,
+      element('p', 'payment-demo', 'Proefbestelling: er is niets in rekening gebracht.'));
+    return card;
+  }
+
+  // Schuif om te betalen: duim naar rechts slepen, of de knop met Enter/spatie bedienen.
+  function swipeToPay() {
+    const track = element('div', 'swipe-pay');
+    const fill = element('span', 'swipe-fill'); fill.setAttribute('aria-hidden', 'true');
+    const label = element('span', 'swipe-label', 'Schuif om te betalen · ' + window.fitbiteMenu.euro(window.fitbiteMenu.orderTotal(basket, menuCart)));
+    label.setAttribute('aria-hidden', 'true');
+    const knob = element('button', 'swipe-knob');
+    knob.type = 'button';
+    knob.setAttribute('aria-label', 'Betaal ' + window.fitbiteMenu.euro(window.fitbiteMenu.orderTotal(basket, menuCart)));
+    knob.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    track.append(fill, label, knob);
+    let start = null, max = 0, x = 0, done = false;
+    const set = v => { x = Math.max(0, Math.min(max, v)); knob.style.transform = `translateX(${x}px)`; fill.style.width = (x + knob.offsetWidth) + 'px'; label.style.opacity = String(1 - x / Math.max(1, max) * 1.4); };
+    const finish = () => { if (done) return; done = true; track.classList.add('is-done'); set(max); navigator.vibrate?.(15); setTimeout(() => next.click(), 220); };
+    knob.addEventListener('pointerdown', e => { if (done) return; start = e.clientX - x; max = track.clientWidth - knob.offsetWidth - 8; knob.setPointerCapture(e.pointerId); track.classList.add('is-dragging'); });
+    knob.addEventListener('pointermove', e => { if (start !== null) set(e.clientX - start); });
+    const release = () => { if (start === null) return; start = null; track.classList.remove('is-dragging'); if (x > max * 0.82) finish(); else { knob.style.transition = fill.style.transition = 'transform .32s cubic-bezier(.3,1.4,.5,1), width .32s ease'; set(0); setTimeout(() => { knob.style.transition = fill.style.transition = ''; }, 340); } };
+    knob.addEventListener('pointerup', release); knob.addEventListener('pointercancel', release);
+    knob.addEventListener('click', e => { if (e.detail === 0) { max = track.clientWidth - knob.offsetWidth - 8; finish(); } });
+    return track;
+  }
+
   function appendMenuItems(container) {
     for (const [id, name] of window.fitbiteMenu.items) {
       if (!menuCart[id]) continue;
@@ -401,11 +441,7 @@
     choices.append(fold);
     if (scene === 'kassa') choices.append(totalRow());
     else if (scene === 'keuze') { const p=window.fitbiteMenu.bowlPrice(bowl); if(p!=null) choices.append(element('p','bowl-price',window.fitbiteMenu.bowlName(bowl)+' · '+window.fitbiteMenu.euro(p))); }
-    if (scene === 'kassa' && paymentPreview) {
-      const note = element('p', 'payment-demo', 'Betaalproef afgerond. Er is niets in rekening gebracht.');
-      note.setAttribute('role', 'status');
-      choices.append(note);
-    }
+    if (scene === 'kassa' && paymentPreview) { const card = confirmationCard(); choices.append(card); setTimeout(() => card.scrollIntoView({block: 'end', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}), 120); }
   }
 
   function render() {
@@ -442,9 +478,14 @@
     ));
     byId('step-label').textContent = position < 0 ? '' : 'Stap ' + (position + 1) + ' van ' + steps.length;
     syncSelection();
+    document.querySelectorAll('.swipe-pay').forEach(el => el.remove());
+    document.body.classList.toggle('is-paid', scene === 'kassa' && paymentPreview);
     if (scene === 'kassa' && paymentPreview) {
       next.hidden = true;
       menuLink.focus({preventScroll: true});
+    } else if (scene === 'kassa' && itemCount()) {
+      next.hidden = true;
+      next.after(swipeToPay());
     } else next.hidden = false;
     signal();
   }

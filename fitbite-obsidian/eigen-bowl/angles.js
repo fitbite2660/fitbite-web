@@ -6,9 +6,7 @@
     pin.dataset.pick, [pin.style.getPropertyValue('--x'), pin.style.getPropertyValue('--y')]
   ]));
   const reverse = new Map(Object.entries({
-    'Mango': ['60%', '55%'], 'Komkommer': ['45%', '73%'],
-    'Edamame': ['22%', '62%'], 'Maïs': ['82%', '66%'],
-    'Rode ui': ['73%', '43%'], 'Tomaat': ['70%', '84%']
+    'Tomaat': ['12%', '29.6%'], 'Rode ui': ['36%', '18.3%'], 'Maïs': ['72%', '29.6%'], 'Komkommer': ['55%', '46.5%'], 'Mango': ['30%', '74.6%'], 'Edamame': ['86%', '21.1%']
   }));
   let otherAngle = false;
 
@@ -16,9 +14,9 @@
     if (other === otherAngle) return;
     otherAngle = other;
     const positions = other ? reverse : original;
-    photo.src = other ? 'media/gevulde-saladette.jpg' : 'media/groentebakken.jpg';
-    photo.alt = other ? 'Schuine blik langs de bakken, met mango, komkommer en maïs vooraan.' :
-      'Fitbites open saladette, met de verse ingrediënten elk in een eigen bak.';
+    photo.src = other ? 'media/saladette-schuin.jpg' : 'media/saladette-boven.jpg';
+    photo.alt = other ? 'Schuine blik langs de bakken, met mango en komkommer vooraan.' :
+      'Fitbites saladette van bovenaf, met elke groente in een eigen bak.';
     for (const pin of pins) {
       const point = positions.get(pin.dataset.pick);
       pin.hidden = !point;
