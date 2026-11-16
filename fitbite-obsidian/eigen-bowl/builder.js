@@ -207,7 +207,7 @@
     }
     if (proteinStage) proteinStage.dataset.proteinSelected = String(Boolean(bowl.protein));
     const ingredient = bowl.protein.toLowerCase();
-    const knownScoops=['kip','verse zalm','gerookte zalm','scampi','korean chicken','spicy tenders','texas strips'];
+    const knownScoops=['kip','verse zalm','gerookte zalm','gegrilde zalm','scampi','korean chicken','spicy tenders','texas strips','nuggets','crispy tenders'];
     const hasScoop=!ingredient||knownScoops.includes(ingredient);
     const file=scoopDirectory+(hasScoop&&ingredient?ingredient.replaceAll(' ','-'):'leeg')+'.jpg';
     proteinDetail.alt = ingredient && hasScoop ? 'Portioneerlepel met ' + ingredient : 'Lege portioneerlepel';

@@ -24,3 +24,14 @@ h2{font-size:clamp(44px,13.33vw,62px);line-height:.9}
 .welkom-pause{display:block;margin:10px auto 0;border:0;background:none;font:400 13px var(--reading);opacity:.72;text-decoration:underline;text-underline-offset:4px;min-height:32px}
 h2.as-h1{font:500 clamp(50px,17.4vw,76px)/.98 var(--display)}
 @media(prefers-reduced-motion:reduce){.welkom-pause{display:none}}
+
+/* groot woordmerk dat letter per letter verschijnt (geinspireerd op 21st "Prisma") */
+.welkom .welkom-mark{margin:0 0 6px;font:500 clamp(86px,29vw,148px)/.84 var(--display);letter-spacing:-.075em;text-shadow:0 6px 30px #1a120a66}
+.welkom-letters{display:inline-flex;overflow:hidden;padding-bottom:.08em}
+.welkom-letters span{display:inline-block;transform:translateY(105%);animation:mark-up .9s cubic-bezier(.2,.75,.2,1) forwards;animation-delay:calc(.35s + var(--i) * .07s)}
+@keyframes mark-up{to{transform:none}}
+.welkom-eyebrow,.welkom-line,.welkom .actions{opacity:0;animation:welkom-fade .8s ease forwards}
+.welkom-eyebrow{animation-delay:.2s}.welkom-line{animation-delay:1s}.welkom .actions{animation-delay:1.25s}
+@keyframes welkom-fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.welkom-line{max-width:30ch;font-size:clamp(15px,4.3vw,18px)}
+@media(prefers-reduced-motion:reduce){.welkom-letters span,.welkom-eyebrow,.welkom-line,.welkom .actions{animation:none;transform:none;opacity:1}}
