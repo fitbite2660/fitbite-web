@@ -303,7 +303,7 @@
   function cartPhoto(item,legacyId) {
     const product=item?window.fitbiteMenu.signature(item):window.fitbiteMenu.signatureBowls.find(p=>p.id===legacyId);
     if(product)return '../bowls/media/'+product.file+'.'+(product.imageType||'webp');
-    if(item)return '../voorpagina/media/logo.jpeg';
+    if(item)return 'media/eigen/'+(['crousty','protein'].includes(item.kind)?item.kind:'poke')+'.webp';
     const record=window.fitbiteMenu.items.find(p=>p[0]===legacyId);
     return record&&/\.(png|webp|jpg)$/.test(record[2])?'../assets/'+record[2]:'../voorpagina/media/logo.jpeg';
   }
