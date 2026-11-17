@@ -27,7 +27,7 @@
     groenten: ['De saladette', 'Kies je groenten.', 'Tik op een ingrediënt. Tik opnieuw om het weg te laten.', 'Kies je proteïne'],
     proteine: ['In de keuken', 'Kies je proteïne.', '', 'Kies je saus'],
     sauzen: ['Bij het keukenluik', 'Kies je saus.', 'Je mag sauzen combineren.', 'Naar de toppings'],
-    toppings: ['Aan de saladette', 'Kies je toppings.', '', 'Voeg mijn bowl toe'],
+    toppings: ['Bij het keukenluik', 'Kies je toppings.', '', 'Voeg mijn bowl toe'],
     keuze: ['In je bestelling', 'Helemaal jouw bowl.', '', 'Afrekenen'],
     kassa: ['Bij de kassa', 'Afrekenen.', '', 'Online betalen uitproberen'],
     mand: ['Jouw selectie', 'Jouw bestelling.', '', 'Afrekenen']
@@ -686,8 +686,7 @@
     heading.tabIndex = -1;
     heading.focus({preventScroll: true});
     window.scrollTo(0, 0);
-    const reisClip = window.fitbiteReis?.between(kind, previousScene, destination);
-    if (reisClip) window.fitbiteReis.play(reisClip);
+    window.fitbiteReis?.go(kind, previousScene, destination);
     if (finishLocked) enterFinish(previousScene, previousFinishPhoto, motionAllowed);
     if (from && atTrays) enterTrays(from, room, document.querySelector('.viewfinder'));
     if (pumpFrame) enterTrays(pumpFrame, pumpPhoto, toppingScene);

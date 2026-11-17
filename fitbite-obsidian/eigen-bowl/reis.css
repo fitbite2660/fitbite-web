@@ -1,0 +1,114 @@
+/* Bestelreis-stijl: het eindbeeld van de clip vult het scherm, de keuzes liggen in een
+   matglazen paneel eroverheen (patronen naar 21st "Drawer" en "Cuisine Selector Chips"). */
+
+/* oude losse fotoscènes en tijdelijke overgangslagen zijn niet meer nodig */
+body.reis-mode :is(.scenery, .viewfinder, #sauce-scene, #topping-scene, #finish-view, .finish-transition, .camera-pass, .checkout-art) { display: none !important; }
+/* body-achtergrond zou boven een z-index:-1 laag geschilderd worden: weg ermee in reis-modus */
+html:has(body.reis-mode) { background: #15100c; }
+body.reis-mode { background: transparent !important; }
+body.reis-mode .station { background: transparent !important; grid-template-rows: auto auto minmax(40px, 1fr) auto auto !important; }
+
+#stage-bg { position: fixed; top: 0; bottom: 0; left: 50%; width: min(100%, 500px); transform: translateX(-50%); z-index: -1; overflow: hidden; background: #1b1510; }
+#stage-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .55s ease, filter .6s ease; }
+#stage-bg img.is-on { opacity: 1; }
+#stage-bg img.instant { transition: none; }
+#stage-bg::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; transition: background .5s ease;
+  background: linear-gradient(180deg, #120d09d9 0%, #120d0966 17%, #120d0900 32%, #120d0900 48%, #120d09b8 68%, #120d09f2 100%);
+}
+body.reis-mode[data-scene="mand"] #stage-bg::after { background: #15100cec; }
+body.reis-mode:is([data-scene="keuze"], [data-scene="kassa"]) #stage-bg::after {
+  background: linear-gradient(180deg, #120d09cc 0%, #120d0940 18%, #120d0900 34%, #120d0900 44%, #120d09c4 62%, #120d09f5 100%);
+}
+body.is-paid #stage-bg img { filter: brightness(.42) saturate(.9); }
+/* daglicht: lichter verloop zodat het ochtendlicht zichtbaar blijft */
+body.reis-mode[data-thema="daglicht"] #stage-bg::after {
+  background: linear-gradient(180deg, #120d09b0 0%, #120d0933 15%, #120d0900 28%, #120d0900 52%, #120d098c 70%, #120d09e6 100%);
+}
+
+/* bij het keukenluik hangt de neon bovenaan: de titel schuift dan naar onder, net boven het paneel */
+body.reis-mode:is([data-scene="sauzen"], [data-scene="toppings"], [data-scene="keuze"]) .title-area {
+  grid-row: 3 !important; align-self: end; padding-top: 0 !important; padding-bottom: 12px !important;
+}
+body.reis-mode:is([data-scene="sauzen"], [data-scene="toppings"], [data-scene="keuze"]) h1 { font-size: clamp(34px, 10.5vw, 46px); margin-bottom: 2px; }
+body.reis-mode:is([data-scene="sauzen"], [data-scene="toppings"], [data-scene="keuze"]) #stage-bg::after {
+  background: linear-gradient(180deg, #120d09a6 0%, #120d0900 13%, #120d0900 42%, #120d09a8 60%, #120d09f2 82%);
+}
+
+/* titel bovenaan, leesbaar op elk beeld */
+body.reis-mode .title-area { grid-row: 2 !important; padding-top: 14px !important; padding-bottom: 0 !important; text-shadow: 0 2px 18px #0b0705b3; }
+body.reis-mode .bar { position: relative; z-index: 2; }
+body.reis-mode :is(.title-area, #choices, .controls) { position: relative; z-index: 1; transition: opacity .45s ease, transform .45s ease; }
+body.reis-onderweg :is(.title-area, #choices, .controls) { opacity: 0; transform: translateY(8px); }
+
+/* keuzepaneel: matglas onderaan, net boven de knop */
+body.reis-mode:is([data-scene="intro"], [data-scene="groenten"], [data-scene="proteine"], [data-scene="sauzen"], [data-scene="toppings"]) #choices {
+  grid-row: 4; align-self: end; margin: 0 12px; padding: 18px 14px 12px; position: relative;
+  border: 1px solid #f4e8d324; border-radius: 22px;
+  background: #1a130ea8; -webkit-backdrop-filter: blur(18px) saturate(1.25); backdrop-filter: blur(18px) saturate(1.25);
+  box-shadow: 0 18px 40px #0a06044d;
+  max-height: 44svh; overflow-y: auto; overscroll-behavior: contain;
+}
+body.reis-mode:is([data-scene="groenten"], [data-scene="proteine"], [data-scene="sauzen"], [data-scene="toppings"]) #choices::before {
+  content: ''; position: absolute; top: 7px; left: 50%; width: 38px; height: 4px; margin-left: -19px; border-radius: 2px; background: #f4e8d340;
+}
+body.reis-mode[data-scene="intro"] #choices { padding-top: 14px; }
+body.reis-mode .route-intro { margin: 0; padding: 2px 4px; text-shadow: none; }
+body.reis-mode .choice-heading { margin: 0 2px 10px; opacity: .75; }
+
+/* keuzes als ronde knopjes */
+body.reis-mode .choice-group .choice-grid { display: flex !important; flex-wrap: wrap; gap: 8px !important; }
+body.reis-mode .choice-group .choice {
+  flex: 0 1 auto; width: auto; min-height: 42px; margin: 0;
+  display: inline-flex !important; align-items: center; gap: 9px;
+  padding: 8px 12px 8px 14px !important;
+  border: 1px solid #f4e8d342 !important; border-radius: 999px !important;
+  background: #f4e8d314 !important; color: #f4e8d3 !important;
+  font: 500 16px/1.1 var(--reading) !important; letter-spacing: 0 !important;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .15s ease;
+}
+body.reis-mode .choice-group .choice:active { transform: scale(.96); }
+body.reis-mode .choice-group .choice[aria-pressed="true"] { background: #f4e8d3 !important; color: #221b15 !important; border-color: #f4e8d3 !important; }
+body.reis-mode .choice-group .choice-mark {
+  order: 2; width: 20px !important; height: 20px !important; border-radius: 50% !important;
+  display: inline-grid !important; place-items: center; font-size: 13px !important;
+  border: 1px solid #f4e8d366 !important; background: transparent !important; color: inherit !important;
+}
+body.reis-mode .choice-group .choice[aria-pressed="true"] .choice-mark { background: #221b15 !important; color: #f4e8d3 !important; border-color: #221b15 !important; animation: vink .28s cubic-bezier(.3,1.6,.5,1); }
+@keyframes vink { from { transform: scale(.4); } }
+body.reis-mode .choice-group .choice .pump-key { display: none; }
+body.reis-mode [data-group="size"] .choice { flex: 1 1 0 !important; justify-content: space-between; min-height: 58px; padding: 10px 14px 10px 18px !important; border-radius: 16px !important; font-size: 19px !important; }
+body.reis-mode [data-group="size"] .choice-price { display: block; margin-top: 3px; }
+
+/* groenten met een klein beeldje */
+body.reis-mode [data-group="vegetables"] .choice::before {
+  content: ''; order: -1; width: 26px; height: 26px; margin-left: -6px; border-radius: 50%;
+  background: #f4e8d322 var(--groente) center / 135% auto no-repeat;
+}
+body.reis-mode [data-group="vegetables"] .choice[data-value="Mango"] { --groente: url("media/keuken/groente-mango.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Avocado"] { --groente: url("media/keuken/groente-avocado.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Komkommer"] { --groente: url("media/keuken/groente-komkommer.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Edamame"] { --groente: url("media/keuken/groente-edamame.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Maïs"] { --groente: url("media/keuken/groente-mais.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Rode ui"] { --groente: url("media/keuken/groente-rode-ui.webp"); }
+body.reis-mode [data-group="vegetables"] .choice[data-value="Tomaat"] { --groente: url("media/keuken/groente-tomaat.webp"); }
+
+/* knop en voortgang */
+body.reis-mode .controls { grid-row: 5; padding-top: 12px; }
+body.reis-mode #continue { border-radius: 14px; }
+body.reis-mode #progress { margin-bottom: 10px; }
+
+/* afronding en kassa: titel bovenaan, overzicht onderaan */
+body.reis-mode:is([data-scene="keuze"], [data-scene="kassa"]) #choices { grid-row: 4; align-self: end; margin: 0 var(--gutter); }
+body.reis-mode[data-scene="kassa"] .scene-context { display: none; }
+
+/* clip-laag */
+.reis { position: fixed; top: 0; bottom: 0; left: 50%; width: min(100%, 500px); transform: translateX(-50%); z-index: 50; background: transparent; opacity: 0; transition: opacity .4s ease; cursor: pointer; }
+.reis.is-on { opacity: 1; transition: none; }
+.reis video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reis::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #16110d66 0, #16110d00 24%, #16110d00 70%, #16110dbf 100%); pointer-events: none; }
+.reis-label { position: absolute; left: 22px; right: 22px; bottom: max(34px, env(safe-area-inset-bottom)); margin: 0; z-index: 1; font: 500 30px/1.05 var(--display); letter-spacing: -.03em; color: #f4e8d3; text-wrap: balance; text-shadow: 0 2px 16px #0008; }
+
+@media (prefers-reduced-motion: reduce) {
+  #stage-bg img, body.reis-mode :is(.title-area, #choices, .controls) { transition: none; }
+}
