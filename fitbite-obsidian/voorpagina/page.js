@@ -73,6 +73,9 @@
   document.querySelector('#close-routes').addEventListener('click',()=>document.querySelector('#builder-routes').close());
   // Achtergrondvideo: speelt vanzelf zolang het welkomstscherm in beeld is.
   const tour = document.querySelector('.welkom-video'), pause = document.querySelector('.welkom-pause');
+  // Scherpe 1080p-versie, behalve op traag internet, databesparing of een klein scherm.
+  const lite = (() => { const c = navigator.connection; if (c?.saveData || /2g|3g/.test(c?.effectiveType || '')) return true; return Math.min(screen.width, screen.height) * (devicePixelRatio || 1) < 900; })();
+  tour.src = lite ? tour.dataset.lite : tour.dataset.hd;
   let paused = false;
   const playTour = () => { if (!paused && !motion.matches) tour.play()?.catch(() => {}); };
   new IntersectionObserver(([entry]) => entry.isIntersecting ? playTour() : tour.pause(), {threshold: .25}).observe(tour);

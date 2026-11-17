@@ -58,7 +58,10 @@
   const theme = themeFor(kind);
   document.body.dataset.thema = theme;
   document.body.classList.add('reis-mode');
-  const clipSrc = name => name === 'naar-buiten' ? base + 'naar-buiten.mp4' : base + theme + '/' + name + '.mp4';
+  // Scherpe 1080p-clips, behalve op traag internet, databesparing of een klein scherm (dan 720p).
+  const lite = (() => { const c = navigator.connection; if (c?.saveData || /2g|3g/.test(c?.effectiveType || '')) return true; return Math.min(screen.width, screen.height) * (devicePixelRatio || 1) < 900; })();
+  const q = lite ? '-720.mp4' : '.mp4';
+  const clipSrc = name => name === 'naar-buiten' ? base + 'naar-buiten' + q : base + theme + '/' + name + q;
   const endSrc = name => name === 'naar-buiten' ? base + 'naar-buiten-eind.jpg' : base + theme + '/' + name + '-eind.jpg';
   const stillSrc = step => {
     const ref = stills[kind]?.[step];
@@ -115,7 +118,7 @@
       label.textContent = labels[name];
       video.onplaying = () => {
         if (started || finished) return;
-        started = true; clearTimeout(startTimer);
+        started = true; clearTimeout(startTimer); fetchAfter(name);
         layer.hidden = false; layer.classList.add('is-on');    // eerste beeld = huidige achtergrond: direct tonen
         setTimeout(() => { if (!finished) setBg(endStill, true); }, 60);
         timer = setTimeout(done, (video.duration || 5) * 1000 + 1500);
@@ -136,14 +139,17 @@
   }
   setBg(stillSrc(document.body.dataset.scene) || stillSrc('intro'), true);
 
-  // Clips en eindbeelden van deze versie alvast ophalen zodra de pagina rustig is.
-  addEventListener('load', () => setTimeout(() => {
-    if (still() || navigator.connection?.saveData) return;
-    const names = new Set(Object.values(routes[kind] || {}).concat('naar-kassa'));
-    for (const name of names) {
-      const l = document.createElement('link'); l.rel = 'prefetch'; l.as = 'video'; l.href = clipSrc(name); document.head.append(l);
-      new Image().src = endSrc(name);
-    }
-  }, 900));
+  // Telkens alleen de volgende clip (en zijn eindbeeld) alvast ophalen, zodat de overgang meteen start
+  // zonder de klant met alle video's tegelijk te belasten.
+  const sequence = Object.values(routes[kind] || {}).concat('naar-kassa', 'naar-buiten');
+  const fetched = new Set();
+  function prefetch(name) {
+    if (!name || fetched.has(name) || still() || navigator.connection?.saveData) return;
+    fetched.add(name);
+    const l = document.createElement('link'); l.rel = 'prefetch'; l.as = 'video'; l.href = clipSrc(name); document.head.append(l);
+    new Image().src = endSrc(name);
+  }
+  function fetchAfter(name) { const i = sequence.indexOf(name); if (i >= 0) prefetch(sequence[i + 1]); }
+  addEventListener('load', () => setTimeout(() => prefetch(sequence[0]), 600));
   window.fitbiteReis = {play, between, go, setBg, theme, labels};
 })();
